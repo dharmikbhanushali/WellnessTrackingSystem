@@ -13,7 +13,9 @@
 <div align="center">
 <h3 align="center">project_title</h3>
   <p align="center">
-    project_description
+    project_description    
+    <br />    
+    <a href="https://kiran-karandikar.github.io/repo_name"><strong>Preview</strong></a>
     <br />
     <a href="https://github.com/kiran-karandikar/repo_name"><strong>Explore the docs »</strong></a>
     <br />
