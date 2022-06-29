@@ -7,11 +7,37 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
+[contributors-shield]: https://img.shields.io/github/contributors/kiran-karandikar/repo_name?style=for-the-badge
+
+[contributors-url]: https://github.com/Kiran-Karandikar/repo_name/graphs/contributors
+
+[forks-shield]: https://img.shields.io/github/forks/Kiran-Karandikar/repo_name?style=for-the-badge
+
+[forks-url]: https://github.com/Kiran-Karandikar/repo_name/network
+
+[stars-shield]: https://img.shields.io/github/stars/Kiran-Karandikar/repo_name?style=for-the-badge
+
+[stars-url]: https://github.com/Kiran-Karandikar/repo_name/stargazers
+
+[issues-shield]: https://img.shields.io/github/issues/Kiran-Karandikar/repo_name?style=for-the-badge
+
+[issues-url]: https://github.com/Kiran-Karandikar/repo_name/issues
+
+[license-shield]: https://img.shields.io/github/license/Kiran-Karandikar/repo_name?style=for-the-badge
+
+[license-url]: https://github.com/Kiran-Karandikar/repo_name/blob/master/LICENSE
+
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+
+[linkedin-url]: https://linkedin.com/in/kiran-karandikar
+
+---------
+
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-<h3 align="center">project_title</h3>
+<h3 align="center">repo_name</h3>
   <p align="center">
     project_description    
     <br />    
@@ -27,6 +53,8 @@
     <a href="https://github.com/kiran-karandikar/repo_name/issues">Request Feature</a>
   </p>
 </div>
+
+<!-- BADGES.MD Finish -->
 
 
 
@@ -145,23 +173,9 @@ full list of proposed features (and known issues).
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the `MIT License`. See `LICENSE` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-
-## Contact
-
-- [Kiran Karandikar](mailto:hkarandikar@gmail.com)
-
-Project
-Link: [https://github.com/kiran-karandikar/repo_name](https://github.com/kiran-karandikar/repo_name)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 
 <!-- ACKNOWLEDGMENTS -->
 
@@ -174,29 +188,14 @@ Link: [https://github.com/kiran-karandikar/repo_name](https://github.com/kiran-k
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/kiran-karandikar/repo_name?style=for-the-badge
+<!-- CONTACT -->
 
-[contributors-url]: https://github.com/Kiran-Karandikar/repo_name/graphs/contributors
+## Contact
 
-[forks-shield]: https://img.shields.io/github/forks/Kiran-Karandikar/repo_name?style=for-the-badge
+- [Kiran Karandikar](mailto:hkarandikar@gmail.com)
 
-[forks-url]: https://github.com/Kiran-Karandikar/repo_name/network
+Project
+Link: [https://github.com/kiran-karandikar/repo_name](https://github.com/kiran-karandikar/repo_name)
 
-[stars-shield]: https://img.shields.io/github/stars/Kiran-Karandikar/repo_name?style=for-the-badge
-
-[stars-url]: https://github.com/Kiran-Karandikar/repo_name/stargazers
-
-[issues-shield]: https://img.shields.io/github/issues/Kiran-Karandikar/repo_name?style=for-the-badge
-
-[issues-url]: https://github.com/Kiran-Karandikar/repo_name/issues
-
-[license-shield]: https://img.shields.io/github/license/Kiran-Karandikar/repo_name?style=for-the-badge
-
-[license-url]: https://github.com/Kiran-Karandikar/repo_name/blob/master/LICENSE
-
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-
-[linkedin-url]: https://linkedin.com/in/kiran-karandikar
-
+<p align="right">(<a href="#top">back to top</a>)</p>
