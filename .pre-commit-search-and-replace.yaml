@@ -1,0 +1,9 @@
+- search: /^# Standard Library/
+  insensitive: true
+  replacement: ''
+- search: /^# Project Libraries/
+  insensitive: true
+  replacement: ''
+- search: /^# Project Libraries/
+  insensitive: true
+  replacement: ''

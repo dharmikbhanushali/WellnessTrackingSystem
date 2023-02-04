@@ -1,0 +1,95 @@
+exclude: "^docs/|/migrations/"
+minimum_pre_commit_version: 2.8.0
+default_stages: [ commit, push, manual ]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: check-yaml
+        args:
+          - --allow-multiple-documents
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: [ --maxkb=800 ]
+      - id: debug-statements
+      - id: detect-private-key
+      - id: check-ast
+      - id: fix-byte-order-marker
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: pretty-format-json
+
+  - repo: https://github.com/google/pre-commit-tool-hooks
+    rev: v1.2.4 # Use the rev you want to point at.
+    hooks:
+      # To disable this on sections of a markdown file, use the ignore/resume comments
+      # <!-- google-doc-style-ignore --> and <!-- google-doc-style-resume -->
+      - id: check-google-doc-style
+      - id: check-links
+      # In a markdown file, put the <!-- toc --> and <!-- tocstop --> markers to
+      # indicate where to put the table of contents
+      - id: markdown-toc
+
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: rst-backticks
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+
+  # Added to search and replace string as per need basis.
+  #  - repo: https://github.com/mattlqx/pre-commit-search-and-replace
+  #    rev: v1.0.5
+  #    hooks:
+  #      - id: search-and-replace
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.3.1
+    hooks:
+      - id: pyupgrade
+        args: [ --py39-plus ]
+
+  - repo: https://github.com/psf/black
+    rev: 22.12.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.11.4
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+      - id: flake8
+        args: [ "--config=./base/setup.cfg" ]
+        additional_dependencies: [ flake8-isort ]
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.2
+    hooks:
+      - id: shellcheck
+
+  - repo: https://github.com/IamTheFij/docker-pre-commit
+    rev: v2.1.1
+    hooks:
+      - id: docker-compose-check
+
+  - repo: https://github.com/wemake-services/dotenv-linter
+    rev: 0.4.0
+    hooks:
+      - id: dotenv-linter
+
+# sets up .pre-commit-ci.yaml to ensure pre-commit dependencies stay up to date
+# https://pre-commit.ci/
+ci:
+  autoupdate_schedule: weekly
+  skip: [ ]
+  submodules: false
