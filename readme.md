@@ -78,12 +78,9 @@ This app uses the following Python packages
   configurable set of panels that display various debug information about the
   current request/response and when clicked, display more details about the
   panel's content.
-- [MailHog](https://github.com/mailhog/MailHog) Web and API based SMTP testing.
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 
@@ -98,12 +95,6 @@ This app uses the following Python packages
     - Use [ruby installer](https://rubyinstaller.org/) if
       using [pre-commit hook](https://pre-commit.com/) : [Search and Replace](https://github.com/mattlqx/pre-commit-search-and-replace)
 
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
 ### Installation
 
 1. Clone the repository
@@ -112,7 +103,7 @@ This app uses the following Python packages
    ```
 2. For local development, see the following:
 
-- [Developing locally using docker](./base/docs/source/developing-locally-docker.rst)
+   - [Developing locally using docker](./base/docs/source/developing-locally-docker.rst)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -152,12 +143,5 @@ Distributed under the `MIT License`. See `LICENSE` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<!-- ACKNOWLEDGMENTS -->
-
-## Acknowledgments
-
-* []()
-* []()
-* []()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
