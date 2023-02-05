@@ -15,8 +15,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-#lib/
-#lib64/
+lib/
+lib64/
 parts/
 sdist/
 var/
@@ -106,14 +106,12 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
-*venv*
 
 # Spyder project settings
 .spyderproject
@@ -139,37 +137,22 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-
-
-# Virtualenv
-# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
-[Bb]in
-[Ii]nclude
-[Ll]ib
-[Ll]ib64
-[Ll]ocal
-[Ss]cripts
-pyvenv.cfg
-pip-selfcheck.json
-
-
-# Don't store secret keys in version control
-config/secret_keys.py
+# Extras
+.editorconfig
+.git
+.gitattributes
+.github
+.gitignore
+.gitlab-ci.yml
 .idea
-
-# Local PostgreSQL data
-data/
-base/*sqlite3*
-
-# Don't include sample scripts
-base/samples
-
-# Don't include static scripts
-base/staticfiles
-
-# Don't include any environment variables
+.pre-commit-config.yaml
+.readthedocs.yml
+.travis.yml
 base/.envs
 base/envs
 
-# Don't include any certificates
-*certs*
+# Local PostgreSQL data
+data/
+
+# Docker
+.docker

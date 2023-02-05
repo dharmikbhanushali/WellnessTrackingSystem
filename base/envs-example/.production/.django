@@ -1,0 +1,48 @@
+# ------------------------------------------------------------------------------
+# General
+# ------------------------------------------------------------------------------
+DJANGO_SETTINGS_MODULE=settings.production
+
+# ------------------------------------------------------------------------------
+# Django
+# ------------------------------------------------------------------------------
+DJANGO_SECRET_KEY={django-secret-key}
+DATABASE_URL=postgres://{user_name}:{password}@{host}:{port}/{database_name}
+DJANGO_ALLOWED_HOSTS={ project domain_name }
+
+# ------------------------------------------------------------------------------
+# Django Admin
+# ------------------------------------------------------------------------------
+DJANGO_ADMIN_URL={admin url}
+DJANGO_SUPERUSER_EMAIL=admin@email.it
+DJANGO_SUPERUSER_USERNAME=admin@email.it
+DJANGO_SUPERUSER_PASSWORD=passadmin
+
+# ------------------------------------------------------------------------------
+# Misc
+# ------------------------------------------------------------------------------
+# Time in minutes when application should refresh the data from the wrike api.
+PROJECT_EXPIRES_IN=1440
+TASKS_EXPIRES_IN=1440
+
+
+# ------------------------------------------------------------------------------
+# Security
+# ------------------------------------------------------------------------------
+# TIP: better off using DNS, however, redirect is OK too
+DJANGO_SECURE_SSL_REDIRECT=False
+
+# ------------------------------------------------------------------------------
+# Email
+# ------------------------------------------------------------------------------
+DJANGO_DEFAULT_FROM_EMAIL=
+DJANGO_SERVER_EMAIL=
+SENDGRID_API_URL=
+SENDGRID_API_KEY=
+SENDGRID_GENERATE_MESSAGE_ID=True
+SENDGRID_MERGE_FIELD_FORMAT=None
+
+# ------------------------------------------------------------------------------
+# Gunicorn
+# ------------------------------------------------------------------------------
+WEB_CONCURRENCY=4

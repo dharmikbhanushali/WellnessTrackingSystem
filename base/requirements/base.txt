@@ -1,0 +1,31 @@
+# ------------------------------------------------------------------------------
+# Django
+# ------------------------------------------------------------------------------
+# https://www.djangoproject.com/
+Django>=3.2.4,<3.3
+# https://github.com/joke2k/django-environ
+django-environ
+# https://github.com/adamchainz/django-cors-headers
+django-cors-headers
+# https://github.com/jazzband/django-redis
+django-redis==5.2.0
+# Django REST Framework
+# https://github.com/encode/django-rest-framework
+djangorestframework>=3.12.4,<3.13
+# DRF-spectacular for api documentation
+# https://drf-spectacular.readthedocs.io/en/latest/readme.html
+drf-spectacular>=0.15.1,<0.16
+# For smooth handling of static files.
+# https://github.com/evansd/whitenoise
+whitenoise==6.2.0
+# ------------------------------------------------------------------------------
+# Oauth2
+# ------------------------------------------------------------------------------
+requests
+requests-oauthlib
+
+# ------------------------------------------------------------------------------
+# Extras
+# ------------------------------------------------------------------------------
+# https://github.com/tqdm/tqdm
+tqdm==4.64.1

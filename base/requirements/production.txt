@@ -1,0 +1,27 @@
+# PRECAUTION: avoid production dependencies that aren't in development
+
+-r base.txt
+
+# https://github.com/benoitc/gunicorn
+gunicorn==20.1.0
+# ------------------------------------------------------------------------------
+# Databases
+# ------------------------------------------------------------------------------
+# https://github.com/psycopg/psycopg2
+psycopg2==2.9.3
+
+# ------------------------------------------------------------------------------
+# Django
+# ------------------------------------------------------------------------------
+# Email providers.
+# https://github.com/anymail/django-anymail
+django-anymail[sendgrid]==8.6
+
+# https://github.com/jschneier/django-storages
+# Cloud storage providers
+# - For azure
+django-storages[azure]
+# - For aws
+# django-storages[boto3]
+#  - for google
+# django-storages[google]
