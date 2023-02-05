@@ -3,8 +3,8 @@
 <div align="center">
 <h3 align="center">repo_name</h3>
   <p align="center">
-    project_description    
-    <br />    
+    project_description
+    <br />
     <a href="https://kiran-karandikar.github.io/repo_name"><strong>Preview</strong></a>
     <br />
     <a href="https://github.com/kiran-karandikar/repo_name"><strong>Explore the docs »</strong></a>
@@ -59,14 +59,27 @@ search and replace with your text editor for the following: `repo_name`, `projec
 
 ### Built With
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+This app uses the following Python packages
+
+- [python-dotenv](https://pypi.org/project/python-dotenv/), to store sensitive
+  information
+- [requests-oauthlib](https://github.com/requests/requests-oauthlib), to
+  integrate with third-party OAuth2 providers, such as Wrike.
+- [requests](https://github.com/psf/requests), to send HTTP GET and POST
+  requests
+- [django-environ](https://django-environ.readthedocs.io/en/latest/), to manage
+  django settings flawlessly
+- [djangorestframework](https://www.django-rest-framework.org/) for **web
+  browsable api**.
+- [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/) for _Sane
+  and
+  flexible OpenAPI 3 schema generation for Django REST framework._
+- [django-debug-toolbar](https://github.com/jazzband/django-debug-toolbar) a
+  configurable set of panels that display various debug information about the
+  current request/response and when clicked, display more details about the
+  panel's content.
+- [MailHog](https://github.com/mailhog/MailHog) Web and API based SMTP testing.
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -76,14 +89,15 @@ search and replace with your text editor for the following: `repo_name`, `projec
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project
-locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to
-install them.
+- Optional:
+    - [Dokcer](https://www.docker.com/get-started/)
+      and [Docker dependencies](https://docs.docker.com/desktop/install/windows-install/)
+      installed if using dokcer based setup.
+    - Use [ruby installer](https://rubyinstaller.org/) if
+      using [pre-commit hook](https://pre-commit.com/) : [Search and Replace](https://github.com/mattlqx/pre-commit-search-and-replace)
+
 
 * npm
   ```sh
@@ -92,11 +106,13 @@ install them.
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repository
    ```sh
-   git clone https://github.com/kiran-karandikar/repo_name.git
+    $ git clone https://github.iu.edu/kikarand/Team-26-Wellness-Tracking-System
    ```
-2. Additional Steps here...
+2. For local development, see the following:
+
+- [Developing locally using docker](./base/docs/source/developing-locally-docker.rst)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -105,32 +121,28 @@ install them.
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional
-screenshots, code examples and demos work well in this space. You may also link
-to more resources.
+- Setup docker containers using:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+  ```shell
+  docker build .
+  docker compose -f local.yml build
+  docker compose -f local.yml up
+  docker compose -f local.yml down
+  ```
+
+_For more examples, please refer to
+the [Documentation](https://localhost:9000/)_ built using `Sphinx`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
-<!-- ROADMAP 
+<!-- ROADMAP -->
 
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-	- [ ] Nested Feature
-
-See the [open issues](https://github.com/kiran-karandikar/repo_name/issues) for a
-full list of proposed features (and known issues).
+See the [open issues](https://github.iu.edu/kikarand/Team-26-Wellness-Tracking-System) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
--->
-
-
 
 <!-- LICENSE -->
 
@@ -149,4 +161,3 @@ Distributed under the `MIT License`. See `LICENSE` for more information.
 * []()
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
