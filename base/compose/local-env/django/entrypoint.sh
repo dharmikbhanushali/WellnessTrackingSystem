@@ -9,6 +9,7 @@ python manage.py wait_for_db
 python manage.py makemigrations
 python manage.py migrate
 python manage.py auto_add_superuser
+python manage.py collectstatic --noinput
 # Normal Server
 python manage.py runserver 0.0.0.0:8000
 # or for enhanced local server

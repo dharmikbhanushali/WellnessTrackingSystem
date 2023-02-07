@@ -32,6 +32,13 @@ CACHES = {
 }
 
 # ------------------------------------------------------------------------------
+# WhiteNoise
+# ------------------------------------------------------------------------------
+# http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in-development
+INSTALLED_APPS = ["whitenoise.runserver_nostatic"] + INSTALLED_APPS  # noqa F405
+
+
+# ------------------------------------------------------------------------------
 # django-debug-toolbar
 # ------------------------------------------------------------------------------
 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
@@ -56,6 +63,12 @@ if env("USE_DOCKER", default="N") == "Yes":
 
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
+    try:
+        _, _, ips = socket.gethostbyname_ex("node")
+        INTERNAL_IPS.extend(ips)
+    except socket.gaierror:
+        # The node container isn't started (yet?)
+        pass
 
 # ------------------------------------------------------------------------------
 # django-extensions
@@ -69,8 +82,13 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 # ------------------------------------------------------------------------------
 # http://whitenoise.evans.io/en/latest/django.html#using-whitenoise-in
 # -development
-INSTALLED_APPS += ["whitenoise.runserver_nostatic"]
+# INSTALLED_APPS += ["whitenoise.runserver_nostatic"] #todo
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+
+# ------------------------------------------------------------------------------
+# django-webpack-loader
+# ------------------------------------------------------------------------------
+WEBPACK_LOADER["DEFAULT"]["CACHE"] = not DEBUG  # noqa F405
 
 # ------------------------------------------------------------------------------
 # EMAIL
@@ -98,4 +116,3 @@ CSRF_COOKIE_SECURE = False
 # ------------------------------------------------------------------------------
 # Your stuff...
 # ------------------------------------------------------------------------------
-INSTALLED_APPS += ["prototype"]

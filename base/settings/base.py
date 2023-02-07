@@ -32,6 +32,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+# https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
+LOCALE_PATHS = [str(os.path.join(BASE_DIR, "locale"))]
+
 # https://docs.python.org/3/library/warnings.html#warnings.filterwarnings
 # https://docs.djangoproject.com/en/4.1/topics/i18n/timezones/#code
 # Suppress: RuntimeWarning: `DateTimeField`  received a naive datetime while time zone support is active.
@@ -79,10 +82,13 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    "rest_framework",
-    "rest_framework.authtoken",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "webpack_loader",
     "corsheaders",
-    "drf_spectacular",
 ]
 
 # Custom apps go here
@@ -97,6 +103,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "core.User"
@@ -123,8 +130,8 @@ AUTH_PASSWORD_VALIDATORS = [{"NAME": _} for _ in PASSWORD_VALIDATOR_NAMES]
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -177,9 +184,10 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.i18n",
                 "django.template.context_processors.media",
-                "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
+                "django.contrib.messages.context_processors.messages",
+                "base.users.context_processors.allauth_settings",  # todo
             ],
         },
     },
@@ -187,6 +195,11 @@ TEMPLATES = [
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#form-renderer
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
+
+# http://django-crispy-forms.readthedocs.io/en/latest/install.html#template-packs
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
 
 # ------------------------------------------------------------------------------
 # ADMIN
@@ -237,44 +250,6 @@ LOGGING = {
     "root": {"level": "INFO", "handlers": ["console"]},
 }
 
-# -------------------------------------------------------------------------------
-# django-rest-framework
-# -------------------------------------------------------------------------------
-# django-rest-framework - https://www.django-rest-framework.org/api-guide
-# /settings/
-REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
-    ),
-    # The IsAdminUser permission class will deny permission to any user,
-    # unless user.is_staff is True in which case permission will be allowed.
-    # This permission is suitable if you want your API to only be accessible
-    # to a subset of trusted administrators.
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAdminUser",),
-    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 15,
-}
-
-# By Default swagger ui is available only to admin user(s). You can change
-# permission classes to change that # See more configuration options at
-# https://drf-spectacular.readthedocs.io/en/latest/settings.html#settings
-SPECTACULAR_SETTINGS = {
-    "VERSION": "1.0.0",
-    "SERVE_PERMISSIONS": [
-        "rest_framework.permissions.AllowAny",
-        # "rest_framework.permissions.IsAdminUser"
-    ],
-    "SERVERS": [
-        {"url": "http://127.0.0.1:8000", "description": "Local Development server"},
-        {"url": "production-server-url", "description": "Production server"},
-    ],
-}
-
-# django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
-CORS_URLS_REGEX = r"^/api/.*$"
-
 # ------------------------------------------------------------------------------
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -308,6 +283,43 @@ EMAIL_BACKEND = env(
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_TIMEOUT = 5
+
+# ------------------------------------------------------------------------------
+# django-allauth
+# ------------------------------------------------------------------------------
+ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_EMAIL_REQUIRED = True
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_ADAPTER = "baseusers.adapters.AccountAdapter"  # todo
+# https://django-allauth.readthedocs.io/en/latest/forms.html
+ACCOUNT_FORMS = {"signup": "base.users.forms.UserSignupForm"}  # todo
+# https://django-allauth.readthedocs.io/en/latest/configuration.html
+SOCIALACCOUNT_ADAPTER = "base.users.adapters.SocialAccountAdapter"  # todo
+# https://django-allauth.readthedocs.io/en/latest/forms.html
+SOCIALACCOUNT_FORMS = {"signup": "base.users.forms.UserSocialSignupForm"}  # todo
+
+# django-compressor
+# ------------------------------------------------------------------------------
+# https://django-compressor.readthedocs.io/en/latest/quickstart/#installation
+INSTALLED_APPS += ["compressor"]
+STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
+
+# ------------------------------------------------------------------------------
+# django-webpack-loader
+# ------------------------------------------------------------------------------
+WEBPACK_LOADER = {
+    "DEFAULT": {
+        "CACHE": not DEBUG,
+        "STATS_FILE": "{}/{}".format(BASE_DIR, "webpack-stats.json"),
+        "POLL_INTERVAL": 0.1,
+        "IGNORE": [r".+\.hot-update.js", r".+\.map"],
+    }
+}
 
 # ------------------------------------------------------------------------------
 # Your stuff...

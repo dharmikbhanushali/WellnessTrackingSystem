@@ -22,35 +22,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views import debug, defaults as default_views
 
-# 3rd Party Libraries
-from drf_spectacular.views import (
-    SpectacularAPIView,
-    SpectacularRedocView,
-    SpectacularSwaggerView,
-)
-
 
 urlpatterns = [
     path("", debug.default_urlconf),
     path(settings.ADMIN_URL, admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-# ----------------------------------------------------------------------------
-# Swagger UI
-# ----------------------------------------------------------------------------
-urlpatterns += [
-    path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
-    path(
-        "api/docs/",
-        SpectacularSwaggerView.as_view(url_name="api-schema"),
-        name="api-docs",
-    ),
-    path(
-        "api/rdocs/",
-        SpectacularRedocView.as_view(url_name="api-schema"),
-        name="api-ReDocs",
-    ),
-]
 
 # ----------------------------------------------------------------------------
 # Debug Urls
@@ -81,9 +57,6 @@ if settings.DEBUG:
         import debug_toolbar
 
         urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
-
-    # Include all urls used for sample/testing/trying out features.
-    urlpatterns += [path("api/sample/", include("prototype.urls"))]
 
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

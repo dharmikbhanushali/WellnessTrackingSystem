@@ -7,7 +7,6 @@ from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
 # 3rd Party Libraries
-from rest_framework.authtoken.models import Token
 from tqdm import tqdm
 
 # Project Libraries
@@ -39,13 +38,10 @@ class Command(BaseCommand):
             name = env("DJANGO_SUPERUSER_USERNAME")
             email = env("DJANGO_SUPERUSER_EMAIL")
             password = env("DJANGO_SUPERUSER_PASSWORD")
-            token = None
             logger.info(f"Creating account for {name} ({email})")
             for i in tqdm(range(1), total=1, desc="Add Super User..."):
-                user = users.objects.create_superuser(
+                users.objects.create_superuser(
                     email=email, name=name, password=password
                 )
-                token, created = Token.objects.get_or_create(user=user)
-            logger.info(f"Auth Token for {name} ({email}) is: `token {token}`")
         else:
             logger.info("Admin account exists!, Skipping creation of admin user.")
