@@ -3,21 +3,13 @@
 from django.urls import path
 
 # Project Libraries
-from user.views import (
-    CreateTokenView,
-    CreateUserView,
-    DeleteUserView,
-    ManageUserView,
-    UpgradeUserView,
-)
+from user.views import UserDetailView, UserRedirectView, UserUpdateView
 
 
 app_name = "user"
 
 urlpatterns = [
-    path("create/", CreateUserView.as_view(), name="create"),
-    path("token/", CreateTokenView.as_view(), name="token"),
-    path("me/", ManageUserView.as_view(), name="me"),
-    path("upgrade/", UpgradeUserView.as_view({"patch": "update"}), name="upgrade"),
-    path("delete/<str:email>&<str:name>", DeleteUserView.as_view(), name="delete"),
+    path("~redirect/", view=UserRedirectView.as_view(), name="redirect"),
+    path("~update/", view=UserUpdateView.as_view(), name="update"),
+    path("<str:username>/", view=UserDetailView.as_view(), name="detail"),
 ]

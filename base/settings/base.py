@@ -187,7 +187,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "base.users.context_processors.allauth_settings",  # todo
+                "user.context_processors.allauth_settings",
             ],
         },
     },
@@ -295,13 +295,13 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "baseusers.adapters.AccountAdapter"  # todo
+ACCOUNT_ADAPTER = "user.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-ACCOUNT_FORMS = {"signup": "base.users.forms.UserSignupForm"}  # todo
+ACCOUNT_FORMS = {"signup": "user.forms.UserSignupForm"}
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "base.users.adapters.SocialAccountAdapter"  # todo
+SOCIALACCOUNT_ADAPTER = "user.adapters.SocialAccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/forms.html
-SOCIALACCOUNT_FORMS = {"signup": "base.users.forms.UserSocialSignupForm"}  # todo
+SOCIALACCOUNT_FORMS = {"signup": "user.forms.UserSocialSignupForm"}
 
 # django-compressor
 # ------------------------------------------------------------------------------
