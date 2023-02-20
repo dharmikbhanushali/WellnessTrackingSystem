@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views import debug, defaults as default_views
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -72,5 +73,11 @@ urlpatterns += [
 # fixme: can be developed to have complete user account management.
 # ----------------------------------------------------------------------------
 urlpatterns += [
-    path("accounts/", include("django.contrib.auth.urls")),
+    # path("accounts/", include("django.contrib.auth.urls")),
+    # User management
+    path("accounts/", include("allauth.urls")),
+    path("home/", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path(
+        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
+    ),
 ]

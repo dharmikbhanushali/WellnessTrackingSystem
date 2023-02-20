@@ -56,4 +56,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         Returns:
             str: URL for user detail.
         """
-        return reverse("user:detail", kwargs={"username": self.username})
+        return reverse("user:detail", kwargs={"email": self.email})
