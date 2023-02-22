@@ -35,13 +35,13 @@ class Command(BaseCommand):
         """
         users = get_user_model()
         if users.objects.filter(is_superuser=True).count() == 0:
-            name = env("DJANGO_SUPERUSER_USERNAME")
+            user_name = env("DJANGO_SUPERUSER_USERNAME")
             email = env("DJANGO_SUPERUSER_EMAIL")
             password = env("DJANGO_SUPERUSER_PASSWORD")
-            logger.info(f"Creating account for {name} ({email})")
+            logger.info(f"Creating account for {user_name} ({email})")
             for i in tqdm(range(1), total=1, desc="Add Super User..."):
                 users.objects.create_superuser(
-                    email=email, name=name, password=password
+                    email=email, username=user_name, password=password
                 )
         else:
             logger.info("Admin account exists!, Skipping creation of admin user.")
