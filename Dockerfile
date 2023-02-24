@@ -22,7 +22,7 @@ RUN python -m venv /py && \
     apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-build-deps \
         build-base postgresql-dev musl-dev && \
-    apk add --update --no-cache bash make alpine-sdk && \
+    apk add --update --no-cache bash make alpine-sdk libffi-dev && \
 #    apk add --no-cache texlive-full && \
     if [ $BUILD_ENVIRONMENT = "local" ]; \
         then /py/bin/pip install -r /tmp/requirements/local.txt ; \
