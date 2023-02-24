@@ -173,3 +173,7 @@ base/envs
 
 # Don't include any certificates
 *certs*
+
+# For Mac users
+.DS_Store
+base/.DS_Store
