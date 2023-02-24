@@ -19,7 +19,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
 class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = User
-    fields = ["first_name", "last_name"]
+    fields = ["first_name", "last_name", "password"]
     success_message = translate("Information successfully updated")
     template_name = "users/user_form.html"
 

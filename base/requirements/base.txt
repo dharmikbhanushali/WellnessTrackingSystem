@@ -27,7 +27,14 @@ whitenoise==6.2.0
 # ------------------------------------------------------------------------------
 requests
 requests-oauthlib
-
+# https://github.com/django-otp/django-otp
+django-otp==1.1.4
+# https://django-formtools.readthedocs.io/en/latest/
+django-formtools==2.4
+# https://django-two-factor-auth.readthedocs.io/en/stable/index.html
+django-two-factor-auth[phonenumbers]==1.15.0
+# https://github.com/stefanfoulis/django-phonenumber-field
+django-phonenumber-field==1.3.0
 # ------------------------------------------------------------------------------
 # Extras
 # ------------------------------------------------------------------------------

@@ -24,8 +24,11 @@ from django.views import debug, defaults as default_views
 from django.views.generic import TemplateView
 
 
+# from two_factor.urls import urlpatterns as tf_urls
+
+
 urlpatterns = [
-    path("", debug.default_urlconf),
+    path("debug/", debug.default_urlconf),
     path(settings.ADMIN_URL, admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -70,7 +73,6 @@ urlpatterns += [
 
 # ----------------------------------------------------------------------------
 # Account management urls
-# fixme: can be developed to have complete user account management.
 # ----------------------------------------------------------------------------
 urlpatterns += [
     # path("accounts/", include("django.contrib.auth.urls")),
@@ -80,4 +82,5 @@ urlpatterns += [
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
+    # path("", include(tf_urls)),
 ]

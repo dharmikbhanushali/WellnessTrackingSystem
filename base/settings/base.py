@@ -89,9 +89,16 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.google",
-    "allauth.socialaccount.providers.instagram",
     "webpack_loader",
     "corsheaders",
+    "formtools",
+    "django_otp",
+    "django_otp.plugins.otp_static",
+    "django_otp.plugins.otp_totp",
+    "django_otp.plugins.otp_email",  # <- if you want email capability.
+    # "two_factor",
+    # 'two_factor.plugins.phonenumber',  # <- if you want phone number capability.
+    # "two_factor.plugins.email",  # <- if you want email capability.
 ]
 
 # Custom apps go here
@@ -111,9 +118,11 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "core.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "user:redirect"
+# LOGIN_REDIRECT_URL = "user:redirect"
+LOGIN_REDIRECT_URL = "two_factor:profile"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = "account_login"
+# LOGIN_URL = "account_login"
+LOGIN_URL = "two_factor:login"
 
 # ------------------------------------------------------------------------------
 # PASSWORDS
@@ -141,6 +150,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django_otp.middleware.OTPMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -274,7 +284,9 @@ SESSION_COOKIE_AGE = 600
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "contrib.sites.migrations"}
+MIGRATION_MODULES = {
+    "sites": "contrib.sites.migrations",
+}
 
 # ------------------------------------------------------------------------------
 # EMAIL
@@ -370,6 +382,11 @@ WEBPACK_LOADER = {
 }
 
 # ------------------------------------------------------------------------------
+# django-two-factor-auth
+# ------------------------------------------------------------------------------
+# https://django-two-factor-auth.readthedocs.io/en/stable/configuration.html#remember-browser
+TWO_FACTOR_REMEMBER_COOKIE_AGE = True
+
+# ------------------------------------------------------------------------------
 # Your stuff...
 # ------------------------------------------------------------------------------
-# CLIENT_ID = env("client_id")
