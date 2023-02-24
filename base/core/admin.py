@@ -18,10 +18,10 @@ class UserAdmin(BaseUserAdmin):
     form = UserAdminChangeForm
     add_form = UserAdminCreationForm
     ordering = ["email"]
-    list_display = ["email", "name", "is_staff", "is_superuser", "is_active"]
-    list_display_links = ["email", "name"]
+    list_display = ["email", "is_staff", "is_superuser", "is_active"]
+    list_display_links = ["email"]
     list_editable = ["is_staff", "is_active"]
-    search_fields = ["email", "name"]
+    search_fields = ["email"]
 
     fieldsets = (
         (translate("Details"), {"fields": ("email", "password")}),
@@ -49,7 +49,6 @@ class UserAdmin(BaseUserAdmin):
                     "email",
                     "password1",
                     "password2",
-                    "name",
                     "is_active",
                     "is_staff",
                     "groups",

@@ -13,7 +13,7 @@ User = get_user_model()
 class UserAdminChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = User
-        fields = ("email",)
+        # fields = ("email",)
 
 
 class UserAdminCreationForm(UserCreationForm):
@@ -26,9 +26,9 @@ class UserAdminCreationForm(UserCreationForm):
         model = User
 
         error_messages = {
-            "email": {"unique": translate("This email has already been taken.")}
+            "username": {"unique": translate("This username has already been taken.")}
         }
-        fields = ("email",)
+        # fields = ("email",)
 
 
 class UserSignupForm(SignupForm):

@@ -25,3 +25,11 @@ services:
       - ./data/db:/var/lib/postgresql/data
     env_file:
       - ./base/.envs/.local/.postgres
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: fitness-mailhog
+    restart: always
+    ports:
+      - "8025:8025"
+      - "1025:1025"
