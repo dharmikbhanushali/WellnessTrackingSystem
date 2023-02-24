@@ -16,4 +16,4 @@ class User(AbstractUser):
         Returns:
             str: URL for user detail.
         """
-        return reverse("users:detail", kwargs={"username": self.username})
+        return reverse("user:detail", kwargs={"username": self.username})
