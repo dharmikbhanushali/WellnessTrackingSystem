@@ -24,11 +24,7 @@ from django.views import debug, defaults as default_views
 from django.views.generic import TemplateView
 
 
-# from two_factor.urls import urlpatterns as tf_urls
-
-
 urlpatterns = [
-    path("debug/", debug.default_urlconf),
     path(settings.ADMIN_URL, admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -39,6 +35,7 @@ if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
     # these url in browser to see how these error pages look like.
     urlpatterns += [
+        path("debug/", debug.default_urlconf),
         path(
             "400/",
             default_views.bad_request,
@@ -75,12 +72,18 @@ urlpatterns += [
 # Account management urls
 # ----------------------------------------------------------------------------
 urlpatterns += [
-    # path("accounts/", include("django.contrib.auth.urls")),
     # User management
+    # path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("allauth.urls")),
-    path("home/", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("accounts/", include("allauth_2fa.urls")),
+]
+
+# ----------------------------------------------------------------------------
+# App urls
+# ----------------------------------------------------------------------------
+urlpatterns += [
+    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
-    # path("", include(tf_urls)),
 ]

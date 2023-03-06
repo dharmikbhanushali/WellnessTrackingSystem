@@ -95,10 +95,8 @@ THIRD_PARTY_APPS = [
     "django_otp",
     "django_otp.plugins.otp_static",
     "django_otp.plugins.otp_totp",
-    "django_otp.plugins.otp_email",  # <- if you want email capability.
-    # "two_factor",
-    # 'two_factor.plugins.phonenumber',  # <- if you want phone number capability.
-    # "two_factor.plugins.email",  # <- if you want email capability.
+    "django_otp.plugins.otp_email",
+    "allauth_2fa",
 ]
 
 # Custom apps go here
@@ -118,11 +116,9 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "core.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-# LOGIN_REDIRECT_URL = "user:redirect"
-LOGIN_REDIRECT_URL = "two_factor:profile"
+LOGIN_REDIRECT_URL = "user:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-# LOGIN_URL = "account_login"
-LOGIN_URL = "two_factor:login"
+LOGIN_URL = "account_login"
 
 # ------------------------------------------------------------------------------
 # PASSWORDS
@@ -154,6 +150,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Reset login flow middleware. If this middleware is included, the login
+    # flow is reset if another page is loaded between login and successfully
+    # entering two-factor credentials.
+    "allauth_2fa.middleware.AllauthTwoFactorMiddleware",
+    "user.middleware.RequireSuperuser2FAMiddleware",
 ]
 
 # ------------------------------------------------------------------------------
@@ -166,8 +167,7 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting
 # -STATICFILES_DIRS
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles
-# -finders
+# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
@@ -316,7 +316,8 @@ ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN = 360
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "user.adapters.AccountAdapter"
+# ACCOUNT_ADAPTER = "user.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "allauth_2fa.adapter.OTPAdapter"  # todo
 # https://django-allauth.readthedocs.io/en/latest/forms.html
 ACCOUNT_FORMS = {"signup": "user.forms.UserSignupForm"}
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
@@ -363,6 +364,7 @@ SOCIALACCOUNT_PROVIDERS = {
     },
 }
 
+# ------------------------------------------------------------------------------
 # django-compressor
 # ------------------------------------------------------------------------------
 # https://django-compressor.readthedocs.io/en/latest/quickstart/#installation
@@ -382,10 +384,10 @@ WEBPACK_LOADER = {
 }
 
 # ------------------------------------------------------------------------------
-# django-two-factor-auth
+# django-allauth-2fa
 # ------------------------------------------------------------------------------
-# https://django-two-factor-auth.readthedocs.io/en/stable/configuration.html#remember-browser
-TWO_FACTOR_REMEMBER_COOKIE_AGE = True
+# https://django-allauth-2fa.readthedocs.io/en/latest/configuration/
+ALLAUTH_2FA_ALWAYS_REVEAL_BACKUP_TOKENS = False
 
 # ------------------------------------------------------------------------------
 # Your stuff...
