@@ -1,10 +1,14 @@
 # Django Libraries
+from django import forms
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm, get_user_model
 from django.utils.translation import gettext_lazy as translate
 
 # 3rd Party Libraries
 from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
+
+# Project Libraries
+from core.models import User as Userclass
 
 
 User = get_user_model()
@@ -38,7 +42,18 @@ class UserSignupForm(SignupForm):
     Check UserSocialSignupForm for accounts created from social.
     """
 
-    ...
+    user_type = forms.ChoiceField(choices=Userclass.USER_TYPES)
+
+    def save(self, request):
+        # Ensure you call the parent class's save.
+        # .save() returns a User object.
+        user = super().save(request)
+
+        # Add your own processing here.
+        user.user_type = self.cleaned_data["user_type"]
+        user.save()
+        # You must return the original result.
+        return user
 
 
 class UserSocialSignupForm(SocialSignupForm):

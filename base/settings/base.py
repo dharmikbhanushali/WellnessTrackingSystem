@@ -154,7 +154,7 @@ MIDDLEWARE = [
     # flow is reset if another page is loaded between login and successfully
     # entering two-factor credentials.
     "allauth_2fa.middleware.AllauthTwoFactorMiddleware",
-    "user.middleware.RequireSuperuser2FAMiddleware",
+    "user.middleware.RequireUser2FAMiddleware",
 ]
 
 # ------------------------------------------------------------------------------

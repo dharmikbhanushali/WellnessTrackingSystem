@@ -18,7 +18,7 @@ class UserAdmin(BaseUserAdmin):
     form = UserAdminChangeForm
     add_form = UserAdminCreationForm
     ordering = ["email"]
-    list_display = ["email", "is_staff", "is_superuser", "is_active"]
+    list_display = ["email", "user_type", "is_staff", "is_superuser", "is_active"]
     list_display_links = ["email"]
     list_editable = ["is_staff", "is_active"]
     search_fields = ["email"]

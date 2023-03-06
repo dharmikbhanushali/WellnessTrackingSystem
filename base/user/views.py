@@ -38,3 +38,6 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
     def get_redirect_url(self):
         return reverse("user:detail", kwargs={"username": self.request.user.username})
+
+
+# todo: write custom views to change 2FA Templates from  allauth_2fa
