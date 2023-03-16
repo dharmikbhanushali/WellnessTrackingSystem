@@ -1,0 +1,35 @@
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+head {
+  font-family: 'Montserrat-Bold';
+}
+
+body {
+  font-family: 'Montserrat';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat-Bold';
+}
+
+p {
+  color: #8f8f8f;
+}
+/* Footer Section */
+footer {
+  position: center;
+  height: 100%;
+}
+
+.icon {
+  margin: 20px 10px;
+}

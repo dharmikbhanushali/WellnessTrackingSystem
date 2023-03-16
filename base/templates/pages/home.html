@@ -1,1 +1,273 @@
 {% extends "base.html" %}
+{% load static %}
+{% load compress %}
+
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/homepageStyle.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+{% block content %}
+
+<!-- CAROUSELS BODY -->
+
+<div class="carousel slide" data-ride="carousel" id="slides">
+  <ul class="carousel-indicators">
+    <li class="active" data-slide-to="0" data-target="#slides"></li>
+    <li data-slide-to="1" data-target="#slides"></li>
+    <li data-slide-to="2" data-target="#slides"></li>
+  </ul>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+
+      <img alt="background1" class="img-fluid" src="{% static 'images/background1.jpg' %}" />
+      <div class="carousel-caption">
+        <h1 class="display-2">Train Your Body</h1>
+        <a href="signin.html">
+          <button class="btn btn-primary btn-lg" type="button">
+            JOIN NOW
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img alt="dietbackground" class="img-fluid" src="{% static 'images/dietbackground.jpg' %}" />
+      <div class="carousel-caption">
+        <h1 class="display-2">Calm Your Mind</h1>
+        <a href="signin.html">
+          <button class="btn btn-primary btn-lg" type="button">
+            JOIN NOW
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img alt="meditation" class="img-fluid" src="{% static 'images/meditation.jpg' %}" />
+      <div class="carousel-caption">
+        <h1 class="display-2">Nourish Your Soul</h1>
+        <a href="signin.html">
+          <button class="btn btn-primary btn-lg" type="button">
+            JOIN NOW
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JUMBOTRON-WELCOME-SENTENCE -->
+
+<div class="container-fluid">
+  <div class="row jumbotron">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+      <p class="lead">
+        Welcome to HealthTrack365, your one-stop destination for all things
+        wellness! We're dedicated to helping you achieve your health and fitness
+        goals, no matter what your starting point may be. Our team of experts
+        has curated a collection of resources that includes everything from
+        workout plans and nutrition guides to meditation and mindfulness
+        practices. We believe that health is a holistic journey, and we're
+        committed to providing you with the tools and support you need to
+        succeed. Whether you're just getting started on your wellness journey or
+        you're a seasoned pro, we're here to help. Join our community today and
+        start tracking your progress towards a healthier, happier you!
+      </p>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+      <a href="#">
+        <button class="btn btn-outline-secondary btn-lg" type="button">
+          More Information
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- MEET THE PARTNERS -->
+
+<div class="container-fluid padding">
+  <div class="row welcome text-center">
+    <div class="col-12">
+      <h1 class="display-4">Meet Our Partners !</h1>
+    </div>
+    <br />
+    <div class="col-12">
+      <p class="lead">
+        At HealthTrack365, we believe that collaboration is key to creating a
+        truly comprehensive wellness experience. That's why we've partnered with
+        some of the leading experts and organizations in the industry to bring
+        you the best possible resources and support. Our partners include
+        top-rated nutritionists and dietitians, certified personal trainers and
+        fitness coaches, and mindfulness and meditation experts. We also work
+        closely with leading brands in the health and wellness space to bring
+        you the latest products and innovations. By working together with our
+        partners, we're able to offer a wide range of resources and support that
+        can help you achieve your health and fitness goals. Whether you're
+        looking for personalized nutrition advice, expert fitness guidance, or
+        access to the latest wellness products, we've got you covered. Join our
+        community today and start taking advantage of all the amazing resources
+        and support that HealthTrack365 and our partners have to offer!
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- PARTNER LOGOS AND DESCRIPTION -->
+
+<div class="container-fluid padding">
+  <div class="row text-center padding">
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <i class="fas fa-code"></i>
+      <p>Get fit with premium gym memberships</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <i class="fas fa-bold"></i>
+      <p>Eat Healthy with Healthify</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <i class="fab fa-css3"></i>
+      <p>Create A Positive Mindset with Zenz</p>
+    </div>
+  </div>
+  <hr class="my-4" />
+</div>
+
+<!-- WHY US ? -->
+
+<div class="container-fluid padding">
+  <div class="row padding">
+    <div class="col-lg-6">
+      <h2>Get Customized Workouts</h2>
+      <p>
+        Are you tired of generic workout plans that don't take into account your
+        specific needs and fitness goals? Look no further than Healthtrack365!
+        Our team of expert trainers will work with you to create a customized
+        workout plan that is tailored to your individual needs and preferences.
+        Whether you're looking to build muscle, improve endurance, or just stay
+        active and healthy, we've got you covered. With personalized attention
+        from our trainers and the latest technology to track your progress,
+        you'll be on your way to achieving your fitness goals in no time. Sign
+        up for Healthtrack365 today and experience the benefits of a workout
+        plan that's designed just for you.
+      </p>
+    </div>
+    <div class="col-lg-6">
+      <img alt="customworkouts" class="img-fluid" src="{% static 'images/background1.jpg' %}" />
+    </div>
+  </div>
+</div>
+<br />
+<div class="container-fluid padding">
+  <div class="row padding">
+    <div class="col-lg-6">
+      <img alt="customworkouts" class="img-fluid" src="{% static 'images/dietbackground.jpg' %}" />
+    </div>
+    <div class="col-lg-6">
+      <h2>Bored of eating bland food in the name of healthy ?</h2>
+      <p>
+        Are you tired of eating the same bland and boring meals every day? Do
+        you want to improve your health and wellness but don't know where to
+        start? Look no further than HealthTrack365! Our team of experts will
+        create a customized diet plan tailored specifically to your needs and
+        goals. We understand that eating healthy can often be difficult and
+        tasteless, which is why our plans are designed to be both healthy and
+        delicious. With HealthTrack365, you'll enjoy a variety of nutritious
+        meals that will leave you feeling satisfied and energized. Say goodbye
+        to fad diets and hello to a healthier, happier you with HealthTrack365!
+      </p>
+    </div>
+  </div>
+</div>
+<br />
+<div class="container-fluid padding">
+  <div class="row padding">
+    <div class="col-lg-6">
+      <h2>Got something on your mind ? we are here to consult</h2>
+      <p>
+        At HealthTrack365, we believe that true wellness is achieved when both
+        the mind and body are in harmony. That's why we offer personalized
+        consulting and meditation sessions to help you work on your mind and
+        soul. Our experienced consultants will work with you to identify any
+        mental or emotional blocks that may be holding you back and provide
+        guidance on how to overcome them. We also offer meditation sessions
+        designed to help you relax, reduce stress, and cultivate a deeper sense
+        of inner peace. Our approach is holistic, taking into account all
+        aspects of your life to create a personalized plan that works for you.
+        Whether you're looking to improve your relationships, find inner peace,
+        or achieve personal growth, our consulting and meditation sessions can
+        help you get there. Trust us to guide you on your journey to a
+        healthier, happier you.
+      </p>
+    </div>
+    <div class="col-lg-6">
+      <img alt="customworkouts" class="img-fluid" src="{% static 'images/meditation.jpg' %}" />
+    </div>
+  </div>
+</div>
+<br />
+
+<!-- CARDS  -->
+
+<div class="container-fluid padding">
+  <div class="row welcome text-center">
+    <div class="col-12">
+      <h1 class="display-4">Most Popular Coaches</h1>
+    </div>
+    <hr />
+  </div>
+</div>
+<div class="container-fluid padding">
+  <div class="row padding">
+    <div class="col-md-4">
+      <div class="card">
+        <img alt="trainer-image" class="card-imd-top img-fluid" src="{% static 'images/card1.jpg' %}" />
+        <div class="card-body">
+          <h4 class="card-title">Olivia Kent</h4>
+          <p class="card-text">
+            Olivia is a highly sought-after body coach known for her holistic
+            approach to fitness and nutrition. He has earned a reputation as the
+            most popular coach due to his personalized training programs,
+            unwavering commitment to his clients, and impressive track record of
+            helping them achieve their fitness goals. blah blah blah blah
+          </p>
+          <a class="btn btn-outline-secondary" href="#">See profile</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img alt="trainer-image" class="card-imd-top img-fluid" src="{% static 'images/dietcard2.jpg' %}" />
+        <div class="card-body">
+          <h4 class="card-title">Sarah Lee</h4>
+          <p class="card-text">
+            Meet Sarah Lee, a leading nutrition coach who has made a name for
+            herself in the health and wellness industry. Her popularity stems
+            from her ability to create customized nutrition plans that are
+            tailored to her clients' specific needs, as well as her deep
+            understanding of the latest nutrition research and trends.
+          </p>
+          <a class="btn btn-outline-secondary" href="#">See profile</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <img alt="trainer-image" class="card-imd-top img-fluid" src="{% static 'images/mindcard3.jpg' %}" />
+        <div class="card-body">
+          <h4 class="card-title">David Jones</h4>
+          <p class="card-text">
+            Introducing David Jones, a renowned mind coach who has helped
+            countless individuals transform their lives. His popularity is a
+            result of his unique approach to coaching, which combines
+            meditation, visualization, and other mind-body techniques to help
+            his clients overcome mental blocks and achieve their goals. blah
+            blah blah blah
+          </p>
+          <a class="btn btn-outline-secondary" href="#">See profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+{% endblock content %}

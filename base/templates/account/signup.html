@@ -2,21 +2,59 @@
 
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load static %}
+{% load compress %}
 
 {% block head_title %}{% translate "Signup" %}{% endblock %}
+
+
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/registration.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+
 
 {% block inner %}
 <h1>{% translate "Sign Up" %}</h1>
 
-<p>{% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}</p>
+<p>
+  {% blocktranslate %}
+  Already have an account? Then please <a href="{{ login_url }}">signin</a>.
+  {% endblocktranslate %}
+</p>
+<section class="vh-70">
+  <div class="container py-5 h-70">
+    <div class="row d-flex align-items-center justify-content-center h-50">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="{% static 'images/trainer.jpg' %}" class="img-fluid"
+             alt="image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form class="signup" id="signup_form" method="post"
+              action="{% url 'account_signup' %}">
+          {% csrf_token %}
+          {{ form|crispy }}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}"
+                 value="{{ redirect_field_value }}" />
+          {% endif %}
+          <button class="btn btn-primary" type="submit">{% translate "Sign Up" %} &raquo;
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form|crispy }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button class="btn btn-primary" type="submit">{% translate "Sign Up" %} &raquo;</button>
-</form>
-
+<footer class="white-section" id="footer text-center">
+  <div class="container-fluid"
+       style="background-color: black; color: white; padding: 2%;">
+    <i class="icon fab fa-facebook-f"></i>
+    <i class="icon fab fa-twitter"></i>
+    <i class="icon fab fa-instagram"></i>
+    <i class="icon fas fa-envelope"></i>
+    <p>© HealthTrack365</p>
+  </div>
+</footer>
 {% endblock %}

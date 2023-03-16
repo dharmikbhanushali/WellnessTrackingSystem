@@ -3,112 +3,246 @@
 {% load render_bundle from webpack_loader %}
 {% load compress %}
 <html lang="{{ LANGUAGE_CODE }}">
+
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
     <title>{% block title %}HealthTrack365{% endblock title %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Wellness App">
-    <meta name="author" content="Kiran Karandikar">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Wellness App" name="description">
+    <meta content="Kiran Karandikar" name="author">
 
-    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+    <link href="{% static 'images/favicons/favicon.ico' %}" rel="icon">
+
+    <link href="{% static 'images/favicons/favicon-16x16.png' %}" rel="icon" sizes="16x16" type="image/png">
+
+    <link href="{% static 'images/favicons/favicon-32x32.png' %}" rel="icon" sizes="32x32" type="image/png">
+
+    <link href="{% static 'images/favicons/apple-touch-icon.png' %}" rel="apple-touch-icon" sizes="180x180">
+
 
     {% compress css %}
-    <link href="{% static 'css/project.css' %}" rel="stylesheet">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
-          integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- CSS Stylesheets -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" referrerpolicy="no-referrer"
+      rel="stylesheet" />
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-WlCkFEpJ8HxXdKoHv26ZmWSdZb1LZ/xhdMHwGwM8WxClDmI6oBNPn/IGv9fWq6DkT6Yn/6RtvwCcaWNB4+4Qg=="
+      referrerpolicy="no-referrer" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
     {% endcompress %}
-    <!-- Le javascript
+    <!-- javascript
     ================================================== -->
     {# Placed at the top of the document so pages load faster with defer #}
     {% block javascript %}
-      <!-- Vendor dependencies bundled as one file -->
-      <!-- Bootstrap JS -->
-      <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js" integrity="sha512-OvBgP9A2JBgiRad/mM36mkzXSXaJE9BEIENnVEmeZdITvwT09xnxLtT4twkCa8m/loMbPHsvPl0T8lRGVBwjlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <!-- Your stuff: Third-party javascript libraries go here -->
-      <!-- place project specific Javascript in this file -->
-      {% compress js %}
-      <script defer src="{% static 'js/project.js' %}"></script>
-      {% endcompress %}
+    <!-- Vendor dependencies bundled as one file -->
+    <!-- Bootstrap JS -->
+    <script crossorigin="anonymous" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script crossorigin="anonymous" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Third-party javascript libraries go here -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+
+    <script crossorigin="anonymous" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    <!-- place project specific Javascript in this file -->
+    {% compress js %}
+    <script defer src="{% static 'js/project.js' %}"></script>
+    {% endcompress %}
     {% endblock javascript %}
 
+    <link href="/site.webmanifest" rel="manifest">
+
+    {% block customcss %}
+    {% endblock customcss %}
   </head>
 
   <body>
 
-    <div class="mb-1">
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container-fluid">
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'home' %}">HealthTrack365</a>
+    <!-- NAVIGATION BAR -->
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'home' %}">Home <span class="visually-hidden">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
-              </li>
-              {% if request.user.is_authenticated %}
-                <li class="nav-item">
-                  {# URL provided by django-allauth/account/urls.py #}
-                  <a class="nav-link" href="{% url 'user:detail' request.user.username  %}">{% translate "My Profile" %}</a>
-                </li>
-                <li class="nav-item">
-                  {# URL provided by django-allauth/account/urls.py #}
-                  <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
-                </li>
-              {% else %}
-                {% if ACCOUNT_ALLOW_REGISTRATION %}
-              <li class="nav-item">
-                {# URL provided by django-allauth/account/urls.py #}
-                <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>
-              </li>
-              {% endif %}
-                <li class="nav-item">
-                  {# URL provided by django-allauth/account/urls.py #}
-                  <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
-                </li>
-              {% endif %}
-            </ul>
-          </div>
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+      <div class="row text-left">
+        <div class="col-md-3">
+          <a class="navbar-brand" href="{% url 'home' %}"><img alt="Healthtrack365"
+              src="{% static 'images/favicons/favicon-32x32.png' %}"></a>
         </div>
-      </nav>
-
-    </div>
+        <div class="col-md-3 text-bottom">
+          <h6 class="dark bold">HealthTrack365</h6>
+        </div>
+      </div>
+      <button class="navbar-toggler" data-target="#navbarResponsive" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Corrected placement of the collapsible navigation links -->
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Workouts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Programs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Diet Plans</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Consulting</a>
+          </li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            {# URL provided by django-allauth/account/urls.py #}
+            <a class="nav-link" href="{% url 'user:detail' request.user.username  %}">{% translate "My Profile" %}</a>
+          </li>
+          <li class="nav-item">
+            {# URL provided by django-allauth/account/urls.py #}
+            <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
+          </li>
+          {% else %}
+          {% if ACCOUNT_ALLOW_REGISTRATION %}
+          <li class="nav-item">
+            {# URL provided by django-allauth/account/urls.py #}
+            <a class="nav-link" href="{% url 'account_signup' %}" id="sign-up-link">{%translate "Sign Up" %}</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            {# URL provided by django-allauth/account/urls.py #}
+            <a class="nav-link" href="{% url 'account_login' %}" id="log-in-link">{%translate "Sign In" %}</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
 
     <div class="container">
 
       {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        {% endfor %}
+      {% for message in messages %}
+      <div class="alert alert-dismissible {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+        {{ message }}
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
+      </div>
+      {% endfor %}
       {% endif %}
 
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
+      <p>Use this document as a way to quick start any new project.</p>
       {% endblock content %}
 
     </div> <!-- /container -->
 
-    {% block modal %}{% endblock modal %}
+    <!-- FOOTER -->
+
+    <footer class="site_footer" id="footer" role="contentinfo">
+      <div class="container-fluid padding">
+        <div class="row text-center padding">
+          <div class="col-12">
+            <h2>Wanna know more ? Connect with us on Social Media Platforms !!</h2>
+          </div>
+          <div class="col-12 social padding">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="container-fluid padding">
+        <div class="row">
+          <div class="col-md-4">
+            <img alt="newlogo" class="img-fluid" src="{% static 'images/favicons/favicon-16x16.png' %}">
+            <h2><a>Healthtrack365</a></h2>
+            <p>WORKOUT PARTNER
+              <sup>TM</sup>
+              <hr class="dark">
+            </p>
+          </div>
+          <div class="col-md-2">
+            <p>
+              <H7>WORKOUTS</H7>
+              <BR>
+              <H7>PROGRAMS</H7>
+              <br>
+              <H7>MEMBERSHIPS</H7>
+              <br>
+              <H7>CUSTOMIZED WORKOUTS</H7>
+              <hr class="dark">
+            </p>
+          </div>
+          <div class="col-md-2">
+            <p>
+              <H7>DIET PLANS</H7>
+              <BR>
+              <H7>HEALTHY EATING</H7>
+              <br>
+              <H7>GUIDES</H7>
+              <br>
+              <hr class="dark">
+            </p>
+          </div>
+          <div class="col-md-2">
+            <p>
+              <H7>ABOUT US</H7>
+              <BR>
+              <H7>CONTACTS</H7>
+              <br>
+              <H7>POLICIES</H7>
+              <br>
+              <hr class="dark">
+            </p>
+          </div>
+          <div class="col-12 text-center">
+            <hr class="dark">
+            <h5>Copyright &copy; Healthtrack365.com. All rights reserved. Terms of
+              Use. Privacy Policy</h5>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+
+    {% block modal %}
+
+    {% endblock modal %}
 
     {% block inline_javascript %}
     {% comment %}
     Script tags with only code, no src (defer by default). To run
     with a "defer" so that you run inline code:
     <script>
-      window.addEventListener('DOMContentLoaded', () => {/* Run whatever you want */});
+      window.addEventListener('DOMContentLoaded', () => {/* Run whatever you want */
+      });
     </script>
     {% endcomment %}
     {% endblock inline_javascript %}
   </body>
+
 </html>
