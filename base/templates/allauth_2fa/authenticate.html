@@ -1,0 +1,26 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load compress %}
+
+{% block head_title %}{% translate "Two-Factor Authentication" %}{% endblock %}
+
+{% block content %}
+<h1>
+  {% trans "Two-Factor Authentication" %}
+</h1>
+<h2> This is test for kiran</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {{ form.otp_token.label }}:
+  {{ form.otp_token }}
+
+  <button type="submit">
+    {% trans 'Authenticate' %}
+  </button>
+</form>
+{% endblock %}
