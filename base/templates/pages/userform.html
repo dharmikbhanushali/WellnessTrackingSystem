@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% load static %}
+{% load compress %}
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/test-css-forms.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+{% block content %}
+
+
+<section class="vh-70">
+  <div class="container py-5 h-70">
+    <div class="row d-flex align-items-center justify-content-center h-50">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="{% static 'images/healthyuserform.gif' %}"
+             class="img-fluid" alt="image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form>
+          <p class="text-center h6 fw-bold mb-5 mx-1 mx-md-4 mt-4">Please fill
+            the following details to help us find a perfect coach for you.</p>
+          <div class="mb-4 pb-2" style="margin-top: 30px;">
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">How did you hear about the
+                trainer ?</label><br>
+              <input type="radio" id="instagram" name="modeofreach"
+                     value="instagram">
+              <label for="html">Instagram</label><br>
+              <input type="radio" id="youtube" name="modeofreach"
+                     value="youtube">
+              <label for="css">Youtube</label><br>
+              <input type="radio" id="facebook" name="modeofreach"
+                     value="facebook">
+              <label for="javascript">facebook</label><br>
+              <input type="radio" id="other" name="modeofreach" value="other">
+              <label for="javascript">Other</label>
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="name">Name</label>
+              <input type="text" id="password"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label for="start">Date of Birth</label><br>
+              <input type="date" id="birthdate" name="birthdate"
+                     value="2018-07-22"
+                     min="1000-01-01" max="2023-12-31">
+            </div>
+            <br>
+            <label class="form-label" for="gender">Gender</label>
+            <br>
+            <div class="form-check form-check-inline mb-0 me-4"
+                 style="padding-right: 30px;">
+              <input class="form-check-input" type="radio" name="RadioOptions"
+                     id="female" value="option1">
+              <label class="form-check-label" for="female">Female</label>
+            </div>
+
+            <div class="form-check form-check-inline mb-0 me-4"
+                 style="padding-right: 30px;">
+              <input class="form-check-input" name="RadioOptions" type="radio"
+                     id="male" value="option2" />
+              <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check form-check-inline mb-0"
+                 style="padding-right: 20px;">
+              <input class="form-check-input" type="radio" name="RadioOptions"
+                     id="other" value="option3" />
+              <label class="form-check-label" for="other">Prefer not to
+                say</label>
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2" style="margin-top: 30px;">
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Email</label>
+              <input type="text" id="email"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="number">Contact Number</label>
+              <input type="tel" id="phonenumber"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="password2">Select one or multiple
+                goals.</label><br>
+              <input type="checkbox" id="goal" name="weightfatloss"
+                     value="weightfatloss">
+              <label for="vehicle1">Weight Loss/ Fat Loss</label><br>
+              <input type="checkbox" id="goal" name="weightfatgain"
+                     value="weightfatgain">
+              <label for="vehicle1">Weight Gain</label><br>
+              <input type="checkbox" id="goal" name="addmuscle"
+                     value="addmuscle">
+              <label for="vehicle1">Add Muscle</label><br>
+              <input type="checkbox" id="goal" name="eatinghabits"
+                     value="eatinghabits">
+              <label for="vehicle1">Improve Eating Habits</label><br>
+              <input type="checkbox" id="goal" name="model" value="model">
+              <label for="vehicle1">Physique Competition/ Modeling</label><br>
+              <input type="checkbox" id="goal" name="improve" value="improve">
+              <label for="vehicle1">Improve Physical Fitness/
+                Stamina</label><br>
+              <input type="checkbox" id="goal" name="other" value="other">
+              <label for="vehicle1">Other - Specify</label>
+              <input type="text" id="other"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="password2">Please describe your
+                needs and goals in detail.</label>
+              <input type="text" id="password2"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="password2">Please mention about any
+                health concerns or medical history.</label>
+              <input type="text" id="password2"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="password2">What are your
+                expectations from the coach.</label>
+              <input type="text" id="password2"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="gender">How many days can you
+                workout in a week ?</label>
+              <br>
+              <div class="form-check form-check-inline mb-0 me-4"
+                   style="padding-right: 30px;">
+                <input class="form-check-input" type="radio" name="RadioOptions"
+                       id="female" value="option1">
+                <label class="form-check-label" for="low">2-3</label>
+              </div>
+
+              <div class="form-check form-check-inline mb-0 me-4"
+                   style="padding-right: 30px;">
+                <input class="form-check-input" name="RadioOptions" type="radio"
+                       id="male" value="option2" />
+                <label class="form-check-label" for="average">3-4</label>
+              </div>
+              <div class="form-check form-check-inline mb-0"
+                   style="padding-right: 20px;">
+                <input class="form-check-input" type="radio" name="RadioOptions"
+                       id="other" value="option3" />
+                <label class="form-check-label" for="high">5-6</label><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="gender">How would you define your
+                current eating habits?</label>
+              <br>
+              <div class="form-check form-check-inline mb-0 me-4"
+                   style="padding-right: 30px;">
+                <input class="form-check-input" type="radio" name="RadioOptions"
+                       id="female" value="option1">
+                <label class="form-check-label" for="bad">Bad</label>
+              </div>
+
+              <div class="form-check form-check-inline mb-0 me-4"
+                   style="padding-right: 30px;">
+                <input class="form-check-input" name="RadioOptions" type="radio"
+                       id="male" value="option2" />
+                <label class="form-check-label" for="decent">Decent</label>
+              </div>
+              <div class="form-check form-check-inline mb-0"
+                   style="padding-right: 20px;">
+                <input class="form-check-input" type="radio" name="RadioOptions"
+                       id="other" value="option3" />
+                <label class="form-check-label" for="goood">Good</label><br>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="gender">How would you define your
+                current Physical Health ?</label>
+              <br>
+              <div class="form-check form-check-inline mb-0 me-4"
+                   style="padding-right: 30px;">
+                <input class="form-check-input" type="radio" name="RadioOptions"
+                       id="female" value="option1">
+                <label class="form-check-label" for="bad">Bad</label>
+              </div>
+
+              <div class="form-check form-check-inline mb-0 me-4"
+                   style="padding-right: 30px;">
+                <input class="form-check-input" name="RadioOptions" type="radio"
+                       id="male" value="option2" />
+                <label class="form-check-label" for="decent">Decent</label>
+              </div>
+              <div class="form-check form-check-inline mb-0"
+                   style="padding-right: 20px;">
+                <input class="form-check-input" type="radio" name="RadioOptions"
+                       id="other" value="option3" />
+                <label class="form-check-label" for="goood">Good</label><br>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label for="myfile">Upload Profile Picture:</label>
+              <input type="file" id="profilepicture" name="profilepicture">
+            </div>
+          </div>
+          <div class="form-check d-flex justify-content-start mb-4 pb-3">
+            <input class="form-check-input me-3" type="checkbox" value=""
+                   id="termsofservice" />
+            <label class="form-check-label" for="termsofservice"><a href="#!"> I
+              agree all statements above are true and legible.</a>
+            </label>
+          </div>
+
+          <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+            <button type="button" class="btn btn-primary btn-lg">Update</button>
+          </div>
+      </div>
+
+      </form>
+    </div>
+  </div>
+  </div>
+</section>
+
+{% endblock content %}

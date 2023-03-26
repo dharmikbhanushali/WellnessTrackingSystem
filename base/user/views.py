@@ -45,4 +45,8 @@ def test_template(request):
     return render(request, "pages/userDashboard.html")
 
 
+def test_template_form(request):
+    return render(request, "pages/userform.html")
+
+
 # todo: write custom views to change 2FA Templates from  allauth_2fa

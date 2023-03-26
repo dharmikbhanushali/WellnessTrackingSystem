@@ -1,0 +1,284 @@
+{% extends "base.html" %}
+{% load static %}
+{% load compress %}
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/test-css-forms.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+{% block content %}
+
+<section class="vh-70">
+  <div class="container py-5 h-70">
+    <div class="row d-flex align-items-center justify-content-center h-50">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="{% static 'images/coachtrainerform.gif' %}" class="img-fluid"
+             alt="image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <form>
+          <p class="text-center h6 fw-bold mb-5 mx-1 mx-md-4 mt-4">Please fill
+            the following details for your consideration as a coach on the
+            platform.</p>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <h4></bold><label class="form-label" for="personal info">1.
+                Personal Information</label></h4>
+            </div>
+          </div>
+
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <label class="form-label" for="name">Name</label>
+              <input type="text" id="name"
+                     class="form-control form-control-lg" />
+            </div>
+            <div class="form-outline form-white"><br>
+              <label class="form-label" for="name">Age</label>
+              <input type="number" id="number" min="0" max="120"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <label class="form-label" for="gender">Gender</label>
+            <br>
+            <div class="form-check form-check-inline mb-0 me-4"
+                 style="padding-right: 30px;">
+              <input class="form-check-input" type="radio" name="RadioOptions"
+                     id="female" value="option1">
+              <label class="form-check-label" for="female">Female</label>
+            </div>
+
+            <div class="form-check form-check-inline mb-0 me-4"
+                 style="padding-right: 30px;">
+              <input class="form-check-input" name="RadioOptions" type="radio"
+                     id="male" value="option2" />
+              <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check form-check-inline mb-0"
+                 style="padding-right: 20px;">
+              <input class="form-check-input" type="radio" name="RadioOptions"
+                     id="other" value="option3" />
+              <label class="form-check-label" for="other">Prefer not to
+                say</label>
+            </div>
+            <div class="form-outline form-white"><br>
+              <label class="form-label" for="phone">Contact Number</label>
+              <input type="tel" id="phone" min="0" max="10"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Email</label>
+              <input type="text" id="email"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Current Address</label>
+              <input type="text" id="text"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <div class="form-outline form-white">
+                <h4><label class="form-label" for="personal info">2. Education
+                  and Certification</label></h4>
+              </div>
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Highest level of education
+                completed</label>
+              <input type="text" id="education"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Relevant Certifications and
+                licenses</label>
+              <input type="text" id="Certification"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Years of experience in the
+                industry</label>
+              <input type="text" id="experience"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Previous Work Experiences in
+                the industry</label>
+              <input type="text" id="prevexp"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <div class="form-outline form-white">
+                <h4><label class="form-label" for="personal info">3. Fitness
+                  Background</label></h4>
+              </div>
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">What area do you specialize
+                in training/nutrition/consulting ?</label>
+              <input type="text" id="specialization"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Do you have experience
+                working with clients with accomodations ?</label>
+              <input type="text" id="accomodations"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Are you familiar with
+                different types of equipments and training methods ?</label>
+              <input type="text" id="variety"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">What is your personal
+                fitness routine ?</label>
+              <input type="text" id="personalroutine"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <div class="form-outline form-white">
+                <h4><label class="form-label" for="personal info">4. Client
+                  Management</label></h4>
+              </div>
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">How do you assess a client's
+                fitness level or goals ?</label>
+              <input type="text" id="assessment"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">What strategies do you use
+                to keep clients motivated ?</label>
+              <input type="text" id="strategy"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">How do you adjust
+                routines/workout to meet clients changing needs/goals ?</label>
+              <input type="text" id="changes"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">How do you handle clients
+                who are not making progress ?</label>
+              <input type="text" id="noprogresshandle"
+                     class="form-control form-control-lg" />
+            </div>
+          </div>
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <div class="form-outline form-white">
+                <h4><label class="form-label" for="personal info">5.
+                  Availability and Schedule</label></h4>
+              </div>
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">What days and times are you
+                available to work ?</label>
+              <input type="text" id="daytime"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Are you willing to work
+                weekends or evenings ?</label>
+              <input type="text" id="willtoworkonwe"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">How many clients are you
+                comfortable to work with at one time ?</label>
+              <input type="text" id="numberofclientsatonce"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+          </div>
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <div class="form-outline form-white">
+                <h4><label class="form-label" for="personal info">6. Personal
+                  Interests and Skills</label></h4>
+              </div>
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">What other hobbies or
+                interests do you have outside fitness ?</label>
+              <input type="text" id="hobbies"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Do you have any other skills
+                that would be relevant to this job ?</label>
+              <input type="text" id="otherskills"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+          </div>
+          <div class="mb-4 pb-2">
+            <div class="form-outline form-white">
+              <div class="form-outline form-white">
+                <h4><label class="form-label" for="personal info">7.
+                  References</label></h4>
+              </div>
+            </div>
+            <br>
+            <div class="form-outline form-white">
+              <label class="form-label" for="email">Please provide the names and
+                contact information of two professionals who can speak about
+                your experience and skills.</label>
+              <input type="text" id="references"
+                     class="form-control form-control-lg" />
+            </div>
+            <br>
+          </div>
+      </div>
+      <div class="mb-4 pb-2">
+        <div class="form-outline form-white">
+          <div class="form-check d-flex justify-content-start mb-4 pb-3">
+            <input class="form-check-input me-3" type="checkbox" value=""
+                   id="termsofservice" />
+            <label class="form-check-label" for="termsofservice"><a href="#!"> I
+              agree all statements above are true and legible.</a>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+        <button type="button" class="btn btn-primary btn-lg">Update</button>
+      </div>
+    </div>
+
+    </form>
+  </div>
+  </div>
+  </div>
+</section>
+{% endblock content %}
