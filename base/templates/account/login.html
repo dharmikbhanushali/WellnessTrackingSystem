@@ -1,20 +1,27 @@
 {% extends "account/base.html" %}
-
 {% load i18n %}
 {% load account socialaccount %}
 {% load crispy_forms_tags %}
 {% load static %}
 {% load compress %}
-
 {% block head_title %}{% translate "Sign In" %}{% endblock %}
+
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/signin_style.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
 
 {% block inner %}
 
 <h1>{% translate "Sign In" %}</h1>
 
+
+
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
+
 <p>
   {% translate "Please sign in with one of your existing third party accounts:" %}
   {% if ACCOUNT_ALLOW_REGISTRATION %}
@@ -67,8 +74,7 @@
           {% endif %}
           <a class="button secondaryAction"
              href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
-          <button class="primaryAction btn btn-primary" type="submit">{%
-            translate "Sign In" %}
+          <button class="primaryAction btn btn-primary" type="submit">{% translate "Sign In" %}
           </button>
 
           <br>
@@ -80,17 +86,4 @@
 </section>
 
 
-<!-- Footer -->
-
-<footer class="white-section" id="footer">
-  <div class="container-fluid"
-       style="background-color: black; color: white; padding: 2%;">
-    <i class="icon fab fa-facebook-f"></i>
-    <i class="icon fab fa-twitter"></i>
-    <i class="icon fab fa-instagram"></i>
-    <i class="icon fas fa-envelope"></i>
-    <p>© HealthTrack365</p>
-  </div>
-</footer>
-
-{% endblock %}
+<!-- {% endblock %} -->
