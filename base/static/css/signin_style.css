@@ -1,49 +1,3 @@
-/* body {
-  font-family: 'Poppins';
-  text-align: center;
-}
-
-
-head {
-  font-family: 'Poppins';
-}
-
-.icon {
-  margin: 20px 10px;
-}
-
-@media (max-width: 1028px) {
-  #title {
-    text-align: center;
-  }
-
-  .title-image {
-    transform: rotate(0);
-    position: static;
-  }
-}
-/*Sign in*/
-/* .divider:after,
-.divider:before {
-  content: '';
-  background: #eee;
-  padding: auto;
-  flex: 1;
-  height: 1px;
-}
-
-/* Footer Section */
-/* footer {
-  position: relative;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: black;
-  color: white;
-  text-align: center;
-  padding: 2%;
-  font-family: 'Poppins';
-} */
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
@@ -68,6 +22,10 @@ h4,
 h5,
 h6 {
   font-family: 'Poppins';
+}
+
+.section{
+  background-image: url('static/signin.jpeg');
 }
 
 p {
