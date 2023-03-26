@@ -23,6 +23,9 @@ from django.urls import include, path
 from django.views import debug, defaults as default_views
 from django.views.generic import TemplateView
 
+# Project Libraries
+from user.views import test_template
+
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
@@ -86,4 +89,5 @@ urlpatterns += [
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
+    path("test_template/", view=test_template, name="test"),
 ]

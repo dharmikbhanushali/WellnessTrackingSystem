@@ -2,6 +2,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as translate
 from django.views.generic import DetailView, RedirectView, UpdateView
@@ -38,6 +39,10 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
     def get_redirect_url(self):
         return reverse("user:detail", kwargs={"username": self.request.user.username})
+
+
+def test_template(request):
+    return render(request, "pages/userDashboard.html")
 
 
 # todo: write custom views to change 2FA Templates from  allauth_2fa
