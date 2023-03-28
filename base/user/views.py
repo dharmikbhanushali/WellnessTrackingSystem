@@ -1,3 +1,6 @@
+# Standard Library
+import logging
+
 # Django Libraries
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,6 +12,8 @@ from django.views.generic import DetailView, RedirectView, UpdateView
 
 
 User = get_user_model()
+
+logger = logging.getLogger("fitness-tracker")
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
@@ -36,8 +41,17 @@ class UserUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
 
 class UserRedirectView(LoginRequiredMixin, RedirectView):
     permanent = False
+    model = User
 
     def get_redirect_url(self):
+        # todo: check if user has intake form or not in database.
+        # todo: based upon the user type, redirect to specific url
+        if True:
+            logger.info("Here................")
+            if self.request.user.get_user_type() == "Client":
+                # return render(self.request, "pages/userform.html")
+                return reverse("test")
+            return reverse("test")
         return reverse("user:detail", kwargs={"username": self.request.user.username})
 
 
@@ -47,6 +61,3 @@ def test_template(request):
 
 def test_template_form(request):
     return render(request, "pages/userform.html")
-
-
-# todo: write custom views to change 2FA Templates from  allauth_2fa

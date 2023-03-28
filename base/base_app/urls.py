@@ -90,5 +90,5 @@ urlpatterns += [
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
     path("test_template/", view=test_template, name="test"),
-    path("test_template_form/", view=test_template_form, name="test"),
+    path("test_template_form/", view=test_template_form, name="test_form"),
 ]
