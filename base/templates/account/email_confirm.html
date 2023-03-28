@@ -1,12 +1,22 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
+{% load static %}
 {% load account %}
+{% load compress %}
+
 
 {% block head_title %}{% translate "Confirm E-mail Address" %}{% endblock %}
 
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/email_confirm.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+
 
 {% block inner %}
+<br>
 <h1>{% translate "Confirm E-mail Address" %}</h1>
 
 {% if confirmation %}
@@ -27,5 +37,4 @@
 <p>{% blocktranslate %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktranslate %}</p>
 
 {% endif %}
-
 {% endblock %}

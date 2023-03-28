@@ -1,36 +1,58 @@
-
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 
-@media (min-width: 1025px) {
-  .h-custom {
-    height: 100vh !important;
-  }
+/* Set font-family for all elements */
+* {
+  font-family: 'Poppins', sans-serif;
 }
 
-head {
-  font-family: 'Poppins';
+/* Set background image */
+section {
+  background-size: cover;
+  background-position: center;
+  background: url('static/images/signin.jpeg');
 }
 
-body {
-  font-family: 'Poppins';
+/* Set height of section to 100% of viewport */
+.vh-100 {
+  height: 100vh !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Poppins';
-}
-
-.section{
-  background-image: url('static/signin.jpeg');
-}
-
+/* Set color of text */
 p {
   color: #8f8f8f;
 }
+
+/* Style form inputs */
+input[type="text"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+.secondaryAction {
+  margin-right: 1rem;
+  color: #007bff;
+}
+
+.secondaryAction:hover {
+  text-decoration: none;
+}
+
 /* Footer Section */
 footer {
   position: relative;
@@ -44,37 +66,36 @@ footer {
   font-family: 'Poppins';
 }
 
-.icon {
-  margin: 20px 10px;
+/* Social icons */
+.social a {
+  font-size: 2.5em;
+  padding: 3rem;
 }
 
-.social a {
+.fa-facebook {
+  color: #3b5998;
+}
 
-  font-size: 2.5em; padding: 3rem;
+.fa-twitter {
+  color: #00aced;
+}
 
-  } .fa-facebook { color: #3b5998;
-
-  }
-
-  .fa-twitter { color: #00aced;
-
-  } .fa-google-plus-g {
-
+.fa-google-plus-g {
   color: #dd4b39;
+}
 
-  }
+.fa-instagram {
+  color: #d62976;
+}
 
-  .fa-instagram {
-    color: #d62976;
+.fa-youtube {
+  color: #bb0000;
+}
 
-  }
-
-  .fa-youtube { color: #bb0000; }
-
-  .fa-facebook:hover,
-
-  .fa-twitter:hover, .fa-google-plus-g:hover,
-
-  .fa-instagram:hover,
-
-  .fa-youtube:hover { color: #d5d5d5 }
+.fa-facebook:hover,
+.fa-twitter:hover,
+.fa-google-plus-g:hover,
+.fa-instagram:hover,
+.fa-youtube:hover {
+  color: #d5d5d5;
+}

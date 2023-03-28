@@ -55,36 +55,7 @@
 {% endif %}
 {% endif %}
 
-<!--Sign In-->
-<!-- <section class="vh-50" style="background-color:#d6d6d6;">
-  <div class="container-fluid" style="width:80%; padding: 6%;  ">
-    <div class="row d-flex align-items-center justify-content-center h-100">
-      <div class="col-md-8 col-lg-7 col-xl-6" class="container-fluid">
-        <img src="{% static 'images/signin.jpeg' %}" class="img-fluid"
-             alt="image">
-      </div>
-      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1"
-           class="container-fluid">
-        <form class="login" method="POST" action="{% url 'account_login' %}">
-          {% csrf_token %}
-          {{ form|crispy }}
-          {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}"
-                 value="{{ redirect_field_value }}" />
-          {% endif %}
-          <a class="button secondaryAction"
-             href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
-          <button class="primaryAction btn btn-primary" type="submit">{% translate "Sign In" %}
-          </button>
-
-          <br>
-          <p>Not a member? <a href="{{ signup_url }}"> Register</a></p>
-        </form>
-      </div>
-    </div>
-  </div>
-</section> -->
-
+<body>
 <section class="vh-70">
   <div class="container py-5 h-70">
     <div class="row d-flex align-items-center justify-content-center h-50">
@@ -101,6 +72,7 @@
           {% endif %}
           <a class="button secondaryAction"
              href="{% url 'account_reset_password' %}">{% translate "Forgot Password?" %}</a>
+             <br><br>
           <button class="primaryAction btn btn-primary" type="submit">{% translate "Sign In" %}
           </button>
 
@@ -117,6 +89,6 @@
   </div>
 
 </section>
-
+</body>
 
 {% endblock %}

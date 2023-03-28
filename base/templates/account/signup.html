@@ -17,10 +17,9 @@
 
 {% block inner %}
 <h1>{% translate "Sign Up" %}</h1>
-
+<body>
 <section class="vh-70">
-  <div class="container py-5 h-70" style="background-image: url('Image_Location');
-  background-size: cover; height:480px; padding-top:80px;">
+  <div class="container py-5 vh-70">
     <div class="row d-flex align-items-center justify-content-center h-50">
       <div class="col-md-8 col-lg-7 col-xl-6">
         <img src="{% static 'images/trainer.jpg' %}" class="img-fluid"
@@ -37,7 +36,6 @@
           {% endif %}
           <button class="btn btn-primary" type="submit">{% translate "Sign Up" %} &raquo;
           </button>
-
         </form>
       </div>
       <div class="col-md-8 col-lg-6 col-xl-6 offset-xl-8">
@@ -51,5 +49,12 @@
   </div>
 
 </section>
-
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 {% endblock %}

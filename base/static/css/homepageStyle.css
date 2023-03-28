@@ -8,12 +8,22 @@
 @media (max-width: 576px) {
 }
 
-html, body{
-  height: 100%;
-  width: 100%;
+html {
+  position: relative;
+  min-height: 100%;
   font-family: 'Poppins';
-  color: #222;
+}
 
+body {
+  margin: 0;
+  padding-bottom: 100px; /* height of the footer */
+  font-family: 'Poppins';
+}
+
+.div{
+  margin: 0;
+  padding-bottom: 100px; /* height of the footer */
+  font-family: 'Poppins';
 }
 
 .navbar{
@@ -132,18 +142,17 @@ html, body{
 
   .fa-youtube:hover { color: #d5d5d5 }
 
-/* Footer Section */
-footer {
-  position: relative;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: black;
-  color: white;
-  text-align: center;
-  padding: 2%;
-  font-family: 'Poppins';
-}
+  footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-family: 'Poppins';
+    height: 100px;
+  }
 
 .icon {
   margin: 20px 10px;
