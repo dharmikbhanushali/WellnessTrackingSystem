@@ -49,4 +49,8 @@ def test_template_form(request):
     return render(request, "pages/userform.html")
 
 
+# def test_template_form(request):
+#     return render(request, "allauth_2fa/backup_tokens.html")
+
+
 # todo: write custom views to change 2FA Templates from  allauth_2fa

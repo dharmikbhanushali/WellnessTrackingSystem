@@ -20,12 +20,6 @@ body {
   font-family: 'Poppins';
 }
 
-.div{
-  margin: 0;
-  padding-bottom: 100px; /* height of the footer */
-  font-family: 'Poppins';
-}
-
 .navbar{
   padding: .8 rem;
 }

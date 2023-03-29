@@ -1,12 +1,24 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
+{% load static %}
+{% load account %}
+{% load compress %}
 
 {% block head_title %}{% translate "Verify Your E-mail Address" %}{% endblock %}
 
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/email_confirm.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+
 {% block inner %}
+<br><br><br>
     <h1>{% translate "Verify Your E-mail Address" %}</h1>
 
-    <p>{% blocktranslate %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktranslate %}</p>
+    <section>
+        <p>{% blocktranslate %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. Please contact us if you do not receive it within a few minutes.{% endblocktranslate %}</p>
+    </section>
 
 {% endblock %}
