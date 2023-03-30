@@ -4,16 +4,13 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 
+# Project Libraries
+from core.constants import CLIENT, USER_TYPES
+
 
 class User(AbstractUser):
     """User in the system."""
 
-    CLIENT = "CL"
-    TRAINER = "TR"
-    USER_TYPES = [
-        (CLIENT, "Client"),
-        (TRAINER, "Trainer"),
-    ]
     # todo: what for admin?
     user_type = models.CharField(
         max_length=2,

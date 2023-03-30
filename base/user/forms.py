@@ -8,7 +8,7 @@ from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 
 # Project Libraries
-from core.models import User as Userclass
+from core.constants import USER_TYPES
 
 
 User = get_user_model()
@@ -42,10 +42,10 @@ class UserSignupForm(SignupForm):
     Check UserSocialSignupForm for accounts created from social.
     """
 
-    user_type = forms.ChoiceField(choices=Userclass.USER_TYPES)
+    user_type = forms.ChoiceField(choices=USER_TYPES)
 
     def save(self, request):
-        # Ensure you call the parent class's save.
+        # Ensure you call the parent class's safe.
         # .save() returns a User object.
         user = super().save(request)
 
