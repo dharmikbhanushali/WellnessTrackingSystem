@@ -31,3 +31,11 @@ class User(AbstractUser):
             str: URL for user detail.
         """
         return reverse("user:detail", kwargs={"username": self.username})
+
+    def get_user_type(self):
+        """Get Current user's type.
+
+        Returns:
+
+        """
+        return self.user_type
