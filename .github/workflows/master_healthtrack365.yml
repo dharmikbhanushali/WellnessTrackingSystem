@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_f940fbfeb9e04af4912a7d5e5634a694 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_f9a7b031926b4133a9768778d2af7883 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_cd3b8f8cf55e4e23954d0b6260c2d668 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_3323b1d4f0f749d4920d6f5e237b9224 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_f940fbfeb9e04af4912a7d5e5634a694 }}/healthtrack365:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_cd3b8f8cf55e4e23954d0b6260c2d668 }}/kirankarandikar/healthtrack365:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'healthtrack365'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0c13e6d6f45d490588d9548c37000d30 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_f940fbfeb9e04af4912a7d5e5634a694 }}/healthtrack365:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_39bf99d21b2b4739b556a914beb714dc }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_cd3b8f8cf55e4e23954d0b6260c2d668 }}/kirankarandikar/healthtrack365:${{ github.sha }}'
