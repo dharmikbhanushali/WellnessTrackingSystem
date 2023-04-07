@@ -1,10 +1,8 @@
-# note: might need testing...
 version: "3"
 
 volumes:
   production_postgres_data: { }
   production_postgres_data_backups: { }
-  production_traefik: { }
 
 services:
   app:
@@ -13,7 +11,7 @@ services:
       args:
         - DEV=false
         - BUILD_ENVIRONMENT=prod
-    container_name: wrike_prod_django
+    container_name: fitness-djagno
     ports:
       - "8000:8000"
     volumes:
@@ -28,22 +26,9 @@ services:
 
   db:
     image: postgres:13-alpine
-    container_name: wrike_prod_postgres
+    container_name: fitness-db
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
     env_file:
       - ./base/.envs/.production/.postgres
-
-  traefik:
-    build:
-      context: .
-      dockerfile: compose/prod-env/traefik/Dockerfile
-    container_name: wrike_prod_traefik
-    depends_on:
-      - app
-    volumes:
-      - production_traefik:/etc/traefik/acme
-    ports:
-      - "0.0.0.0:80:80"
-      - "0.0.0.0:443:443"
