@@ -3,6 +3,13 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+
+# Project Libraries
+import settings
+
+
+# from base import settings
 
 
 class User(AbstractUser):
@@ -39,3 +46,68 @@ class User(AbstractUser):
 
         """
         return self.user_type
+
+
+class IntakeForm(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    date_of_birth = models.DateField(auto_now_add=False, default=timezone.now)
+    GENDER_CHOICES = (
+        ("M", "Male"),
+        ("F", "Female"),
+        ("O", "Other"),
+    )
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    email = models.EmailField()
+    mobile_phone = models.CharField(max_length=20)
+    home_phone = models.CharField(max_length=20)
+    height = models.FloatField()
+    weight = models.FloatField()
+    date_joined = models.DateTimeField(auto_now_add=False, default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user}'s Intake Form"
+
+
+class Workouts(models.Model):
+    trainer = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    video_url = models.URLField(null=True, blank=True)
+    plan_url = models.URLField(null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+    views = models.PositiveIntegerField(default=0)
+    rating = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+
+class WorkoutsAssigned(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    workout = models.ForeignKey(Workouts, on_delete=models.CASCADE)
+    date_assigned = models.DateField()
+    date_completed = models.DateField()
+    completed = models.BooleanField(default=False)
+
+
+class ClientMetrics(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=True)
+    workouts = models.ManyToManyField(
+        WorkoutsAssigned, related_name="assigned_workouts"
+    )
+    meals = models.TextField()
+    sleep_cycle = models.TextField()
+    progress_metrics = models.TextField()
+    calories_burnt = models.IntegerField()
+    # workouts_registered = models.ManyToManyField(Workouts)
+    goal_progress = models.FloatField()
+    completed_workouts = models.ManyToManyField(
+        WorkoutsAssigned, related_name="completed_workout"
+    )
+
+
+def __str__(self):
+    return f"{self.user.username}'s metrics for {self.date}"

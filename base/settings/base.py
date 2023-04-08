@@ -331,6 +331,11 @@ SOCIALACCOUNT_STORE_TOKENS = False
 
 SOCIALACCOUNT_PROVIDERS = {
     "facebook": {
+        "APP": {
+            "client_id": "233688755719177",
+            "secret": "11ffeeac611a0c9dd61e4c33407b0286",
+            "key": "",
+        },
         "METHOD": "oauth2",
         "SCOPE": ["email", "public_profile", "user_friends"],
         "AUTH_PARAMS": {"auth_type": "reauthenticate"},
