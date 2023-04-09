@@ -11,16 +11,13 @@ import settings
 
 # from base import settings
 
+# Project Libraries
+from core.constants import CLIENT, USER_TYPES
+
 
 class User(AbstractUser):
     """User in the system."""
 
-    CLIENT = "CL"
-    TRAINER = "TR"
-    USER_TYPES = [
-        (CLIENT, "Client"),
-        (TRAINER, "Trainer"),
-    ]
     # todo: what for admin?
     user_type = models.CharField(
         max_length=2,

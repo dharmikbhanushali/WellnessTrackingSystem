@@ -1,9 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}Forbidden (403){% endblock %}
+
+{% load static %}
+{% load compress %}
+{% block title %}Page not found{% endblock %}
 
 {% block content %}
-<h1>Forbidden (403)</h1>
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/error404.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+<body>
+    <br><br><br>
+    <h1>Forbidden (403)</h1>
 
 <p>{% if exception %}{{ exception }}{% else %}You're not allowed to access this page.{% endif %}</p>
+</body>
+
 {% endblock content %}

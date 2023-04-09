@@ -1,9 +1,38 @@
 {% extends "base.html" %}
 
+
+{% load static %}
+{% load compress %}
 {% block title %}Page not found{% endblock %}
 
 {% block content %}
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/error404.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+
+<br>
+<br>
 <h1>Page not found</h1>
 
 <p>{% if exception %}{{ exception }}{% else %}This is not the page you were looking for.{% endif %}</p>
+<body></body>
+<div class="container">
+    <div class="row">
+        <div class="xs-12 md-6 mx-auto">
+            <div id="countUp">
+                <div class="number" data-count="404">404</div>
+                <div class="text">Page not found</div>
+                <div class="text">This may not mean anything.</div>
+                <div class="text">I'm probably working on something that has blown up.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+
 {% endblock content %}
