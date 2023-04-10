@@ -1,6 +1,5 @@
 """Django app settings for production environment."""
 # Local Vars
-# Local Vars
 from .base import *  # noqa
 from .base import env  # noqa
 
@@ -19,18 +18,7 @@ CORS_ALLOWED_ORIGINS = ["https://*.azurecontainerapps.io"]
 # DATABASES
 # ------------------------------------------------------------------------------
 DATABASES = {"default": env.db("DATABASE_URL")}
-try:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": env("AZURE_POSTGRESQL_DATABASE"),
-            "HOST": env("AZURE_POSTGRESQL_HOST"),
-            "USER": env("AZURE_POSTGRESQL_USERNAME"),
-            "PASSWORD": env("AZURE_POSTGRESQL_PASSWORD"),
-        }
-    }
-except Exception:
-    DATABASES = {"default": env.db("DATABASE_URL")}
+print(DATABASES)
 DATABASES["default"]["ATOMIC_REQUESTS"] = True  # noqa F405
 DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)  # noqa F405
 
