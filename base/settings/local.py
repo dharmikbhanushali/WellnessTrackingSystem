@@ -21,6 +21,21 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 ]
 
 # ------------------------------------------------------------------------------
+# DATABASES
+# ------------------------------------------------------------------------------
+# Parse database connection url strings
+# https://django-environ.readthedocs.io/en/latest/types.html#term-PostgreSQL
+DATABASES = {
+    "default": env.db_url(
+        "DATABASE_URL",
+        default="postgres://root_user:some_random_password@db:5432/fitness_tracker_db",
+    )
+}
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# ------------------------------------------------------------------------------
 # CACHES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#caches
