@@ -12,7 +12,7 @@ def main():
     else:
         print("Current Working Directory is: ", os.getcwd())
         print("Running in production, CAUTION!!!!")
-        os.chdir("../")
+        os.chdir(os.getcwd())
         print("Current Working Directory is: ", os.getcwd())
     try:
         # Django Libraries
