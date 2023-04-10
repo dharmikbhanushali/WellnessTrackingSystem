@@ -1,7 +1,9 @@
 """Django app settings for production environment."""
 # Local Vars
-from .base import *  # noqa
-from .base import env
+print("I AM HERE>....................")
+# Local Vars
+from .base import *  # noqa: E402, F403
+from .base import env  # noqa: E402, F403
 
 
 # ------------------------------------------------------------------------------
