@@ -8,7 +8,9 @@ gunicorn==20.1.0
 # Databases
 # ------------------------------------------------------------------------------
 # https://github.com/psycopg/psycopg2
-psycopg2==2.9.5
+# https://www.psycopg.org/
+# https://pypi.org/project/psycopg2-binary/
+psycopg2-binary==2.9.6
 
 # ------------------------------------------------------------------------------
 # Django
