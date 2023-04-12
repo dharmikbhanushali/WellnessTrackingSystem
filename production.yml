@@ -11,7 +11,7 @@ services:
       args:
         - DEV=false
         - BUILD_ENVIRONMENT=prod
-      dockerfile: .Dockerfile.local
+      dockerfile: .Dockerfile
     ports:
       - "8000:8000"
     volumes:
