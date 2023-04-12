@@ -22,7 +22,9 @@ django-anymail[sendgrid]==8.6
 # https://github.com/jschneier/django-storages
 # Cloud storage providers
 # - For azure
-django-storages[azure]
+django-storages==1.13.2
+azure-core==1.26.3
+azure-storage-blob==12.14.1
 # - For aws
 # django-storages[boto3]
 #  - for google
