@@ -29,3 +29,5 @@ azure-storage-blob==12.14.1
 # django-storages[boto3]
 #  - for google
 # django-storages[google]
+# https://learn.microsoft.com/en-us/azure/azure-monitor/app/opencensus-python
+opencensus-ext-azure===1.1.9
