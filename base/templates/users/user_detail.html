@@ -1,10 +1,21 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
 {% load static %}
+{% load compress %}
+
 
 {% block title %}User: {{ object.username }}{% endblock %}
 
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/error403.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+
 {% block content %}
 <div class="container">
+  <br><br><br>
 
   <div class="row">
     <div class="col-sm-12">
@@ -18,11 +29,13 @@
 
 {% if object == request.user %}
 <!-- Action buttons -->
+<br><br>
 <div class="row">
 
   <div class="col-sm-12">
     <a class="btn btn-primary" href="{% url 'user:update' %}" role="button">My Info</a>
     <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+    <a class="btn btn-primary" href="{% url 'test' %}" role="button">Dashboard</a>
     <!-- Your Stuff: Custom user template urls -->
   </div>
 

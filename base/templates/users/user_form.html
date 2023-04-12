@@ -1,7 +1,16 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load crispy_forms_tags %}
+{% load static %}
+{% load compress %}
 
 {% block title %}{{ user.username }}{% endblock %}
+
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/error403.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
 
 {% block content %}
   <h1>{{ user.username }}</h1>

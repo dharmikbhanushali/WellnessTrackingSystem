@@ -118,9 +118,6 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Diet Plans</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Consulting</a>
-        </li>
         {% if request.user.is_authenticated %}
         <li class="nav-item">
           {# URL provided by django-allauth/account/urls.py #}
@@ -129,6 +126,12 @@
         <li class="nav-item">
           {# URL provided by django-allauth/account/urls.py #}
           <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
+        </li>
+        <li class="nav-item">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
         </li>
         {% else %}
         {% if ACCOUNT_ALLOW_REGISTRATION %}
@@ -199,9 +202,6 @@
               <BR>
               <H7>PROGRAMS</H7>
               <br>
-              <H7>MEMBERSHIPS</H7>
-              <br>
-              <H7>CUSTOMIZED WORKOUTS</H7>
               <hr class="dark">
             </p>
           </div>
@@ -211,7 +211,6 @@
               <BR>
               <H7>HEALTHY EATING</H7>
               <br>
-              <H7>GUIDES</H7>
               <br>
               <hr class="dark">
             </p>
@@ -220,9 +219,8 @@
             <p>
               <H7>ABOUT US</H7>
               <BR>
-              <H7>CONTACTS</H7>
+              <H7>CONTACT: XXX-XXX-XXXX</H7>
               <br>
-              <H7>POLICIES</H7>
               <br>
               <hr class="dark">
             </p>

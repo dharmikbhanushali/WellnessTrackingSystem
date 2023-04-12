@@ -43,14 +43,14 @@
                alt="image" style="width: 500px; height: 400px;">
         </div>
         <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form method="post">
+            <form method="post" action="{% url 'test_form' %}">
               {% csrf_token %}
               {{ form.non_field_errors }}
               {{ form.otp_token.label }}:
               {{ form.otp_token }}
 
               <button type="submit">
-               <a href="{% url 'test_form' %}"> {% trans 'Authenticate' %} </a>
+              {% trans 'Authenticate' %}
               </button>
             </form>
         </div>
