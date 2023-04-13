@@ -1,12 +1,12 @@
 """Database models."""
 # Django Libraries
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 
 # Project Libraries
-from base import settings
 from core.constants import CLIENT, USER_TYPES
 
 
