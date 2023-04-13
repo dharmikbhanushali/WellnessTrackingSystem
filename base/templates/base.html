@@ -12,6 +12,8 @@
   <meta content="Wellness App" name="description">
   <meta content="Kiran Karandikar" name="author">
 
+  <link href="{% static 'images/favicons/site.webmanifest %}" rel="manifest">
+
   <link href="{% static 'images/favicons/favicon.ico' %}" rel="icon">
 
   <link href="{% static 'images/favicons/favicon-16x16.png' %}" rel="icon" sizes="16x16" type="image/png">
@@ -76,8 +78,6 @@
   <script defer src="{% static 'js/project.js' %}"></script>
   {% endcompress %}
   {% endblock javascript %}
-
-  <link href="/site.webmanifest" rel="manifest">
 
   {% compress css %}
   {% block customcss %}
