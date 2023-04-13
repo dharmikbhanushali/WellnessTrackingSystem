@@ -10,7 +10,7 @@ python manage.py wait_for_db
 python manage.py makemigrations
 python manage.py migrate
 # If you are using database cache in production
-# python manage.py createcachetable
+python manage.py createcachetable
 python manage.py auto_add_superuser
 #gunicorn base_app.wsgi --bind 0.0.0.0:8000 --chdir=base --access-logfile '-' --error-logfile '-' --timeout 600 --workers=4
 # or
