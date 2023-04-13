@@ -24,25 +24,31 @@
 {% user_display confirmation.email_address.user as user_display %}
 
 <p>{% blocktranslate with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktranslate %}</p>
-
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+  {% csrf_token %}
+      <button class="btn btn-primary" type="submit">{% translate 'Confirm' %}</button>
+  </form>
 <section class="vh-60">
     <div class="container py-5 h-70">
       <div class="row d-flex align-items-center justify-content-center h-50">
         <div class="col-md-8 col-lg-7 col-xl-6">
-          <!-- <img src="{% static 'images/authenticate.gif' %}" class="img-fluid"
-               alt="image" style="width: 500px; height: 400px;"> -->
+               <form class="login" method="POST" action="{% url 'account_login' %}">
+                <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                    {% csrf_token %}
+                        <button class="btn btn-primary" type="submit">{% translate 'Confirm' %}</button>
+                    </form>
         </div>
-        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <!-- <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
           <form class="login" method="POST" action="{% url 'account_login' %}">
             <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
                 {% csrf_token %}
                     <button class="btn btn-primary" type="submit">{% translate 'Confirm' %}</button>
                 </form>
-        </div>
+        </div> -->
       </div>
     </div>
 
-  </section>
+  </section> -->
 {% else %}
 
 {% url 'account_email' as email_url %}
