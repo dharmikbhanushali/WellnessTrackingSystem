@@ -8,11 +8,10 @@ from django.utils import timezone
 # Project Libraries
 import settings
 
+from core.constants import CLIENT, USER_TYPES
+
 
 # from base import settings
-
-# Project Libraries
-from core.constants import CLIENT, USER_TYPES
 
 
 class User(AbstractUser):
@@ -105,6 +104,24 @@ class ClientMetrics(models.Model):
         WorkoutsAssigned, related_name="completed_workout"
     )
 
+    def __str__(self):
+        return f"{self.user.username}'s metrics for {self.date}"
 
-def __str__(self):
-    return f"{self.user.username}'s metrics for {self.date}"
+
+class Appointment(models.Model):
+    trainer = models.ForeignKey(User, on_delete=models.CASCADE)
+    client = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="appointments"
+    )
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+    notes = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class WorkoutVideo(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    video_file = models.FileField(upload_to="workout_videos/")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
