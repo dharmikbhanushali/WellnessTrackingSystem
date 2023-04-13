@@ -7,7 +7,12 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.local")
+    if not os.environ.get("DJANGO_SETTINGS_MODULE"):
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.local")
+    else:
+        print("Running in production, CAUTION!!!!")
+        os.chdir(os.getcwd())
+        print("Current Working Directory is: ", os.getcwd())
     try:
         # Django Libraries
         from django.core.management import execute_from_command_line
