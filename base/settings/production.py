@@ -124,7 +124,8 @@ LOGGING = {
 # ------------------------------------------------------------------------------
 # STATIC
 # ------------------------------------------------------------------------------
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 WHITENOISE_MANIFEST_STRICT = False
 
 # ------------------------------------------------------------------------------
