@@ -4,9 +4,10 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.conf import settings
 
 # Project Libraries
-from base import settings
+
 from core.constants import CLIENT, USER_TYPES
 
 
