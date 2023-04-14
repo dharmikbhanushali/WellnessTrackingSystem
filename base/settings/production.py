@@ -161,8 +161,11 @@ EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/backends/azure.html#azure-storage
 INSTALLED_APPS += ["storages"]
-DEFAULT_FILE_STORAGE = "storages.backends.azure_storage.AzureStorage"
-STATICFILES_STORAGE = "storages.backends.azure_storage.AzureStorage"
+# DEFAULT_FILE_STORAGE = "storages.backends.azure_storage.AzureStorage"
+# STATICFILES_STORAGE = "storages.backends.azure_storage.AzureStorage"
+DEFAULT_FILE_STORAGE = "core.azure_storage.AzureMediaStorage"
+STATICFILES_STORAGE = "core.azure_storage.AzureStaticStorage"
+
 AZURE_STORAGE_KEY = env("AZURE_STORAGE_KEY")
 AZURE_ACCOUNT_NAME = env(
     "AZURE_STORAGE_ACCOUNT_NAME", default="healthtrackstaticstorage"
