@@ -157,5 +157,26 @@ EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 # }
 
 # ------------------------------------------------------------------------------
+# Serving Static Files with Azure storage
+# ------------------------------------------------------------------------------
+# https://django-storages.readthedocs.io/en/latest/backends/azure.html#azure-storage
+INSTALLED_APPS += ["storages"]
+DEFAULT_FILE_STORAGE = "storages.backends.azure_storage.AzureStorage"
+STATICFILES_STORAGE = "storages.backends.azure_storage.AzureStorage"
+AZURE_STORAGE_KEY = env("AZURE_STORAGE_KEY", False)
+AZURE_ACCOUNT_NAME = env(
+    "AZURE_STORAGE_ACCOUNT_NAME", default="healthtrackstaticstorage"
+)
+AZURE_STATIC_CONTAINER = env("AZURE_STATIC_CONTAINER", default="static")
+AZURE_MEDIA_CONTAINER = env("AZURE_MEDIA_CONTAINER", default="media")
+AZURE_OVERWRITE_FILES = True
+
+# AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.azureedge.net'  # CDN URL
+AZURE_CUSTOM_DOMAIN = f"{AZURE_ACCOUNT_NAME}.blob.core.windows.net"  # Files URL
+
+STATIC_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_STATIC_CONTAINER}/"
+MEDIA_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_MEDIA_CONTAINER}/"
+
+# ------------------------------------------------------------------------------
 # Your stuff...
 # ------------------------------------------------------------------------------

@@ -25,8 +25,12 @@ DJANGO_SUPERUSER_USERNAME=admin@email.it
 DJANGO_SUPERUSER_PASSWORD=passadmin
 
 # ------------------------------------------------------------------------------
-# Misc
+# Static File Storage On Azure
 # ------------------------------------------------------------------------------
+AZURE_STORAGE_KEY={azure_storage_key}
+AZURE_STORAGE_ACCOUNT_NAME={azure_storage_account_name}
+AZURE_STATIC_CONTAINER=static'
+AZURE_MEDIA_CONTAINER=media
 
 # ------------------------------------------------------------------------------
 # Security
