@@ -125,8 +125,8 @@ LOGGING = {
 # STATIC
 # ------------------------------------------------------------------------------
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# WHITENOISE_MANIFEST_STRICT = False
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-WHITENOISE_MANIFEST_STRICT = False
 
 # ------------------------------------------------------------------------------
 # EMAIL
@@ -142,7 +142,9 @@ EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="HealthTrack36
 # Anymail
 # ------------------------------------------------------------------------------
 # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
-INSTALLED_APPS += ["anymail", "whitenoise.runserver_nostatic"]  # noqa F405
+# INSTALLED_APPS += ["anymail", "whitenoise.runserver_nostatic"]  # noqa F405
+INSTALLED_APPS += ["anymail"]  # noqa F405
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 # https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
 # https://anymail.readthedocs.io/en/stable/esps/sendgrid/
