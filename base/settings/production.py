@@ -163,7 +163,7 @@ EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 INSTALLED_APPS += ["storages"]
 DEFAULT_FILE_STORAGE = "storages.backends.azure_storage.AzureStorage"
 STATICFILES_STORAGE = "storages.backends.azure_storage.AzureStorage"
-AZURE_STORAGE_KEY = env("AZURE_STORAGE_KEY", False)
+AZURE_STORAGE_KEY = env("AZURE_STORAGE_KEY")
 AZURE_ACCOUNT_NAME = env(
     "AZURE_STORAGE_ACCOUNT_NAME", default="healthtrackstaticstorage"
 )
