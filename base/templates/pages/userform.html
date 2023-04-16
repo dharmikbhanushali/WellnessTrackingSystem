@@ -17,7 +17,7 @@
              class="img-fluid" alt="image">
       </div>
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <form>
+        <!-- <form>
           <p class="text-center h6 fw-bold mb-5 mx-1 mx-md-4 mt-4">Please fill
             the following details to help us find a perfect coach for you.</p>
           <div class="mb-4 pb-2" style="margin-top: 30px;">
@@ -33,6 +33,7 @@
               <input type="radio" id="facebook" name="modeofreach"
                      value="facebook">
               <label for="javascript">facebook</label><br>
+              <input type="radio" id="other" name="modeofreach" value="other">
               <input type="radio" id="other" name="modeofreach" value="other">
               <label for="javascript">Other</label>
             </div>
@@ -250,8 +251,13 @@
           </div>
       </div>
 
-      </form>
-    </div>
+      </form> -->
+      <h2>Intake Form</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
   </div>
   </div>
 </section>

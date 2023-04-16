@@ -65,7 +65,31 @@ def test_template(request):
 
 
 def test_template_form(request):
-    return render(request, "pages/userform.html")
+    if request.method == "POST":
+        # create a form instance and populate it with data from the request:
+        form = IntakeForm(request.POST)
+        if form.is_valid():
+            intake_form = form.save(commit=False)
+            intake_form.user = request.user
+            intake_form.save()
+            return redirect("/client-dashboard/")
+
+    else:
+        form = IntakeForm()
+    return render(request, "pages/userform.html", {"form": form})
+
+
+# if request.method == "POST":
+#     form = IntakeForm(request.POST)
+#     if form.is_valid():
+#         intake_form = form.save(commit=False)
+#         intake_form.user = request.user
+#         intake_form.save()
+#         messages.success(request, "Intake form submitted successfully.")
+#         return redirect("client_dashboard")
+# else:
+#     form = IntakeForm()
+# return render(request, "pages/userform.html",{'form': form})
 
 
 def Workouts_list_all(request):
@@ -95,7 +119,7 @@ def Client_dashboard(request):
     context = {
         "client_metrics": client_metrics,
     }
-    return render(request, "userDashboard.html", context)
+    return render(request, "pages/userDashboard.html", context)
 
 
 # Trainer dashboard
