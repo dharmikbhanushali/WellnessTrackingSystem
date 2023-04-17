@@ -1,11 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
-{% load compress %}
 
 {% block customcss %}
-{% compress css %}
 <link href="{% static 'css/homepageStyle.css' %}" rel="stylesheet">
-{% endcompress %}
 {% endblock customcss %}
 {% block content %}
 

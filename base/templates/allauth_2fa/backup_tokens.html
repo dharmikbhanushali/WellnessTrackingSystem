@@ -2,14 +2,11 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% load static %}
-{% load compress %}
 
 {% block head_title %}{% translate "Two-Factor Authentication Backup Tokens" %}{% endblock %}
 
 {% block customcss %}
-{% compress css %}
-<link href="{% static 'css/email_confirm.css' %}" rel="stylesheet">
-{% endcompress %}
+<link href="{% static 'css/error403.css' %}" rel="stylesheet">
 {% endblock customcss %}
 
 {% block content %}

@@ -1,6 +1,5 @@
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
-{% load render_bundle from webpack_loader %}
 {% load compress %}
 <html lang="{{ LANGUAGE_CODE }}">
 
@@ -33,6 +32,9 @@
   <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
     integrity="sha512-WlCkFEpJ8HxXdKoHv26ZmWSdZb1LZ/xhdMHwGwM8WxClDmI6oBNPn/IGv9fWq6DkT6Yn/6RtvwCcaWNB4+4Qg=="
     referrerpolicy="no-referrer" rel="stylesheet" />
+
+  <link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css"
+        rel="stylesheet" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">

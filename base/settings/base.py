@@ -74,7 +74,6 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.google",
-    "webpack_loader",
     "corsheaders",
     "formtools",
     "django_otp",
@@ -361,17 +360,6 @@ SOCIALACCOUNT_PROVIDERS = {
 INSTALLED_APPS += ["compressor"]
 STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 
-# ------------------------------------------------------------------------------
-# django-webpack-loader
-# ------------------------------------------------------------------------------
-WEBPACK_LOADER = {
-    "DEFAULT": {
-        "CACHE": not DEBUG,
-        "STATS_FILE": "{}/{}".format(BASE_DIR, "webpack-stats.json"),
-        "POLL_INTERVAL": 0.1,
-        "IGNORE": [r".+\.hot-update.js", r".+\.map"],
-    }
-}
 
 # ------------------------------------------------------------------------------
 # django-allauth-2fa
