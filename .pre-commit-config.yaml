@@ -14,7 +14,7 @@ repos:
           - --allow-multiple-documents
       - id: check-merge-conflict
       - id: check-added-large-files
-        args: [ --maxkb=800 ]
+        args: [ --maxkb=5000 ]
       - id: debug-statements
       - id: detect-private-key
       - id: check-ast

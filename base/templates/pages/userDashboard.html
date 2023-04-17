@@ -3,12 +3,8 @@
 {% load compress %}
 
 {% block customcss %}
-{% compress css %}
 <link href="{% static 'css/userDashboard.css' %}" rel="stylesheet">
 <link href="{% static 'css/homepageStyle.css' %}" rel="stylesheet">
-<link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css"
-      rel="stylesheet" />
-{% endcompress %}
 {% endblock customcss %}
 {% block content %}
 

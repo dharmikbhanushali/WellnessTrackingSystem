@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-{% load compress %}
 {% block customcss %}
-{% compress css %}
 <link href="{% static 'css/test-css-forms.css' %}" rel="stylesheet">
-{% endcompress %}
 {% endblock customcss %}
 {% block content %}
 

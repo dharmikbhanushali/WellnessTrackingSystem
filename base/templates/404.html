@@ -2,22 +2,18 @@
 
 
 {% load static %}
-{% load compress %}
 {% block title %}Page not found{% endblock %}
 
-{% block content %}
 {% block customcss %}
-{% compress css %}
-<link href="{% static 'css/error403.css' %}" rel="stylesheet">
-{% endcompress %}
+<link href="{% static 'css/error404.css' %}" rel="stylesheet">
 {% endblock customcss %}
 
+{% block content %}
 <br>
 <br>
 <h1>Page not found</h1>
 
 <p>{% if exception %}{{ exception }}{% else %}This is not the page you were looking for.{% endif %}</p>
-<body></body>
 <div class="container">
     <div class="row">
         <div class="xs-12 md-6 mx-auto">
@@ -30,9 +26,4 @@
         </div>
     </div>
 </div>
-
-</body>
-
-
-
 {% endblock content %}

@@ -8,12 +8,11 @@
 {% block head_title %}{% translate "Verify Your E-mail Address" %}{% endblock %}
 
 {% block customcss %}
-{% compress css %}
 <link href="{% static 'css/email_confirm.css' %}" rel="stylesheet">
-{% endcompress %}
 {% endblock customcss %}
 
-{% block inner %} <br><br><br>
+{% block inner %}
+<br><br><br>
 <h1>{% translate "Verify Your E-mail Address" %}</h1>
 
 <section>
@@ -29,9 +28,6 @@ contact us if you do not receive it within a few minutes.{% endblocktranslate %}
 
 <p>{% blocktranslate %}<strong>Note:</strong> you can still <a href="{{ email_url }}">change your e-mail address</a>.{% endblocktranslate %}</p>
 </section>
-
-
-
 
 
 {% endblock %}
