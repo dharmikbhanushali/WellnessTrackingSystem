@@ -124,15 +124,40 @@ LOGGING = {
 # ------------------------------------------------------------------------------
 # STATIC
 # ------------------------------------------------------------------------------
+# INSTALLED_APPS += ["whitenoise.runserver_nostatic"]  # noqa F405
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# WHITENOISE_MANIFEST_STRICT = False
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-WHITENOISE_MANIFEST_STRICT = False
+
+# ------------------------------------------------------------------------------
+# STATIC: Azure storage
+# ------------------------------------------------------------------------------
+# https://django-storages.readthedocs.io/en/latest/backends/azure.html#azure-storage
+INSTALLED_APPS += ["storages"]  # noqa F405
+# DEFAULT_FILE_STORAGE = "storages.backends.azure_storage.AzureStorage"
+# STATICFILES_STORAGE = "storages.backends.azure_storage.AzureStorage"
+DEFAULT_FILE_STORAGE = "core.azure_storage.AzureMediaStorage"
+STATICFILES_STORAGE = "core.azure_storage.AzureStaticStorage"
+
+AZURE_STORAGE_KEY = env("AZURE_STORAGE_KEY")
+AZURE_ACCOUNT_NAME = env(
+    "AZURE_STORAGE_ACCOUNT_NAME", default="healthtrackstaticstorage"
+)
+AZURE_STATIC_CONTAINER = env("AZURE_STATIC_CONTAINER", default="static")
+AZURE_MEDIA_CONTAINER = env("AZURE_MEDIA_CONTAINER", default="media")
+AZURE_OVERWRITE_FILES = True
+
+# AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.azureedge.net'  # CDN URL
+AZURE_CUSTOM_DOMAIN = f"{AZURE_ACCOUNT_NAME}.blob.core.windows.net"  # Files URL
+
+STATIC_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_STATIC_CONTAINER}/"
+MEDIA_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_MEDIA_CONTAINER}/"
 
 # ------------------------------------------------------------------------------
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = env("DJANGO_DEFAULT_FROM_EMAIL", default="Health track 365")
+DEFAULT_FROM_EMAIL = env("DJANGO_DEFAULT_FROM_EMAIL", default="khkarandikar@gmail.com")
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
@@ -142,17 +167,18 @@ EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="HealthTrack36
 # Anymail
 # ------------------------------------------------------------------------------
 # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
-INSTALLED_APPS += ["anymail", "whitenoise.runserver_nostatic"]  # noqa F405
+INSTALLED_APPS += ["anymail"]  # noqa F405
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
 # https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
 # https://anymail.readthedocs.io/en/stable/esps/sendgrid/
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
-# ANYMAIL = {
-#     "SENDGRID_API_KEY": env("SENDGRID_API_KEY"),
-#     "SENDGRID_GENERATE_MESSAGE_ID": env("SENDGRID_GENERATE_MESSAGE_ID", default=True),
-#     "SENDGRID_MERGE_FIELD_FORMAT": env("SENDGRID_MERGE_FIELD_FORMAT", default="-{}-"),
-#     "SENDGRID_API_URL": env("SENDGRID_API_URL", default="https://api.sendgrid.com/v3/"),
-# }
+ANYMAIL = {
+    "SENDGRID_API_KEY": env("SENDGRID_API_KEY"),
+    "SENDGRID_GENERATE_MESSAGE_ID": env("SENDGRID_GENERATE_MESSAGE_ID", default=True),
+    "SENDGRID_MERGE_FIELD_FORMAT": env("SENDGRID_MERGE_FIELD_FORMAT", default="-{}-"),
+    "SENDGRID_API_URL": env("SENDGRID_API_URL", default="https://api.sendgrid.com/v3/"),
+}
 
 # ------------------------------------------------------------------------------
 # Your stuff...
