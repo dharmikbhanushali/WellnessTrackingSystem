@@ -100,11 +100,6 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 # ------------------------------------------------------------------------------
-# django-webpack-loader
-# ------------------------------------------------------------------------------
-WEBPACK_LOADER["DEFAULT"]["CACHE"] = not DEBUG  # noqa F405
-
-# ------------------------------------------------------------------------------
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-host
