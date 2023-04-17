@@ -5,13 +5,14 @@
 {% block customcss %}
 {% compress css %}
 <link href="{% static 'css/userDashboard.css' %}" rel="stylesheet">
+<link href="{% static 'css/homepageStyle.css' %}" rel="stylesheet">
 <link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css"
       rel="stylesheet" />
 {% endcompress %}
 {% endblock customcss %}
 {% block content %}
 
-
+<section>
 <div class="full-body">
   <div class="left-body">
     <div class="dashboards-div">
@@ -157,6 +158,7 @@
     </div>
   </div>
 </div>
+</section>
 
 {% endblock content %}
 

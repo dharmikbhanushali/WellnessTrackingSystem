@@ -1,0 +1,32 @@
+version: "3"
+
+volumes:
+  production_postgres_data: { }
+  production_postgres_data_backups: { }
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        - DEV=false
+        - BUILD_ENVIRONMENT=prod
+      dockerfile: .Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./base:/base
+    command: compose/prod-env/django/entrypoint.sh
+    env_file:
+      - ./base/.envs/.production/.django
+      - ./base/.envs/.production/.postgres
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - production_postgres_data:/var/lib/postgresql/data
+      - production_postgres_data_backups:/backups
+    env_file:
+      - ./base/.envs/.production/.postgres

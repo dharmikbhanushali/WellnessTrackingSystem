@@ -2,6 +2,12 @@
 # General
 # ------------------------------------------------------------------------------
 DJANGO_SETTINGS_MODULE=settings.production
+DEBUG=False
+
+# ------------------------------------------------------------------------------
+# AllAuth
+# ------------------------------------------------------------------------------
+DJANGO_ACCOUNT_ALLOW_REGISTRATION=True
 
 # ------------------------------------------------------------------------------
 # Django
@@ -19,12 +25,12 @@ DJANGO_SUPERUSER_USERNAME=admin@email.it
 DJANGO_SUPERUSER_PASSWORD=passadmin
 
 # ------------------------------------------------------------------------------
-# Misc
+# Static File Storage On Azure
 # ------------------------------------------------------------------------------
-# Time in minutes when application should refresh the data from the wrike api.
-PROJECT_EXPIRES_IN=1440
-TASKS_EXPIRES_IN=1440
-
+AZURE_STORAGE_KEY={azure_storage_key}
+AZURE_STORAGE_ACCOUNT_NAME={azure_storage_account_name}
+AZURE_STATIC_CONTAINER=static'
+AZURE_MEDIA_CONTAINER=media
 
 # ------------------------------------------------------------------------------
 # Security
