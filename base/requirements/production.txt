@@ -17,8 +17,7 @@ psycopg2-binary==2.9.6
 # ------------------------------------------------------------------------------
 # Email providers.
 # https://github.com/anymail/django-anymail
-django-anymail[sendgrid]==8.6
-
+django-anymail[mailjet]==9.1
 # https://github.com/jschneier/django-storages
 # Cloud storage providers
 # - For azure
