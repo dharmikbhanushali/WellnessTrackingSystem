@@ -10,9 +10,10 @@ from .base import env  # noqa
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".azurewebsites.net"])
+ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[".azurewebsites.net", "*"])
 # https://github.com/adamchainz/django-cors-headers
-CORS_ALLOWED_ORIGINS = ["https://*.azurewebsites.net"]
+# CORS_ALLOWED_ORIGINS = ["https://*"]
+CORS_ALLOW_ALL_ORIGINS = True
 
 # ------------------------------------------------------------------------------
 # DATABASES
