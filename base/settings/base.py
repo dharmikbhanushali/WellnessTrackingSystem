@@ -84,7 +84,7 @@ THIRD_PARTY_APPS = [
 ]
 
 # Custom apps go here
-LOCAL_APPS = ["core", "user"]
+LOCAL_APPS = ["core", "user", "chat"]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -368,5 +368,9 @@ STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 ALLAUTH_2FA_ALWAYS_REVEAL_BACKUP_TOKENS = False
 
 # ------------------------------------------------------------------------------
-# Your stuff...
+# Twillio
 # ------------------------------------------------------------------------------
+TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID")
+TWILIO_API_KEY = env("TWILIO_API_KEY")
+TWILIO_API_SECRET = env("TWILIO_API_SECRET")
+TWILIO_CHAT_SERVICE_SID = env("TWILIO_CHAT_SERVICE_SID")

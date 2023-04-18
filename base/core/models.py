@@ -7,12 +7,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 # Project Libraries
-#import settings
-
 from core.constants import CLIENT, USER_TYPES
-
-
-# from base import settings
 
 
 class User(AbstractUser):
@@ -126,3 +121,15 @@ class WorkoutVideo(models.Model):
     video_file = models.FileField(upload_to="workout_videos/")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Room(models.Model):
+    """Represents chat rooms that users can join"""
+
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=100)
+    slug = models.CharField(max_length=50)
+
+    def __str__(self):
+        """Returns human-readable representation of the model instance."""
+        return self.name
