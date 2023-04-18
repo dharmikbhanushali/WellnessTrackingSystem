@@ -6,12 +6,17 @@
   }
 }
 
+html{
+  background-color: orange;
+}
+
 head {
   font-family: 'Poppins';
 }
 
 body {
   font-family: 'Poppins';
+  background-color: orange;
 }
 
 h1,

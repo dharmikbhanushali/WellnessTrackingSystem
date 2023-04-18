@@ -3,6 +3,7 @@
 /* Set font-family for all elements */
 * {
   font-family: 'Poppins', sans-serif;
+  background-color: yellowgreen;
 }
 
 /* Set background image */

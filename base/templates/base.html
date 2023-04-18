@@ -126,14 +126,22 @@
         </li>
         <li class="nav-item">
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <input id="search" class="form-control mr-sm-2" type="search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </li>
-        <li class="nav-item">
-          {# URL provided by django-allauth/account/urls.py #}
-          <a class="nav-link" href="{% url 'user:detail' user.username  %}">{% translate "My Profile" %}</a>
-        </li>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+        var availableTags = [ "Apple", "Banana", "Cherry", "Date", "Elderberry", "Fig", "Grape" ];
+        $( "#search" ).autocomplete({
+          source: availableTags,
+          select: function(event, ui) {
+            event.preventDefault();
+            var url = "{% url 'home' %}" + ui.item.value;
+            window.location.href = url;
+          }
+        });
+        </script>
+        
         <li> {{ object.username }}
           {% if object.name %}
             <p>{{ object.name }}</p>

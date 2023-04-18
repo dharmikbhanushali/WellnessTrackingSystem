@@ -12,12 +12,14 @@ html {
   position: relative;
   min-height: 100%;
   font-family: 'Poppins';
+
 }
 
 body {
   margin: 0;
   padding-bottom: 100px; /* height of the footer */
   font-family: 'Poppins';
+  background-color: cyan;
 }
 
 .navbar{
