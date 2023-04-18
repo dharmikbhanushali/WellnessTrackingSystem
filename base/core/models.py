@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 # Project Libraries
-import settings
+#import settings
 
 from core.constants import CLIENT, USER_TYPES
 
