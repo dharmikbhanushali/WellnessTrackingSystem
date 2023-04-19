@@ -38,7 +38,7 @@ $(function () {
 	// Get an access token for the current user, passing a device ID
 	// for browser-based apps, we'll just use the value "browser"
 	$.getJSON(
-		"/token",
+		"/chat/token",
 		{
 			device: "browser"
 		},

@@ -30,7 +30,6 @@ def token(request):
     identity = request.GET.get("identity", fake.user_name())
     device_id = request.GET.get("device", "default")  # unique device ID
 
-    # TODO
     account_sid = settings.TWILIO_ACCOUNT_SID
     api_key = settings.TWILIO_API_KEY
     api_secret = settings.TWILIO_API_SECRET
@@ -45,6 +44,6 @@ def token(request):
         chat_grant = ChatGrant(endpoint_id=endpoint, service_sid=chat_service_sid)
         token.add_grant(chat_grant)
 
-    response = {"identity": identity, "token": token.to_jwt().decode("utf-8")}
+    response = {"identity": identity, "token": token.to_jwt()}
 
     return JsonResponse(response)
