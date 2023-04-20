@@ -10,6 +10,20 @@ from django.utils import timezone
 from core.constants import CLIENT, USER_TYPES
 
 
+WORKOUT_CATEGORY_CHOICES = (
+    ("CARDIO", "Cardio"),
+    ("STRENGTH", "Strength"),
+    ("FLEXIBILITY", "Flexibility"),
+    ("BALANCE", "Balance"),
+)
+
+WORKOUT_LEVEL_CHOICES = (
+    ("BEGINNER", "Beginner"),
+    ("INTERMEDIATE", "Intermediate"),
+    ("ADVANCED", "Advanced"),
+)
+
+
 class User(AbstractUser):
     """User in the system."""
 
@@ -56,6 +70,12 @@ class IntakeForm(models.Model):
     height = models.FloatField()
     weight = models.FloatField()
     date_joined = models.DateTimeField(auto_now_add=False, default=timezone.now)
+    preferred_workout_category = models.CharField(
+        max_length=20, choices=WORKOUT_CATEGORY_CHOICES
+    )
+    preferred_workout_level = models.CharField(
+        max_length=20, choices=WORKOUT_LEVEL_CHOICES
+    )
 
     def __str__(self):
         return f"{self.user}'s Intake Form"
@@ -71,6 +91,11 @@ class Workouts(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     views = models.PositiveIntegerField(default=0)
     rating = models.PositiveIntegerField(default=0)
+    category = models.CharField(max_length=255, choices=WORKOUT_CATEGORY_CHOICES)
+    level = models.CharField(max_length=255, choices=WORKOUT_LEVEL_CHOICES)
+    title = models.CharField(max_length=255)
+    video_file = models.FileField(upload_to="workout_videos/")
+    calories = models.IntegerField()
 
     def __str__(self):
         return self.title

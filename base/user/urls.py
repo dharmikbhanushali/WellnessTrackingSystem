@@ -14,6 +14,9 @@ from user.views import (
     UserRedirectView,
     UserUpdateView,
     Workouts_list_trainer,
+    enroll_workout,
+    mark_workout_complete,
+    view_all_workouts,
     view_workout_video,
     view_workouts,
 )
@@ -36,8 +39,15 @@ urlpatterns = [
     path("<int:pk>/edit/", view=Delete_workout, name="delete_workout"),
     # Delete a workout
     path("<int:pk>/delete/", view=Delete_workout, name="workout_delete"),
-    path("workouts/", view=Workouts_list_trainer, name="workouts_list"),
+    path("trainer/workouts/", view=Workouts_list_trainer, name="workouts_list"),
     path("intake-form/", view=Intake_form, name="intake_form"),
     path("workout-video/<int:pk>/", view=view_workout_video, name="view_workout_video"),
-    path("workouts/<int:pk>/", view=view_workouts, name="view_workouts"),
+    path("workouts/", view=view_workouts, name="view_workouts"),
+    path("workouts/a/", view_all_workouts, name="view_all_workouts"),
+    path("enroll/<int:workout_id>/", enroll_workout, name="enroll_workout"),
+    path(
+        "mark-complete/<int:workout_id>/",
+        mark_workout_complete,
+        name="mark_workout_complete",
+    ),
 ]
