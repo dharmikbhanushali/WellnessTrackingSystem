@@ -6,7 +6,14 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as translate
 
 # Project Libraries
-from core.models import ClientMetrics, IntakeForm, Workouts, WorkoutsAssigned
+from core.models import (
+    Appointment,
+    ClientMetrics,
+    IntakeForm,
+    Workouts,
+    WorkoutsAssigned,
+    WorkoutVideo,
+)
 from user.forms import UserAdminChangeForm, UserAdminCreationForm
 
 
@@ -65,3 +72,5 @@ admin.site.register(IntakeForm)
 admin.site.register(Workouts)
 admin.site.register(WorkoutsAssigned)
 admin.site.register(ClientMetrics)
+admin.site.register(Appointment)
+admin.site.register(WorkoutVideo)

@@ -42,7 +42,7 @@ urlpatterns = [
     path("trainer/workouts/", view=Workouts_list_trainer, name="workouts_list"),
     path("intake-form/", view=Intake_form, name="intake_form"),
     path("workout-video/<int:pk>/", view=view_workout_video, name="view_workout_video"),
-    path("workouts/", view=view_workouts, name="view_workouts"),
+    path("workouts/<int:workout_id>", view=view_workouts, name="view_workouts"),
     path("workouts/a/", view_all_workouts, name="view_all_workouts"),
     path("enroll/<int:workout_id>/", enroll_workout, name="enroll_workout"),
     path(

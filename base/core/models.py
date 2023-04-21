@@ -70,6 +70,18 @@ class IntakeForm(models.Model):
     height = models.FloatField()
     weight = models.FloatField()
     date_joined = models.DateTimeField(auto_now_add=False, default=timezone.now)
+    WORKOUT_CATEGORY_CHOICES = (
+        ("CARDIO", "Cardio"),
+        ("STRENGTH", "Strength"),
+        ("FLEXIBILITY", "Flexibility"),
+        ("BALANCE", "Balance"),
+    )
+
+    WORKOUT_LEVEL_CHOICES = (
+        ("BEGINNER", "Beginner"),
+        ("INTERMEDIATE", "Intermediate"),
+        ("ADVANCED", "Advanced"),
+    )
     preferred_workout_category = models.CharField(
         max_length=20, choices=WORKOUT_CATEGORY_CHOICES
     )
@@ -91,6 +103,18 @@ class Workouts(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     views = models.PositiveIntegerField(default=0)
     rating = models.PositiveIntegerField(default=0)
+    WORKOUT_CATEGORY_CHOICES = (
+        ("CARDIO", "Cardio"),
+        ("STRENGTH", "Strength"),
+        ("FLEXIBILITY", "Flexibility"),
+        ("BALANCE", "Balance"),
+    )
+
+    WORKOUT_LEVEL_CHOICES = (
+        ("BEGINNER", "Beginner"),
+        ("INTERMEDIATE", "Intermediate"),
+        ("ADVANCED", "Advanced"),
+    )
     category = models.CharField(max_length=255, choices=WORKOUT_CATEGORY_CHOICES)
     level = models.CharField(max_length=255, choices=WORKOUT_LEVEL_CHOICES)
     title = models.CharField(max_length=255)
