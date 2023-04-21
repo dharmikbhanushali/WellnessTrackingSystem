@@ -117,8 +117,9 @@ class Workouts(models.Model):
     )
     category = models.CharField(max_length=255, choices=WORKOUT_CATEGORY_CHOICES)
     level = models.CharField(max_length=255, choices=WORKOUT_LEVEL_CHOICES)
-    title = models.CharField(max_length=255)
+    # thumbnail = models.ImageField(upload_to="workout_thumbnails/", null=True, blank=True)
     video_file = models.FileField(upload_to="workout_videos/")
+    duration = models.PositiveIntegerField()
     calories = models.IntegerField()
 
     def __str__(self):
@@ -164,9 +165,9 @@ class Appointment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-class WorkoutVideo(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    video_file = models.FileField(upload_to="workout_videos/")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# class WorkoutVideo(models.Model):
+#     title = models.CharField(max_length=255)
+#     description = models.TextField()
+#     video_file = models.FileField(upload_to="workout_videos/")
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)

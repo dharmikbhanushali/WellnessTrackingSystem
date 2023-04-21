@@ -12,7 +12,6 @@ from core.models import (
     IntakeForm,
     Workouts,
     WorkoutsAssigned,
-    WorkoutVideo,
 )
 from user.forms import UserAdminChangeForm, UserAdminCreationForm
 
@@ -73,4 +72,3 @@ admin.site.register(Workouts)
 admin.site.register(WorkoutsAssigned)
 admin.site.register(ClientMetrics)
 admin.site.register(Appointment)
-admin.site.register(WorkoutVideo)

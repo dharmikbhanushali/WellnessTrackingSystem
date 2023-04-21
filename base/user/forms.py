@@ -9,7 +9,7 @@ from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 
 # Project Libraries
 from core.constants import USER_TYPES
-from core.models import IntakeForm, Workouts, WorkoutsAssigned, WorkoutVideo
+from core.models import IntakeForm, Workouts, WorkoutsAssigned
 
 
 User = get_user_model()
@@ -92,26 +92,21 @@ class IntakeForm(forms.ModelForm):
 class WorkoutsForm(forms.ModelForm):
     class Meta:
         model = Workouts
+        # fields = ['title', 'description', 'category', 'level', 'video_file', 'plan_url', 'thumbnail', 'calories']
         fields = [
-            "trainer",
             "title",
             "description",
-            "video_url",
-            "plan_url",
-            "rating",
             "category",
             "level",
+            "video_file",
+            "plan_url",
+            "calories",
         ]
+
         widgets = {
             "category": forms.CheckboxSelectMultiple(),
             "level": forms.CheckboxSelectMultiple(),
         }
-
-
-class UploadWorkoutVideoForm(forms.ModelForm):
-    class Meta:
-        model = WorkoutVideo
-        fields = ["title", "description", "video_file"]
 
 
 class EnrollWorkoutForm(forms.ModelForm):

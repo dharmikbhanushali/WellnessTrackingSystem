@@ -15,14 +15,8 @@ from django.utils.translation import gettext_lazy as translate
 from django.views.generic import DetailView, RedirectView, UpdateView
 
 # Project Libraries
-from core.models import (
-    Appointment,
-    ClientMetrics,
-    Workouts,
-    WorkoutsAssigned,
-    WorkoutVideo,
-)
-from user.forms import IntakeForm, UploadWorkoutVideoForm, WorkoutsForm
+from core.models import Appointment, ClientMetrics, Workouts, WorkoutsAssigned
+from user.forms import IntakeForm, WorkoutsForm
 
 
 User = get_user_model()
@@ -224,7 +218,7 @@ def Trainer_dashboard(request):
 @login_required
 def Create_workout(request):
     if request.method == "POST":
-        form = WorkoutsForm(request.POST)
+        form = WorkoutsForm(request.POST, request.FILES)
         if form.is_valid():
             workout = form.save(commit=False)
             workout.trainer = request.user
@@ -232,38 +226,38 @@ def Create_workout(request):
             return redirect("workouts_list")
     else:
         form = WorkoutsForm()
-    return render(request, "create_workout.html", {"form": form})
+    return render(request, "testing.html", {"form": form})
 
 
-def upload_workout_video(request):
-    if request.method == "POST":
-        form = UploadWorkoutVideoForm(request.POST, request.FILES)
-        if form.is_valid():
-            workout_video = form.save()
-            return redirect("placeholder_workout_page_view", pk=workout_video.pk)
-    else:
-        form = UploadWorkoutVideoForm()
-    return render(request, "upload_workout_video.html", {"form": form})
+# def upload_workout_video(request):
+#     if request.method == "POST":
+#         form = UploadWorkoutVideoForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             workout_video = form.save()
+#             return redirect("placeholder_workout_page_view", pk=workout_video.pk)
+#     else:
+#         form = UploadWorkoutVideoForm()
+#     return render(request, "upload_workout_video.html", {"form": form})
 
 
-@login_required
-def Update_workout(request, pk):
-    workout = get_object_or_404(Workouts, pk=pk)
-    if request.method == "POST":
-        form = WorkoutsForm(request.POST, instance=workout)
-        if form.is_valid():
-            form.save()
-            return redirect("workouts_list")
-    else:
-        form = WorkoutsForm(instance=workout)
-    return render(request, "update_workout.html", {"form": form})
+# @login_required
+# def Update_workout(request, pk):
+#     workout = get_object_or_404(Workouts, pk=pk)
+#     if request.method == "POST":
+#         form = WorkoutsForm(request.POST, instance=workout)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("workouts_list")
+#     else:
+#         form = WorkoutsForm(instance=workout)
+#     return render(request, "update_workout.html", {"form": form})
 
 
-@login_required
-def Delete_workout(request, pk):
-    workout = get_object_or_404(Workouts, pk=pk)
-    workout.delete()
-    return redirect("workouts_list")
+# @login_required
+# def Delete_workout(request, pk):
+#     workout = get_object_or_404(Workouts, pk=pk)
+#     workout.delete()
+#     return redirect("workouts_list")
 
 
 @login_required
@@ -280,13 +274,13 @@ def View_appointments(request):
     return render(request, "view_appointments.html", context)
 
 
-def view_workout_video(request, pk):
-    video = get_object_or_404(WorkoutVideo, pk=pk)
-    return render(request, "workout_video_placeholder.html", {"video": video})
+# def view_workout_video(request, pk):
+#     video = get_object_or_404(WorkoutVideo, pk=pk)
+#     return render(request, "workout_video_placeholder.html", {"video": video})
 
 
-def view_workouts(request, pk):
-    workout = get_object_or_404(Workouts, pk=pk)
+def view_workout(request, workout_id):
+    workout = get_object_or_404(Workouts, id=workout_id)
     return render(request, "workout_detail_placeholder.html", {"workout": workout})
 
 
@@ -334,12 +328,15 @@ def workout_recommendations(request):
 
 # Enrolling in a workout
 @login_required
-def enroll_workout(request, workout_id, date_assigned):
+def enroll_workout(request, workout_id, date_assigned=None):
     user = request.user
     workout = Workouts.objects.get(id=workout_id)
-    WorkoutsAssigned.objects.create(
-        user=user, workout=workout, date_assigned=date_assigned
-    )
+    if date_assigned:
+        WorkoutsAssigned.objects.create(
+            user=user, workout=workout, date_assigned=date_assigned
+        )
+    else:
+        WorkoutsAssigned.objects.create(user=user, workout=workout)
     return redirect("client_dashboard")
 
 
@@ -411,10 +408,14 @@ def Client_dashboard(request):
 
 # Retrieve workouts assigned based on the date assigned
 def get_workouts_assigned_by_date(request, date):
-    workouts_assigned = []
-    for metrics in ClientMetrics.objects.filter(user=request.user, date=date):
-        workouts_assigned += metrics.workouts.all()
-    context = {
-        "get_workouts_assigned_by_date": get_workouts_assigned_by_date,
-    }
-    return render(request, "client_dashboard.html", context)
+    user = request.user
+    assigned_workouts = WorkoutsAssigned.objects.filter(user=user, date_assigned=date)
+    context = {"assigned_workouts": assigned_workouts}
+    return render(request, "pages/userDashboard.html", context)
+
+
+def get_workouts_assigned_all(request):
+    user = request.user
+    assigned_workouts = WorkoutsAssigned.objects.filter(user=user)
+    context = {"assigned_workouts": assigned_workouts}
+    return render(request, "pages/userDashboard.html", context)
