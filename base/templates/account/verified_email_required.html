@@ -7,8 +7,10 @@
 
 {% block head_title %}{% translate "Verify Your E-mail Address" %}{% endblock %}
 
-{% block customcss %}
+{% block customcss %}{% load compress %}
+{% compress css %}
 <link href="{% static 'css/email_confirm.css' %}" rel="stylesheet">
+{% endcompress %}
 {% endblock customcss %}
 
 {% block inner %}

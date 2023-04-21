@@ -2,10 +2,14 @@
 
 
 {% load static %}
+{% load compress %}
+
 {% block title %}Page not found{% endblock %}
 
 {% block customcss %}
+{% compress css %}
 <link href="{% static 'css/error403.css' %}" rel="stylesheet">
+{% endcompress %}
 {% endblock customcss %}
 
 

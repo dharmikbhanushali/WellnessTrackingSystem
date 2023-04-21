@@ -3,9 +3,12 @@
 {% load compress %}
 
 {% block customcss %}
+{% compress css %}
 <link href="{% static 'css/userDashboard.css' %}" rel="stylesheet">
 <link href="{% static 'css/homepageStyle.css' %}" rel="stylesheet">
+{% endcompress %}
 {% endblock customcss %}
+
 {% block content %}
 
 <section>

@@ -84,6 +84,12 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
+  <!-- Twilio Conversations JS  -->
+  <script
+    src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
+  <script
+    src="https://media.twiliocdn.com/sdk/js/chat/v2.0/twilio-chat.min.js"></script>
+
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -254,6 +260,10 @@
   {% block modal %}
 
   {% endblock modal %}
+
+  {% block page_specific_js %}
+
+  {% endblock page_specific_js %}
 
   {% block inline_javascript %}
   {% comment %}

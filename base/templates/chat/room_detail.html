@@ -1,17 +1,21 @@
+{% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load compress %}
 
-<!DOCTYPE html>
-<html>
+{% block title %}HealthTrack365 Chat Support | {{room.name}}{% endblock title %}
 
-<head>
-  <title>{{room.name}} | Twilio Chat</title>
-  <link rel="shortcut icon"
-        href="//www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" />
-</head>
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/error403.css' %}" rel="stylesheet">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" />
+{% endcompress %}
+{% endblock customcss %}
 
-<body>
+
+{% block content %}
 <div class="container">
   <div class="columns">
     <div class="column is-three-quarters">
@@ -42,14 +46,10 @@
 
   </div>
 </div>
+{% endblock %}
 
-<script
-  src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
-<script
-  src="https://media.twiliocdn.com/sdk/js/chat/v2.0/twilio-chat.min.js"></script>
+{% block page_specific_js %}
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         crossorigin="anonymous"></script>
 <script src="{% static 'js/chat/rooms.js' %}"></script>
-</body>
-
-</html>
+{% endblock page_specific_js %}

@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
+{% load compress %}
+
 {% block customcss %}
+{% compress css %}
 <link href="{% static 'css/test-css-forms.css' %}" rel="stylesheet">
+{% endcompress %}
 {% endblock customcss %}
 {% block content %}
 
@@ -20,8 +24,7 @@
 
           <div class="mb-4 pb-2">
             <div class="form-outline form-white">
-              <h4></bold><label class="form-label" for="personal info">1.
-                Personal Information</label></h4>
+              <h4></bold><label class="form-label" for="personal info">1.Personal Information</label></h4>
             </div>
           </div>
 

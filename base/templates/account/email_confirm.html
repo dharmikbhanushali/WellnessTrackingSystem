@@ -3,12 +3,15 @@
 {% load i18n %}
 {% load static %}
 {% load account %}
+{% load compress %}
 
 
 {% block head_title %}{% translate "Confirm E-mail Address" %}{% endblock %}
 
 {% block customcss %}
+{% compress css %}
 <link href="{% static 'css/email_confirm.css' %}" rel="stylesheet">
+{% endcompress %}
 {% endblock customcss %}
 
 
@@ -17,10 +20,7 @@
 <h1>{% translate "Confirm E-mail Address" %}</h1>
 
 {% if confirmation %}
-
 {% user_display confirmation.email_address.user as user_display %}
-
-<p>{% blocktranslate with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktranslate %}</p>
 <section class="vh-60">
     <div class="container py-5 h-70">
       <div class="row d-flex align-items-center justify-content-center h-50">
@@ -28,19 +28,22 @@
           <form method="post"
                 action="{% url 'account_confirm_email' confirmation.key %}">
             {% csrf_token %}
+            <p>{% blocktranslate with confirmation.email_address.email as email %}
+              Please confirm that <a href="mailto:{{ email }}">{{ email }}</a>
+              is an e-mail address for user {{ user_display }}.
+            {%endblocktranslate %}
+            </p>
             <button class="btn btn-primary" type="submit">{% translate 'Confirm' %}</button>
           </form>
         </div>
       </div>
     </div>
-  </section> -->
+  </section>
 {% else %}
 
 {% url 'account_email' as email_url %}
 
 <p>{% blocktranslate %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktranslate %}</p>
-
-
 
 {% endif %}
 {% endblock %}

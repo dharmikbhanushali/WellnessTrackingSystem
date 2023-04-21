@@ -1,24 +1,22 @@
+{% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load compress %}
 
-<!DOCTYPE html>
-<html>
+{% block title %}HealthTrack365 Chat Support{% endblock title %}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon"
-        href="//www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" />
-  <style>
-    .rounded-edges {
-      border-radius: 0.25rem;
-    }
-  </style>
-  <title>All Chat Rooms</title>
-</head>
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/error403.css' %}" rel="stylesheet">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" />
+{% endcompress %}
+{% endblock customcss %}
 
-<body>
+
+{% block content %}
+
 <section class="hero is-info">
   <div class="hero-body has-text-centered">
     <div class="container">
@@ -53,6 +51,5 @@
     </div>
   </div>
 </section>
-</body>
 
-</html>
+{% endblock %}

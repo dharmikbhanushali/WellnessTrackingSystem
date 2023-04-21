@@ -3,12 +3,15 @@
 {% load i18n %}
 {% load static %}
 {% load account %}
+{% load compress %}
 
 {% block head_title %}{% translate "Sign Out" %}{% endblock %}
 
 
 {% block customcss %}
+{% compress css %}
 <link href="{% static 'css/email_confirm.css' %}" rel="stylesheet">
+{% endcompress %}
 {% endblock customcss %}
 
 {% block inner %}
