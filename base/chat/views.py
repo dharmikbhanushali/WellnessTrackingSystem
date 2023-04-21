@@ -40,7 +40,7 @@ class RoomDetailsView(LoginRequiredMixin, TemplateView):
 class TwilioTokenView(LoginRequiredMixin, TemplateView):
     def get(self, request, *args, **kwargs):
 
-        identity = request.GET.get("identity", fake.user_name())
+        identity = request.GET.get("identity", request.user.username)
         device_id = request.GET.get("device", "default")  # unique device ID
 
         account_sid = settings.TWILIO_ACCOUNT_SID
@@ -57,7 +57,12 @@ class TwilioTokenView(LoginRequiredMixin, TemplateView):
             chat_grant = ChatGrant(endpoint_id=endpoint, service_sid=chat_service_sid)
             token.add_grant(chat_grant)
 
-        response = {"identity": identity, "token": token.to_jwt()}
+        response = {
+            "identity": identity,
+            "token": token.to_jwt(),
+            "channel_name": "trainer name here.",
+        }
+        # "channel_name": "fitness_trainer_name"
 
         return JsonResponse(response)
 

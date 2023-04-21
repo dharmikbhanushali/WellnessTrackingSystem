@@ -46,7 +46,6 @@ $(function () {
 			// Alert the user they have been assigned a random username
 			username = data.identity;
 			print(
-				"You have been assigned a random username of: " +
 				'<span class="me">' +
 				username +
 				"</span>",
@@ -59,10 +58,25 @@ $(function () {
 			Twilio.Chat.Client.create(data.token).then(client => {
 				// Use client
 				chatClient = client;
-				chatClient.getSubscribedChannels().then(createOrJoinChannel);
+				chatClient.getSubscribedChannels().then(createOrJoinChannel(data.channel_name));
 			});
 		}
 	);
+
+	async function hasJoinedChannel(name){
+		// Check if member has already joined this channel name
+		chatClient.getUserChannelDescriptors().then(function (paginator) {
+			for (i = 0; i < paginator.items.length; i++) {
+				var channel = paginator.items[i];
+				if (channel.uniqueName == name) {
+					console.log(`Found channel... `)
+					// channel.getMessages(30).then(processPage);
+					return true;
+				}
+			}
+		});
+		return false;
+	}
 
 	// Set up channel after it has been found / created
 	function setupChannel(name) {
@@ -91,9 +105,11 @@ $(function () {
 		}
 	}
 
-	function createOrJoinChannel(channels) {
+	async function createOrJoinChannel(channel_name) {
 		// Extract the room's channel name from the page URL
-		let channelName = window.location.pathname.split("/").slice(-2, -1)[0];
+		let channelName = channel_name
+		let hasJoined = await hasJoinedChannel(channelName);
+		// let channelName = window.location.pathname.split("/").slice(-2, -1)[0];
 
 		print(`Attempting to join "${channelName}" chat channel...`);
 
@@ -101,10 +117,12 @@ $(function () {
 			.getChannelByUniqueName(channelName)
 			.then(function (channel) {
 				roomChannel = channel;
-				console.log("Found channel:", channelName);
-				setupChannel(channelName);
+				if (!hasJoined) {
+					setupChannel(channelName);
+				}
 			})
 			.catch(function () {
+				console.log("Trying to create channel for :", channelName)
 				// If it doesn't exist, let's create it
 				chatClient
 					.createChannel({
