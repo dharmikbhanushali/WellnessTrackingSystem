@@ -370,7 +370,7 @@ ALLAUTH_2FA_ALWAYS_REVEAL_BACKUP_TOKENS = False
 # ------------------------------------------------------------------------------
 # Twillio
 # ------------------------------------------------------------------------------
-TWILIO_ACCOUNT_SID = env("TWILIO_ACCOUNT_SID")
-TWILIO_API_KEY = env("TWILIO_API_KEY")
-TWILIO_API_SECRET = env("TWILIO_API_SECRET")
-TWILIO_CHAT_SERVICE_SID = env("TWILIO_CHAT_SERVICE_SID")
+TWILIO_ACCOUNT_SID = "AC386d52c5a9d4a47f75e7803697f05e71"
+TWILIO_API_KEY = "SKde4485303313cc64aa66784238e3dc7d"
+TWILIO_API_SECRET = "FmTQYAzK5xWjm0fpWfMCvKXg952hlCZV"
+TWILIO_CHAT_SERVICE_SID = "IS3c0afff5b2d64cafbf9a23107e5aeea3"
