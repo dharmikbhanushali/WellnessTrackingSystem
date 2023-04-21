@@ -9,10 +9,7 @@ def main():
     """Run administrative tasks."""
     if not os.environ.get("DJANGO_SETTINGS_MODULE"):
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.local")
-    else:
-        print("Running in production, CAUTION!!!!")
-        os.chdir(os.getcwd())
-        print("Current Working Directory is: ", os.getcwd())
+    print(f"Current settings file:--> {os.environ.get('DJANGO_SETTINGS_MODULE')}")
     try:
         # Django Libraries
         from django.core.management import execute_from_command_line
@@ -26,9 +23,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # Normally, OAuthLib will raise an InsecureTransportError if you attempt to
-    # use OAuth2 over HTTP, rather than HTTPS. Setting this environment variable
-    # will prevent this error from being raised.
-    # IMP: For non-docker based version.
-    # os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
     main()

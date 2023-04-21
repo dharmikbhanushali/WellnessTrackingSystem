@@ -103,7 +103,6 @@ This app uses the following Python packages
    ```
 2. For local development, see the following:
 
-   - [Developing locally using docker](./base/docs/source/developing-locally-docker.rst)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

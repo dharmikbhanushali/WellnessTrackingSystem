@@ -8,7 +8,7 @@ from allauth.account.forms import SignupForm
 from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 
 # Project Libraries
-from core.constants import USER_TYPES
+from core.constants import CLIENT, USER_TYPES
 from core.models import IntakeForm, Workouts, WorkoutVideo
 
 
@@ -18,7 +18,6 @@ User = get_user_model()
 class UserAdminChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = User
-        # fields = ("email",)
 
 
 class UserAdminCreationForm(UserCreationForm):
@@ -33,7 +32,6 @@ class UserAdminCreationForm(UserCreationForm):
         error_messages = {
             "username": {"unique": translate("This username has already been taken.")}
         }
-        # fields = ("email",)
 
 
 class UserSignupForm(SignupForm):
@@ -51,7 +49,9 @@ class UserSignupForm(SignupForm):
         user = super().save(request)
 
         # Add your own processing here.
-        user.user_type = self.cleaned_data["user_type"]
+        user.user_type = (
+            self.cleaned_data.get("user_type", CLIENT) if self.cleaned_data else CLIENT
+        )
         user.save()
         # You must return the original result.
         return user

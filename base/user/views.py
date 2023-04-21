@@ -49,14 +49,6 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     model = User
 
     def get_redirect_url(self):
-        # todo: check if user has intake form or not in database.
-        # todo: based upon the user type, redirect to specific url
-        if True:
-            logger.info("Here................")
-            if self.request.user.get_user_type() == "Client":
-                # return render(self.request, "pages/userform.html")
-                return reverse("test")
-            return reverse("test")
         return reverse("user:detail", kwargs={"username": self.request.user.username})
 
 

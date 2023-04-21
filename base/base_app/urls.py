@@ -65,19 +65,9 @@ if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # ----------------------------------------------------------------------------
-# Custom API  url
-# ----------------------------------------------------------------------------
-urlpatterns += [
-    path("user/", include("user.urls")),
-    path("chat/", include("chat.urls")),
-]
-
-# ----------------------------------------------------------------------------
 # Account management urls
 # ----------------------------------------------------------------------------
 urlpatterns += [
-    # User management
-    # path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/", include("allauth.urls")),
     path("accounts/", include("allauth_2fa.urls")),
 ]
@@ -90,6 +80,8 @@ urlpatterns += [
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
+    path("user/", include("user.urls")),
+    path("chat/", include("chat.urls")),
     path("test_template/", view=test_template, name="test"),
     path("test_template_form/", view=test_template_form, name="test_form"),
     path("client-dashboard/", view=Client_dashboard, name="client_metrics"),
