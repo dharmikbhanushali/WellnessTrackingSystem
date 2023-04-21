@@ -3,13 +3,13 @@
 from django.urls import path, re_path
 
 # Project Libraries
-from chat.views import all_rooms, room_detail, token
+from chat.views import AllRoomsView, RoomDetailsView, TwilioTokenView
 
 
 app_name = "chat"
 
 urlpatterns = [
-    path("", all_rooms, name="all_rooms"),
-    path("token", token, name="token"),
-    re_path(r"rooms/(?P<slug>[-\w]+)/$", room_detail, name="room_detail"),
+    path("", AllRoomsView.as_view(), name="all_rooms"),
+    path("token", TwilioTokenView.as_view(), name="token"),
+    re_path(r"rooms/(?P<slug>[-\w]+)/$", RoomDetailsView.as_view(), name="room_detail"),
 ]
