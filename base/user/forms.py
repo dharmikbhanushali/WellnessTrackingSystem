@@ -79,14 +79,14 @@ class IntakeForm(forms.ModelForm):
             "home_phone",
             "height",
             "weight",
+            "preferred_workout_category",
+            "preferred_workout_level",
         ]
-        #     # "preferred_workout_category",
-        #     # "preferred_workout_level",
-        # ]
-        # widgets = {
-        #     "preferred_workout_category": forms.CheckboxSelectMultiple(),
-        #     "preferred_workout_level": forms.CheckboxSelectMultiple(),
-        # }
+
+        widgets = {
+            "preferred_workout_category": forms.CheckboxSelectMultiple(),
+            "preferred_workout_level": forms.CheckboxSelectMultiple(),
+        }
 
 
 class WorkoutsForm(forms.ModelForm):
@@ -99,14 +99,13 @@ class WorkoutsForm(forms.ModelForm):
             "video_url",
             "plan_url",
             "rating",
+            "category",
+            "level",
         ]
-        #     "category",
-        #     "level",
-        # ]
-        # widgets = {
-        #     "category": forms.CheckboxSelectMultiple(),
-        #     "level": forms.CheckboxSelectMultiple(),
-        # }
+        widgets = {
+            "category": forms.CheckboxSelectMultiple(),
+            "level": forms.CheckboxSelectMultiple(),
+        }
 
 
 class UploadWorkoutVideoForm(forms.ModelForm):
