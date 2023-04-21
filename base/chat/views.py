@@ -18,9 +18,9 @@ def all_rooms(request):
     return render(request, "chat/index.html", {"rooms": rooms})
 
 
-# def room_detail(request, slug):
-#     room = Room.objects.get(slug=slug)
-#     return render(request, "chat/room_detail.html", {"room": room})
+def room_detail(request, slug):
+    room = Room.objects.get(slug=slug)
+    return render(request, "chat/room_detail.html", {"room": room})
 
 
 fake = Faker()

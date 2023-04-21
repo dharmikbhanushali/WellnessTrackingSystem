@@ -61,7 +61,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 def test_template(request):
-    return render(request, "chat/room_detail.html")
+    return render(request, "pages/userDashboard.html")
 
 
 def test_template_form(request):
