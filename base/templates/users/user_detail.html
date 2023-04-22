@@ -58,15 +58,26 @@
     <button class="close-btn">&times;</button>
   </div>
   <div class="chatbot-body">
-    <p>Welcome to the our chat service! Select an opion:</p>
-    <form>
+    <p>Welcome to the chat service! Select an option:</p>
       <div class="form-group">
         <!-- <input type="text" class="form-control" id="message-input" placeholder="Enter your message..."> -->
       </div>
-      <button type="submit" class="btn btn-primary">Chat with Your Trainer</button><br><br>
-      <button type="submit" class="btn btn-warning">Chat with Support</button><br><br>
-      <button type="submit" class="btn btn-info">FAQs</button>
-    </form>
+      <form method="post" action="{% url 'chat:room_detail' 'general' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Chat with Your Trainer</button><br><br>
+      </form>
+      <form method="post" action="{% url 'chat:room_detail' 'twilio-chat' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-warning">Chat with Support</button>
+        <br><br>
+      </form>
+      <form method="post" action="{% url 'chat:room_detail' 'random' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-info">FAQs</button><br><br>
+      </form>
   </div>
 </div>
 <div class="chat-overlay" id="chat-overlay"></div>
