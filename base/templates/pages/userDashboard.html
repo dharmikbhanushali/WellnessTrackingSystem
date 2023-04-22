@@ -6,158 +6,105 @@
 {% compress css %}
 <link href="{% static 'css/userDashboard.css' %}" rel="stylesheet">
 <link href="{% static 'css/homepageStyle.css' %}" rel="stylesheet">
-<link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css"
-      rel="stylesheet" />
+<!-- <link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css"
+      rel="stylesheet" /> -->
+<!-- <link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css" rel="stylesheet" /> -->
+
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="https://canvasjs.com/assets/script/jquery-ui.1.11.2.min.js" type="text/javascript"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js" type="text/javascript"></script>
+<script src="{% static 'js/circle-progress.min.js' %}" type="text/javascript"></script>
+
 {% endcompress %}
 {% endblock customcss %}
 {% block content %}
 
 <section>
-<div class="full-body">
-  <div class="left-body">
-    <div class="dashboards-div">
-      <div class="calorie-bar-chart-div">
+  <a href="#"><img src="{% static 'images/chat_icon.webp' %}" class="chat-img"></a>
+  <div class="full-body">
+    <div class="left-body">
+      <div class="dashboards-div">
+        <div class="calorie-bar-chart-div">
 
-        <!-- BAR CHART START -->
-        <div id="bar-chart-container-div"></div>
-        <!-- BAR CHART END -->
-      </div>
-      <div class="metrics-div">
-        <div class="metric-div">
+          <!-- BAR CHART START -->
+          <div id="bar-chart-container-div"></div>
+          <!-- BAR CHART END -->
+        </div>
+        <div class="metrics-div">
+          <div class="metric-div">
 
-          <div class="metric-title-div">Calories burned today</div>
-          <div class="metric-content-div">120KCal
+            <div class="metric-title-div">Calories burned today</div>
+            <div class="metric-content-div">{{client_metrics}}
+            </div>
+          </div>
+          <div class="metric-div">
+            <div class="metric-title-div">Calories burned in last 7 days</div>
+            <div class="metric-content-div">
+              {{client_metrics.calories_burnt}}
+            </div>
           </div>
         </div>
-        <div class="metric-div">
-          <div class="metric-title-div">Calories burned in last 7 days</div>
-          <div class="metric-content-div">120KCal
+      </div>
+      <div class="sleep-meal-container container-fluid">
+        <div class="sleep-container">
+          <div class="sleep-title">Sleep tracker</div>
+          <div class="sleep-circle">
           </div>
+          <div class="sleep-content">7 out of 8 hrs sleep.</div>
+        </div>
+        <div class="meal-container">
+          <div class="meal-title">Meal tracker</div>
+          <div class="meal-content">
+            <div class="meal-carbs-center"></div>
+            <div class="meal-sub-content">20 Carbs out of the 25 daily recommended</div>
+          </div>
+          <div class="meal-content">
+            <div class="meal-fat-center"></div>
+            <div class="meal-sub-content align-items-center">15 Fats out of the 25 daily recommended</div>
+          </div>
+
+          <div class="meal-content">
+            <div class="meal-protein-center"></div>
+            <div class="meal-sub-content">25 Proteins out of the 25 daily recommended</div>
+          </div>
+
         </div>
       </div>
+
     </div>
-    <!-- ACTIVE CLASSES -->
-    <div class="all-classes-div">
-
-      <div class="classes-container-div">
-        <div class="active-classes-title-div">Active Classes</div>
-        <div id="classes-container-div">
-          <!-- ACTIVE COURSE 1 -->
-          <div class="active-classes-container-div">
-            <div class="active-class-div">
-              <div class="class-progress-circle">
-                <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                     width="100%"
-                     height="auto" viewBox="-5 0 110 110">
-                  <circle r="2.6rem" cx="50" cy="55" fill="transparent"
-                          stroke-dasharray="565.48"
-                          stroke-dashoffset="0">
-                  </circle>
-                  <circle id="bar" r="2.6rem" cx="50" cy="55" fill="transparent"
-                          stroke-dasharray="565.48"></circle>
-                  <polygon fill="none" stroke="#000" stroke-width="2"
-                           points="42,37 42,70 70,54">
-                  </polygon>
-                </svg>
-
-              </div>
-              <div class="active-class-content-div">
-                <div class="active-class-content-title-div"><b>Yoga</b></div>
-                <div class="active-class-content-desc-div">Lorem Ipsum is simply
-                  dummy text of the
-                  printing
-                  and typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy
-                  text
-                  ever
-                  since the 1500s, when an unknown printer took a galley of type
-                  and scrambled it
-                  to
-                  make
-                  a type specimen book.
-                </div>
-              </div>
+    <div class="right-body">
+      <div class="user-image-div">
+        <img src="{% static 'images/img_user_profile.png' %}" alt="User profile photo" class="user-profile-image">
+        <div class="user-info-div">
+          <span style="font-size:2rem">John Doe</span></br>
+          <span style="font-size:1rem">Age: 25</span></br>
+          <span style="font-size:1rem">Weight: 65 kgs</span></br>
+        </div>
+      </div>
+      <div class="events-div">
+        <div id="upcoming-events">Upcoming events</div>
+        <div class="events-container">
+          <div class="single-event">
+            <div class="single-event-left">
+              <span class="event-time">7:00 AM</span>
+              <span class="event-date">Mar 20</span>
             </div>
-          </div>
-          <!-- ACTIVE COURSE 2 -->
-          <div class="active-classes-container-div">
-            <div class="active-class-div">
-              <div class="class-progress-circle">
-                <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                     width="100%"
-                     height="auto" viewBox="-5 0 110 110">
-                  <circle r="2.6rem" cx="50" cy="55" fill="transparent"
-                          stroke-dasharray="565.48"
-                          stroke-dashoffset="0">
-                  </circle>
-                  <circle id="bar" r="2.6rem" cx="50" cy="55" fill="transparent"
-                          stroke-dasharray="565.48"></circle>
-                  <polygon fill="none" stroke="#000" stroke-width="2"
-                           points="42,37 42,70 70,54">
-                  </polygon>
-                </svg>
 
-              </div>
-              <div class="active-class-content-div">
-                <div class="active-class-content-title-div"><b>Yoga</b></div>
-                <div class="active-class-content-desc-div">Lorem Ipsum is simply
-                  dummy text of the
-                  printing
-                  and typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy
-                  text
-                  ever
-                  since the 1500s, when an unknown printer took a galley of type
-                  and scrambled it
-                  to
-                  make
-                  a type specimen book.
-                </div>
-              </div>
+            <div class="single-event-partition"></div>
+            <div class="single-event-right">
+
+              <span class="single-event-title"><b>Yoga</b></span>
+              <span class="single-event-inst">Instructor Name</span>
+              <span class="single-event-desc">Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry.</span>
             </div>
+
           </div>
 
         </div>
-
-
       </div>
     </div>
   </div>
-  <div class="right-body">
-    <div class="user-image-div">
-      <img src="{% static 'images/img_user_profile.png' %}"
-           alt="User profile photo"
-           class="user-profile-image">
-      <div class="user-info-div">
-        <span style="font-size:2rem">John Doe</span></br>
-        <span style="font-size:1rem">Age: 25</span></br>
-        <span style="font-size:1rem">Weight: 65 kgs</span></br>
-      </div>
-    </div>
-    <div class="events-div">
-      <div id="upcoming-events">Upcoming events</div>
-      <div class="events-container">
-        <div class="single-event">
-          <div class="single-event-left">
-            <span class="event-time">7:00 AM</span>
-            <span class="event-date">Mar 20</span>
-          </div>
-
-          <div class="single-event-partition"></div>
-          <div class="single-event-right">
-
-            <span class="single-event-title"><b>Yoga</b></span>
-            <span class="single-event-inst">Instructor Name</span>
-            <span class="single-event-desc">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry.</span>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
 </section>
 
 {% endblock content %}
@@ -168,13 +115,13 @@
     CanvasJS.addColorSet("greenShades",
       [//colorSet Array
 
-        "#4fb8e7",
-        "#85cdef",
-        "#b9e2f5",
-        "#dcf0fa",
-        "#edf7fc",
-        "#dcf0fa",
-        "#b9e2f5"
+        "#007bff",
+        "#007bff",
+        "#007bff",
+        "#007bff",
+        "#007bff",
+        "#007bff",
+        "#007bff"
       ]);
 
     // Construct options first and then pass it as a parameter
@@ -200,13 +147,13 @@
         showInLegend: false,
         // TO-DO: Need to get data points from back-end
         dataPoints: [
-          {y: 10, label: "Sunday"},
-          {y: 6, label: "Monday"},
-          {y: 14, label: "Tuesday"},
-          {y: 12, label: "Wednesday"},
-          {y: 19, label: "Thursday"},
-          {y: 14, label: "Friday"},
-          {y: 26, label: "Saturday"}
+          { y: 10, label: "Sunday" },
+          { y: 6, label: "Monday" },
+          { y: 14, label: "Tuesday" },
+          { y: 12, label: "Wednesday" },
+          { y: 19, label: "Thursday" },
+          { y: 14, label: "Friday" },
+          { y: 26, label: "Saturday" }
         ]
       }]
     };
@@ -221,6 +168,43 @@
     });
 
   }
+  $('.sleep-circle').circleProgress({
+    value: 0.75,
+    size: 150,
+    fill: {
+      gradient: ["blue", "purple"]
+    },
+    thickness: 20
+  });
+
+
+  $('.meal-carbs-center').circleProgress({
+    value: 0.75,
+    size: 70,
+    fill: {
+      gradient: ["blue", "purple"]
+    },
+    thickness: 10
+  });
+
+  $('.meal-fat-center').circleProgress({
+    value: 0.75,
+    size: 70,
+    fill: {
+      gradient: ["blue", "purple"]
+    },
+    thickness: 10
+  });
+
+  $('.meal-protein-center').circleProgress({
+    value: 0.75,
+    size: 70,
+    fill: {
+      gradient: ["blue", "purple"]
+    },
+    thickness: 10
+  });
 </script>
+
 
 {% endblock inline_javascript %}

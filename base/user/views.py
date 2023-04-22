@@ -64,7 +64,20 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 def test_template(request):
 
-    return render(request, "pages/userDashboard.html")
+    # client_metrics = ClientMetrics.objects.all().values_list("user")
+
+    # print(">>>>>>>client_metrics", client_metrics)
+    print(">>>>>>>request.user", request.user)
+    client_metrics = ClientMetrics.objects.filter(user=request.user)
+    print(">>>>>>>client_metrics", client_metrics)
+#     client_metrics = {"Calories_burned_today": 124, "Calories_burned_in_last" : 500
+# }
+    context = {
+        "client_metrics": client_metrics
+        # "client_data": intake
+    }
+    return render(request, "pages/userDashboard.html",context)
+    # return render(request, "pages/userDashboard.html")
 
 
 def test_template_form(request):

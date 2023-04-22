@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
   /* display: flex;
-  flex-direction: column; */
+    flex-direction: column; */
   padding-top: 40px;
 }
 
@@ -22,7 +22,7 @@ body {
 }
 
 .right-body {
-  background-color: #0277b6;
+  background-color: #d2d3d6;
   height: 100%;
   width: 30%;
   color: #fff;
@@ -46,7 +46,7 @@ body {
 
 .events-div {
   height: 60%;
-  background-color: #c9f0f8;
+  background-color: #000;
   display: flex;
   flex-flow: column;
 
@@ -60,7 +60,7 @@ body {
   padding: 2rem;
   /* border-style: solid; */
   /* border-width: 0 0 1rem 0;
-  border-color: #90e0ef; */
+    border-color: #90e0ef; */
 }
 
 .calorie-bar-chart-div {
@@ -74,16 +74,20 @@ body {
   width: 30%;
 }
 
+
+/* border: 1px solid #6c6c72;
+border-radius: 20px;
+background-color: rgba(235, 237, 240, 0.5); */
+
 .metric-div {
   height: 45%;
-  background-color: #fff;
+  background-color: rgba(235, 237, 240, 0.5);
   margin-top: 4%;
   margin-bottom: 4%;
   border-radius: 2rem;
   padding: 4%;
-  border-style: solid;
-  border-color: #0277b6;
-  color: #0277b6;
+  border: 1px solid #6c6c72;
+  color: #6c6c72;
 }
 
 
@@ -106,6 +110,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #000;
 }
 
 .classes-container-div {
@@ -141,7 +146,7 @@ body {
 
 #svg #bar {
   stroke-dashoffset: 400;
-  stroke: #0277b6;
+  stroke: #007bff;
 }
 
 #svg image {
@@ -154,7 +159,7 @@ body {
   width: 70%;
   border-style: solid;
   border-width: 0 0 0 3px;
-  border-color: #0277b6;
+  border-color: #007bff;
   border-radius: 0 1rem 1rem 0;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -196,7 +201,7 @@ body {
   height: 100%;
   border-style: solid;
   /* border-width: 1rem; */
-  border-color: #0277b6;
+  border-color: #007bff;
   /* border-radius: 2px; */
 }
 
@@ -205,7 +210,7 @@ body {
   text-align: center;
   padding: 1rem;
   flex: 0 1 auto;
-  color: #0277b6;
+  color: #fff;
 }
 
 .events-container {
@@ -232,7 +237,7 @@ body {
 
 .single-event-partition {
   min-width: 0.2rem;
-  background-color: #0277b6;
+  background-color: #007bff;
 }
 
 .single-event-right {
@@ -246,7 +251,7 @@ body {
   text-align: right;
   padding-right: 1rem;
   font-size: 1rem;
-  color: #0277b6;
+  color: #007bff;
 }
 
 .event-date {
@@ -275,4 +280,80 @@ body {
   padding-left: 1rem;
   font-size: 0.8rem;
   color: #000;
+}
+
+.sleep-container {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  margin: 1rem;
+  border: 1px solid #6c6c72;
+  border-radius: 20px;
+  background-color: rgba(235, 237, 240, 0.5);
+}
+
+.meal-container {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  margin: 1rem;
+  border: 1px solid #6c6c72;
+  border-radius: 20px;
+  background-color: rgba(235, 237, 240, 0.5);
+}
+
+.sleep-meal-container {
+  display: flex;
+  flex-flow: row;
+  height: 40%;
+}
+
+.sleep-title,
+.meal-title {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.sleep-circle {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.sleep-content {
+  text-align: center;
+}
+
+.meal-content {
+  display: flex;
+  flex-flow: row;
+  padding: 0.5rem;
+}
+
+.meal-sub-content {
+  display: flex;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.meal-carbs-center,
+.meal-fat-center,
+.meal-protein-center {
+  padding-left: 1rem;
+}
+
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.chat-img {
+  /* position: fixed;
+    overflow: visible;
+    display: inline-block; */
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  width: 70px;
 }
