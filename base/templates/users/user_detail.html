@@ -11,6 +11,8 @@
 {% block customcss %}
 {% compress css %}
 <link href="{% static 'css/error403.css' %}" rel="stylesheet">
+<link href="{% static 'css/chat-style.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 {% endcompress %}
 {% endblock customcss %}
 
@@ -39,10 +41,68 @@
     <a class="btn btn-primary" href="{% url 'test' %}" role="button">Dashboard</a>
     <!-- Your Stuff: Custom user template urls -->
   </div>
-
 </div>
 <!-- End Action buttons -->
 {% endif %}
-
 </div>
+
+
+  
+<div class="chat-icon" id="chat-icon">
+    <i class="fas fa-comments"></i>
+</div>
+
+<div class="chatbot-container" id="chatbot-container">
+  <div class="chatbot-header">
+    <h3>Healthtrack365 Chat Support</h3>
+    <button class="close-btn">&times;</button>
+  </div>
+  <div class="chatbot-body">
+    <p>Welcome to the our chat service! Select an opion:</p>
+    <form>
+      <div class="form-group">
+        <!-- <input type="text" class="form-control" id="message-input" placeholder="Enter your message..."> -->
+      </div>
+      <button type="submit" class="btn btn-primary">Chat with Your Trainer</button><br><br>
+      <button type="submit" class="btn btn-warning">Chat with Support</button><br><br>
+      <button type="submit" class="btn btn-info">FAQs</button>
+    </form>
+  </div>
+</div>
+<div class="chat-overlay" id="chat-overlay"></div>
+
+
 {% endblock content %}
+
+{% block inline_javascript %}
+<script>
+const chatIcon = document.getElementById('chat-icon');
+const chatbotContainer = document.getElementById('chatbot-container');
+const chatOverlay = document.getElementById('chat-overlay');
+const closeBtn = chatbotContainer.querySelector('.close-btn');
+const trainerBtn = document.getElementById('chatbot-container-2');
+
+// Show the chatbot container and overlay when the chat icon is clicked
+chatIcon.addEventListener('click', function() {
+  chatbotContainer.style.display = 'block';
+  chatOverlay.style.display = 'block';
+});
+
+// Hide the chatbot container and overlay when the close button is clicked
+closeBtn.addEventListener('click', function() {
+  chatbotContainer.style.display = 'none';
+  chatOverlay.style.display = 'none';
+});
+
+// Hide the chatbot container and overlay when the overlay is clicked outside the container
+chatOverlay.addEventListener('click', function(event) {
+  if (event.target === chatOverlay) {
+    chatbotContainer.style.display = 'none';
+    chatOverlay.style.display = 'none';
+  }
+});
+
+
+
+</script>
+{% endblock inline_javascript %}
