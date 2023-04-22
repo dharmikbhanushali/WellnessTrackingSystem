@@ -45,31 +45,24 @@ footer {
 }
 
 .social a {
-
   font-size: 2.5em;
   padding: 3rem;
-
 }
 
 .fa-facebook {
   color: #3b5998;
-
 }
 
 .fa-twitter {
   color: #00aced;
-
 }
 
 .fa-google-plus-g {
-
   color: #dd4b39;
-
 }
 
 .fa-instagram {
   color: #d62976;
-
 }
 
 .fa-youtube {
@@ -77,10 +70,11 @@ footer {
 }
 
 .fa-facebook:hover,
-.fa-twitter:hover, .fa-google-plus-g:hover,
+.fa-twitter:hover,
+.fa-google-plus-g:hover,
 .fa-instagram:hover,
 .fa-youtube:hover {
-  color: #d5d5d5
+  color: #d5d5d5;
 }
 
 .form-field {
@@ -91,8 +85,8 @@ label {
   font-weight: bold;
   margin-bottom: 5px;
 }
-input[type="text"],
-input[type="email"],
+input[type='text'],
+input[type='email'],
 select {
   width: 100%;
   padding: 10px;
@@ -101,8 +95,8 @@ select {
   font-size: 16px;
   margin-top: 5px;
 }
-input[type="submit"] {
-  background-color: #4CAF50;
+input[type='submit'] {
+  background-color: #4caf50;
   color: white;
   padding: 12px 20px;
   border: none;
@@ -110,6 +104,6 @@ input[type="submit"] {
   cursor: pointer;
   font-size: 16px;
 }
-input[type="submit"]:hover {
+input[type='submit']:hover {
   background-color: #45a049;
 }

@@ -35,7 +35,6 @@ body {
 
 .user-info-div {
   text-align: center;
-
 }
 
 .user-profile-image {
@@ -49,8 +48,6 @@ body {
   background-color: #c9f0f8;
   display: flex;
   flex-flow: column;
-
-
 }
 
 .dashboards-div {
@@ -86,12 +83,10 @@ body {
   color: #0277b6;
 }
 
-
 .metric-title-div {
   font-size: 2rem;
   text-align: center;
 }
-
 
 .metric-cal-img-div {
   text-align: right;
@@ -131,7 +126,6 @@ body {
   /* border-style: ; */
   box-shadow: 3px 3px 5px 5px #bab7b7;
 }
-
 
 #svg circle {
   transition: stroke-dashoffset 1s linear;
@@ -278,7 +272,7 @@ body {
 }
 
 .chat-div {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 12px 24px;
@@ -289,7 +283,7 @@ body {
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 8px;
-  position:relative;
+  position: relative;
 }
 
 .chat-div:hover {

@@ -51,6 +51,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self):
         return reverse("user:detail", kwargs={"username": self.request.user.username})
 
+
 # this is a test for templates
 def test_template(request):
     return render(request, "chat/index.html")
