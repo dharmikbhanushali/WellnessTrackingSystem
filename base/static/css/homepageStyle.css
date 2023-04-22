@@ -12,7 +12,6 @@ html {
   position: relative;
   min-height: 100%;
   font-family: 'Poppins';
-
 }
 
 body {
@@ -22,24 +21,24 @@ body {
   background-color: cyan;
 }
 
-.navbar{
-  padding: .8 rem;
+.navbar {
+  padding: 0.8 rem;
 }
 
-.navbar-nav li{
+.navbar-nav li {
   padding-right: 20px;
 }
 
-.nav-link{
+.nav-link {
   font-size: 1.1em !important;
 }
 
-.carousel-inner img{
+.carousel-inner img {
   width: 100%;
   height: 100%;
 }
 
-.carousel-caption{
+.carousel-caption {
   position: absolute;
 }
 
@@ -48,48 +47,50 @@ body {
   height: auto;
 }
 
-.carousel-caption h2{
+.carousel-caption h2 {
   font-size: 300%;
   text-transform: uppercase;
   text-shadow: 1px 1px 15px #000;
   padding-bottom: 1rem;
 }
 
-.jumbotron{
+.jumbotron {
   padding: 1rem;
   border-radius: 0;
 }
 
-.padding{
+.padding {
   padding-bottom: 2rem;
 }
 
-.welcome{
+.welcome {
   width: 75%;
   margin: 0 auto;
   padding-top: 2rem;
 }
 
-.welcome hr{
+.welcome hr {
   border-top: 2px solid #b4b4b4;
   width: 95%;
   margin-top: 3rem;
   margin-bottom: 1 rem;
 }
 
-.fa-code{
+.fa-code {
   color: #e54d26;
 }
 
-.fa-bold{
+.fa-bold {
   color: #563d7c;
 }
 
-.fa-css3{
+.fa-css3 {
   color: #2163af;
 }
 
-.fa-code, .fa-bold, .fa-css3{
+.fa-code,
+.fa-bold,
+.fa-css3 {
   font-size: 4em;
   margin: 1rem;
 }
@@ -108,47 +109,48 @@ body {
 }
 
 .social a {
+  font-size: 2.5em;
+  padding: 3rem;
+}
 
-  font-size: 2.5em; padding: 3rem;
+.fa-facebook {
+  color: #3b5998;
+}
 
-  }
-
-.fa-facebook { color: #3b5998; }
-
-  .fa-twitter { color: #00aced;
-
-  } .fa-google-plus-g {
-
+.fa-twitter {
+  color: #00aced;
+}
+.fa-google-plus-g {
   color: #dd4b39;
+}
 
-  }
+.fa-instagram {
+  color: #d62976;
+}
 
-  .fa-instagram {
-    color: #d62976;
+.fa-youtube {
+  color: #bb0000;
+}
 
-  }
+.fa-facebook:hover,
+.fa-twitter:hover,
+.fa-google-plus-g:hover,
+.fa-instagram:hover,
+.fa-youtube:hover {
+  color: #d5d5d5;
+}
 
-  .fa-youtube { color: #bb0000; }
-
-  .fa-facebook:hover,
-
-  .fa-twitter:hover, .fa-google-plus-g:hover,
-
-  .fa-instagram:hover,
-
-  .fa-youtube:hover { color: #d5d5d5 }
-
-  footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: black;
-    color: white;
-    text-align: center;
-    font-family: 'Poppins';
-    height: 100px;
-  }
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-family: 'Poppins';
+  height: 100px;
+}
 
 .icon {
   margin: 20px 10px;

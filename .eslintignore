@@ -1,0 +1,5 @@
+node_modules/*
+base/static/bootstrap-4.0/*
+base/static/bootstrap-local-new/*
+data/*
+staticfiles/*

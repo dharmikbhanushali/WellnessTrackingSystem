@@ -1,0 +1,14 @@
+{
+  "scripts": {
+  "lint-fix": "eslint --fix --ignore-path '.eslintignore'",
+  "format": "prettier --write \"base/static/**/*.{js,jsx,json,md,css}\" --ignore-path .eslintignore",
+  "pre-commit": "npm run format && npm run lint-fix"
+},
+  "devDependencies": {
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.7"
+  }
+}
