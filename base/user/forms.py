@@ -9,7 +9,7 @@ from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 
 # Project Libraries
 from core.constants import CLIENT, USER_TYPES
-from core.models import IntakeForm, Workouts, WorkoutVideo
+from core.models import IntakeForm, Workouts, WorkoutsAssigned
 
 
 User = get_user_model()
@@ -52,6 +52,7 @@ class UserSignupForm(SignupForm):
         user.user_type = (
             self.cleaned_data.get("user_type", CLIENT) if self.cleaned_data else CLIENT
         )
+
         user.save()
         # You must return the original result.
         return user
@@ -79,22 +80,43 @@ class IntakeForm(forms.ModelForm):
             "home_phone",
             "height",
             "weight",
+            # "preferred_workout_category",
+            # "preferred_workout_level",
         ]
+
+        # widgets = {
+        #     "preferred_workout_category": forms.CheckboxSelectMultiple(),
+        #     "preferred_workout_level": forms.CheckboxSelectMultiple(),
+        # }
 
 
 class WorkoutsForm(forms.ModelForm):
     class Meta:
         model = Workouts
-        fields = ["trainer", "title", "description", "video_url", "plan_url", "rating"]
+        # fields = ['title', 'description', 'category', 'level', 'video_file', 'plan_url', 'thumbnail', 'calories']
+        fields = [
+            "title",
+            "description",
+            "category",
+            "level",
+            "video_file",
+            "plan_url",
+            "calories",
+        ]
+
+        widgets = {
+            "category": forms.CheckboxSelectMultiple(),
+            "level": forms.CheckboxSelectMultiple(),
+        }
 
 
-class UploadWorkoutVideoForm(forms.ModelForm):
+class EnrollWorkoutForm(forms.ModelForm):
     class Meta:
-        model = WorkoutVideo
-        fields = ["title", "description", "video_file"]
+        model = WorkoutsAssigned
+        fields = ["workout", "date_assigned"]
 
 
-# class Intakeform(forms.ModelForm):
-
-#     class Meta:
-#         model = ClientMetrics
+class MarkWorkoutCompleteForm(forms.ModelForm):
+    class Meta:
+        model = WorkoutsAssigned
+        fields = ["completed", "date_completed"]

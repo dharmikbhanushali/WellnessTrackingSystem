@@ -56,6 +56,24 @@ class IntakeForm(models.Model):
     height = models.FloatField()
     weight = models.FloatField()
     date_joined = models.DateTimeField(auto_now_add=False, default=timezone.now)
+    WORKOUT_CATEGORY_CHOICES = (
+        ("CARDIO", "Cardio"),
+        ("STRENGTH", "Strength"),
+        ("FLEXIBILITY", "Flexibility"),
+        ("BALANCE", "Balance"),
+    )
+
+    WORKOUT_LEVEL_CHOICES = (
+        ("BEGINNER", "Beginner"),
+        ("INTERMEDIATE", "Intermediate"),
+        ("ADVANCED", "Advanced"),
+    )
+    preferred_workout_category = models.CharField(
+        max_length=20, choices=WORKOUT_CATEGORY_CHOICES
+    )
+    preferred_workout_level = models.CharField(
+        max_length=20, choices=WORKOUT_LEVEL_CHOICES
+    )
 
     def __str__(self):
         return f"{self.user}'s Intake Form"
@@ -71,6 +89,24 @@ class Workouts(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     views = models.PositiveIntegerField(default=0)
     rating = models.PositiveIntegerField(default=0)
+    WORKOUT_CATEGORY_CHOICES = (
+        ("CARDIO", "Cardio"),
+        ("STRENGTH", "Strength"),
+        ("FLEXIBILITY", "Flexibility"),
+        ("BALANCE", "Balance"),
+    )
+
+    WORKOUT_LEVEL_CHOICES = (
+        ("BEGINNER", "Beginner"),
+        ("INTERMEDIATE", "Intermediate"),
+        ("ADVANCED", "Advanced"),
+    )
+    category = models.CharField(max_length=255, choices=WORKOUT_CATEGORY_CHOICES)
+    level = models.CharField(max_length=255, choices=WORKOUT_LEVEL_CHOICES)
+    # thumbnail = models.ImageField(upload_to="workout_thumbnails/", null=True, blank=True)
+    video_file = models.FileField(upload_to="workout_videos/")
+    duration = models.PositiveIntegerField()
+    calories = models.IntegerField()
 
     def __str__(self):
         return self.title
@@ -113,14 +149,6 @@ class Appointment(models.Model):
     end_time = models.DateTimeField()
     notes = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-
-
-class WorkoutVideo(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    video_file = models.FileField(upload_to="workout_videos/")
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Room(models.Model):
