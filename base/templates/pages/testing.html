@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1>Enroll in Workout</h1>
+<p>{{user}} <br>
+name : {{name}} <br>
+age : {{age}}<br>
+gender : {{gender}}<br>
+{%for workout in workouts_assigned_today%}
+workouts_assigned_today :{{workout}}
+{{workout.workout.title}}<br>{{workout.workout.trainer.name}}<br>
+<video width="320" height="240" controls>
+  <source src="{{ workout.workout.video_file.url }}" type="video/mp4">
+</video>
+
+{% endfor %}
+
+{% for cal in calories_burnt_last_week %}
+dummy : {{cal}} <br>
+{% endfor %}
+<br><br><br>
+
+<br>
+calories_burnt_last_week : {{calories_burnt_last_week}}
+<br>
+calories_burnt_today: {{calories_burnt_today}}<br>
+
+
+</p>
+
+{% endblock content %}

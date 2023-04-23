@@ -1,7 +1,7 @@
 # Standard Library
 import logging
 
-from datetime import timedelta, timezone
+from datetime import date, timedelta, timezone
 
 # Django Libraries
 from django.contrib.auth import get_user_model
@@ -14,8 +14,14 @@ from django.utils.translation import gettext_lazy as translate
 from django.views.generic import DetailView, RedirectView, UpdateView
 
 # Project Libraries
-from core.models import Appointment, ClientMetrics, Workouts, WorkoutsAssigned
-from user.forms import IntakeForm, WorkoutsForm
+from core.models import (  # TrainerIntake as trainermodel,
+    Appointment,
+    ClientMetrics,
+    IntakeForm as intakeformmodel,
+    Workouts,
+    WorkoutsAssigned,
+)
+from user.forms import IntakeForm, TrainerForm, WorkoutsForm
 
 
 User = get_user_model()
@@ -95,52 +101,6 @@ def Intake_form(request):
     return render(request, "pages/userform.html", {"form": form})
 
 
-# @login_required
-# def Client_dashboard(request):
-#     client_metrics = ClientMetrics.objects.filter(user=request.user)
-#     context = {
-#         "client_metrics": client_metrics,
-#     }
-#     return render(request, "pages/userDashboard.html", context)
-
-# @login_required
-# def client_dashboard(request):
-#     user = request.user
-
-#     # Get user's metrics
-#     try:
-#         metrics = ClientMetrics.objects.filter(user=user).latest('date')
-#         calories_burned_today = metrics.calories_burnt
-#     except ClientMetrics.DoesNotExist:
-#         calories_burned_today = 0
-
-#     # Get calories burned in the last 7 days
-#     seven_days_ago = datetime.now() - timedelta(days=7)
-#     calories_burned_last_seven_days = ClientMetrics.objects.filter(user=user,
-# date__gte=seven_days_ago).aggregate(models.Sum('calories_burnt'))['calories_burnt__sum'] or 0
-
-#     # Get calories burned for each day in the last 7 days
-#     days = [(datetime.now() - timedelta(days=i)).date() for i in range(7)]
-#     calories_burned_by_day = []
-#     for day in days:
-#         calories_burned = ClientMetrics.objects.filter(user=user, date=day)
-# .aggregate(models.Sum('calories_burnt'))['calories_burnt__sum'] or 0
-#         calories_burned_by_day.append({'day': day.strftime('%A'), 'calories_burned': calories_burned})
-
-#     # Get user's info
-#     user_info = {'name': user.get_full_name(), 'age': user.age, 'weight': user.weight}
-
-#     # Get active classes for the user
-#     active_classes = WorkoutsAssigned.objects.filter(user=user, completed=False).order_by('-date_assigned')
-
-#     context = {'calories_burned_today': calories_burned_today,
-#                'calories_burned_last_seven_days': calories_burned_last_seven_days,
-#                'calories_burned_by_day': calories_burned_by_day,
-#                'user_info': user_info,
-#                'active_classes': active_classes}
-#     return render(request, 'pages/userDashboard.html', context)
-
-
 # Trainer dashboard
 @login_required
 def Trainer_dashboard(request):
@@ -168,37 +128,6 @@ def Create_workout(request):
     else:
         form = WorkoutsForm()
     return render(request, "testing.html", {"form": form})
-
-
-# def upload_workout_video(request):
-#     if request.method == "POST":
-#         form = UploadWorkoutVideoForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             workout_video = form.save()
-#             return redirect("placeholder_workout_page_view", pk=workout_video.pk)
-#     else:
-#         form = UploadWorkoutVideoForm()
-#     return render(request, "upload_workout_video.html", {"form": form})
-
-
-# @login_required
-# def Update_workout(request, pk):
-#     workout = get_object_or_404(Workouts, pk=pk)
-#     if request.method == "POST":
-#         form = WorkoutsForm(request.POST, instance=workout)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("workouts_list")
-#     else:
-#         form = WorkoutsForm(instance=workout)
-#     return render(request, "update_workout.html", {"form": form})
-
-
-# @login_required
-# def Delete_workout(request, pk):
-#     workout = get_object_or_404(Workouts, pk=pk)
-#     workout.delete()
-#     return redirect("workouts_list")
 
 
 @login_required
@@ -276,6 +205,11 @@ def enroll_workout(request, workout_id, date_assigned=None):
         WorkoutsAssigned.objects.create(
             user=user, workout=workout, date_assigned=date_assigned
         )
+        client_metrics, created = ClientMetrics.objects.get_or_create(
+            user=request.user, date=date_assigned
+        )
+        # Add the completed workout to the list of completed workouts for the current day
+        client_metrics.workouts.add(workout)
     else:
         WorkoutsAssigned.objects.create(user=user, workout=workout)
     return redirect("client_dashboard")
@@ -306,35 +240,19 @@ def mark_workout_complete(request, workout_id):
 
 @login_required
 def Client_dashboard(request):
+    # user = User.objects.get(email='test101@yopmail.com')
     user = request.user
-    intake_form = IntakeForm.objects.get(user=user)
-    today = timezone.now().date()
+    intake_form = intakeformmodel.objects.get(user=user)
+    today = date.today()
     metrics_today = ClientMetrics.objects.filter(user=user, date=today).first()
     workouts_assigned_today = []
     if metrics_today:
         workouts_assigned_today = metrics_today.workouts.all()
     calories_burnt_today = metrics_today.calories_burnt if metrics_today else 0
-    # Calculate calories burnt for the last 7 days
-    # last_week = today - timedelta(days=7)
-    # calories_burnt_last_week = (
-    #     ClientMetrics.objects.filter(
-    #         user=user, date__range=[last_week, today]
-    #     ).aggregate(sum("calories_burnt"))["calories_burnt__sum"]
-    #     or 0
-    # )
     date_calories_pairs_last_week = {}
-    for i in range(7):
-        date_to_check = today - timedelta(days=i)
-        calories_burnt_on_date = (
-            ClientMetrics.objects.filter(user=user, date=date_to_check).aggregate(
-                sum("calories_burnt")
-            )["calories_burnt__sum"]
-            or 0
-        )
-        date_calories_pairs_last_week[
-            date_to_check.strftime("%m/%d/%Y")
-        ] = calories_burnt_on_date
-
+    date_calories_pairs_last_week = ClientMetrics.objects.filter(
+        user=user, date=today + timedelta(days=3) - timedelta(days=7)
+    )
     context = {
         "user": user,
         "name": intake_form.name,
@@ -344,7 +262,7 @@ def Client_dashboard(request):
         "calories_burnt_today": calories_burnt_today,
         "calories_burnt_last_week": date_calories_pairs_last_week,
     }
-    return render(request, "client_dashboard.html", context)
+    return render(request, "pages/userDashboard.html", context)
 
 
 # Retrieve workouts assigned based on the date assigned
@@ -360,3 +278,18 @@ def get_workouts_assigned_all(request):
     assigned_workouts = WorkoutsAssigned.objects.filter(user=user)
     context = {"assigned_workouts": assigned_workouts}
     return render(request, "pages/userDashboard.html", context)
+
+
+@login_required
+def trainerIntakeForm(request):
+    if request.method == "POST":
+        # create a form instance and populate it with data from the request:
+        form = TrainerForm(request.POST)
+        if form.is_valid():
+            trainer_form = form.save(commit=False)
+            trainer_form.user = request.user
+            trainer_form.save()
+            return redirect("user/trainer_dashboard/")
+    else:
+        form = IntakeForm()
+    return render(request, "pages/trainerform.html", {"form": form})

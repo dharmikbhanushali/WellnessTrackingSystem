@@ -85,4 +85,5 @@ urlpatterns += [
     path("test_template/", view=test_template, name="test"),
     path("test_template_form/", view=test_template_form, name="test_form"),
     path("client-dashboard/", view=Client_dashboard, name="client_metrics"),
+    path("testing/", view=Client_dashboard, name="Client_dashboard"),
 ]

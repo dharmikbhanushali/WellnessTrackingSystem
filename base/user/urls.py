@@ -66,4 +66,9 @@ urlpatterns = [
         view=get_workouts_assigned_by_date,
         name="get_workouts_assigned_by_date",
     ),
+    path(
+        "testing/",
+        view=Client_dashboard,
+        name="Client_dashboard",
+    ),
 ]
