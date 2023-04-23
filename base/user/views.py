@@ -1,7 +1,7 @@
 # Standard Library
 import logging
 
-from datetime import date, timedelta, timezone
+from datetime import timedelta, timezone
 
 # Django Libraries
 from django.contrib.auth import get_user_model
@@ -10,14 +10,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.utils import timezone as timezoneDjango
 from django.utils.translation import gettext_lazy as translate
 from django.views.generic import DetailView, RedirectView, UpdateView
 
 # Project Libraries
-from core.models import (  # TrainerIntake as trainermodel,
+from core.models import (
     Appointment,
     ClientMetrics,
-    IntakeForm as intakeformmodel,
+    IntakeForm as IntakeFormModel,
     Workouts,
     WorkoutsAssigned,
 )
@@ -59,9 +60,9 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
         return reverse("user:detail", kwargs={"username": self.request.user.username})
 
 
-# this is a test for templates
-def test_template(request):
-    return render(request, "pages/dietplan2.html")
+# # this is a test for templates
+# def test_template(request):
+#     return render(request, "pages/dietplan2.html")
 
 
 def test_template_form(request):
@@ -238,12 +239,30 @@ def mark_workout_complete(request, workout_id):
     return redirect("client_dashboard")
 
 
-@login_required
+# this is a test for templates
+# def test_template(request):
+#     client_metrics = ClientMetrics.objects.all().values()
+#     print(">>>>>client_metrics", client_metrics)
+#     client_metrics = ClientMetrics.objects.filter(user=request.user).first()
+#     print(">>>>>request.user", request.user)
+#     print(">>>>>client_metrics", client_metrics)
+
+#     #     client_metrics = {"Calories_burned_today": 124, "Calories_burned_in_last" : 500
+#     # }
+#     context = {
+#         "client_metrics": client_metrics,
+#         # "client_data": intake
+#     }
+#     return render(request, "pages/userDashboard.html", context)
+#     # return render(request, "pages/userDashboard.html")
+
+
+# @login_required
 def Client_dashboard(request):
-    # user = User.objects.get(email='test101@yopmail.com')
-    user = request.user
-    intake_form = intakeformmodel.objects.get(user=user)
-    today = date.today()
+    user = User.objects.get(email="test101@yopmail.com")
+    # user = request.user
+    intake_form = IntakeFormModel.objects.get(user=user)
+    today = timezoneDjango.now().date()
     metrics_today = ClientMetrics.objects.filter(user=user, date=today).first()
     workouts_assigned_today = []
     if metrics_today:
@@ -251,16 +270,17 @@ def Client_dashboard(request):
     calories_burnt_today = metrics_today.calories_burnt if metrics_today else 0
     date_calories_pairs_last_week = {}
     date_calories_pairs_last_week = ClientMetrics.objects.filter(
-        user=user, date=today + timedelta(days=3) - timedelta(days=7)
+        user=user, date=today + timedelta(days=1) - timedelta(days=7)
     )
     context = {
         "user": user,
         "name": intake_form.name,
         "age": (today - intake_form.date_of_birth).days // 365,
-        "gender": intake_form.get_gender_display(),
+        "weight": intake_form.weight,
         "workouts_assigned_today": workouts_assigned_today,
         "calories_burnt_today": calories_burnt_today,
         "calories_burnt_last_week": date_calories_pairs_last_week,
+        "calories_burnt_last_week_dict": date_calories_pairs_last_week,
     }
     return render(request, "pages/userDashboard.html", context)
 

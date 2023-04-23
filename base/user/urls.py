@@ -28,8 +28,8 @@ urlpatterns = [
     path("~update/", view=UserUpdateView.as_view(), name="update"),
     path("<str:username>/", view=UserDetailView.as_view(), name="detail"),
     # Display client dashboard
-    path("client-dashboard/", view=Client_dashboard, name="client_metrics"),
-    path("trainer_dashboard/", view=Trainer_dashboard, name="client_metrics"),
+    # path("client-dashboard/", view=Client_dashboard, name="client_metrics"),
+    # path("trainer_dashboard/", view=Trainer_dashboard, name="client_metrics"),
     # Create a new workout
     path("workout/create/", view=Create_workout, name="create_workoutre"),
     # View an individual workout
@@ -67,8 +67,13 @@ urlpatterns = [
         name="get_workouts_assigned_by_date",
     ),
     path(
-        "testing/",
+        "client_dashboard/",
         view=Client_dashboard,
         name="Client_dashboard",
+    ),
+    path(
+        "client_dashboard/",
+        view=Trainer_dashboard,
+        name="Trainer_dashboard",
     ),
 ]
