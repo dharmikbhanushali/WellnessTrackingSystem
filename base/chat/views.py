@@ -36,33 +36,45 @@ class RoomDetailsView(LoginRequiredMixin, TemplateView):
         context["room"] = Room.objects.get(slug=slug)
         return context
 
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)
+
 
 class TwilioTokenView(LoginRequiredMixin, TemplateView):
-    def get(self, request, *args, **kwargs):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.account_sid = settings.TWILIO_ACCOUNT_SID
+        self.api_key = settings.TWILIO_API_KEY
+        self.api_secret = settings.TWILIO_API_SECRET
+        self.chat_service_sid = settings.TWILIO_CHAT_SERVICE_SID
+        self.access_token = None
 
+    def get_twilio_token(self, identity="default_user"):
+        self.access_token = AccessToken(
+            self.account_sid, self.api_key, self.api_secret, identity=identity
+        )
+
+    def get(self, request, *args, **kwargs):
         identity = request.GET.get("identity", request.user.username)
         device_id = request.GET.get("device", "default")  # unique device ID
 
-        account_sid = settings.TWILIO_ACCOUNT_SID
-        api_key = settings.TWILIO_API_KEY
-        api_secret = settings.TWILIO_API_SECRET
-        chat_service_sid = settings.TWILIO_CHAT_SERVICE_SID
-
-        token = AccessToken(account_sid, api_key, api_secret, identity=identity)
+        self.get_twilio_token(identity)
 
         # Create a unique endpoint ID for the device
         endpoint = f"MyDjangoChatRoom:{identity}:{device_id}"
 
-        if chat_service_sid:
-            chat_grant = ChatGrant(endpoint_id=endpoint, service_sid=chat_service_sid)
-            token.add_grant(chat_grant)
+        if self.chat_service_sid:
+            chat_grant = ChatGrant(
+                endpoint_id=endpoint, service_sid=self.chat_service_sid
+            )
+            self.access_token.add_grant(chat_grant)
 
         response = {
             "identity": identity,
-            "token": token.to_jwt(),
+            "token": self.access_token.to_jwt(),
             "channel_name": "trainer name here.",
         }
-        # "channel_name": "fitness_trainer_name"
 
         return JsonResponse(response)
 
