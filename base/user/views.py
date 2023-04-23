@@ -55,7 +55,7 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 # this is a test for templates
 def test_template(request):
-    return render(request, "chat/index.html")
+    return render(request, "users/user_detail.html")
 
 
 def test_template_form(request):
