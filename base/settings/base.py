@@ -84,7 +84,7 @@ THIRD_PARTY_APPS = [
 ]
 
 # Custom apps go here
-LOCAL_APPS = ["core", "user", "chat"]
+LOCAL_APPS = ["core", "user", "chat", "search"]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

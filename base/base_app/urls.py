@@ -81,12 +81,16 @@ urlpatterns += [
 # App urls
 # ----------------------------------------------------------------------------
 urlpatterns += [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path(
-        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
-    ),
     path("user/", include("user.urls")),
     path("chat/", include("chat.urls")),
+    path("search/", include("search.urls")),
+]
+
+# ----------------------------------------------------------------------------
+# Extras...
+# ----------------------------------------------------------------------------
+urlpatterns += [
+    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path("test_template/", view=test_template, name="test"),
     path("test_template_form/", view=test_template_form, name="test_form"),
     path("client-dashboard/", view=Client_dashboard, name="client_metrics"),
