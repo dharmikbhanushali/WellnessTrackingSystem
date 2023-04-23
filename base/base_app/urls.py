@@ -24,10 +24,9 @@ from django.views import debug, defaults as default_views
 from django.views.generic import TemplateView
 
 # Project Libraries
-from user.views import (
+from user.views import (  # test_template,
     Client_dashboard,
     Trainer_dashboard,
-    test_template,
     test_template_form,
 )
 
@@ -91,7 +90,7 @@ urlpatterns += [
 # ----------------------------------------------------------------------------
 urlpatterns += [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path("test_template/", view=test_template, name="test"),
+    # path("test_template/", view=test_template, name="test"),
     path("test_template_form/", view=test_template_form, name="test_form"),
     path("client-dashboard/", view=Client_dashboard, name="client_metrics"),
     path("trainer_dashboard/", view=Trainer_dashboard, name="client_metrics"),

@@ -49,10 +49,9 @@ class UserSignupForm(SignupForm):
         user = super().save(request)
 
         # Add your own processing here.
-        user.user_type = (
-            self.cleaned_data.get("user_type", CLIENT) if self.cleaned_data else CLIENT
-        )
-
+        user.user_type = CLIENT
+        if self.cleaned_data:
+            user.user_type = self.cleaned_data.get("user_type", CLIENT)
         user.save()
         # You must return the original result.
         return user

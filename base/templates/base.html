@@ -150,7 +150,8 @@
           <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
         </li>
         <li class="nav-item">
-          <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'search:search_trainers' %}">
+          <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'search:search_trainers' %}">
+            {% csrf_token %}
             <input id="search" class="form-control mr-sm-2" type="text" aria-label="Search" placeholder="Search Trainer, Workouts..">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
