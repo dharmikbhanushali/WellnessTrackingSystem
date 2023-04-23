@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load compress %}
+
+
+{% block title %}Search Results{% endblock %}
+
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/error403.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+
+{% block content %}
+
+{% if queryset %}
+
+
+<h1>QuerySet Details</h1>
+
+    <table>
+      <thead>
+      <tr>
+        <th>Workout Title</th>
+        <th>Workout Description</th>
+        <th>Trainer</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for obj in queryset %}
+      <tr>
+        <td>{{ obj.title }}</td>
+        <td>{{ obj.description }}</td>
+        <td>{{ obj.trainer }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+{% endif %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
