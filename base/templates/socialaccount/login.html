@@ -1,7 +1,16 @@
 {% extends "socialaccount/base.html" %}
+{% load static %}
 {% load i18n %}
+{% load crispy_forms_tags %}
+{% load compress %}
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/signin_style.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
 
 {% block content %}
 {% if process == "connect" %}
@@ -10,6 +19,7 @@
 <p>{% blocktrans with provider.name as provider %}You are about to connect a new
   third party account from {{ provider }}.{% endblocktrans %}</p>
 {% else %}
+<br><br><br><br>
 <h1>{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{%endblocktrans %}</h1>
 
 <p>{% blocktrans with provider.name as provider %}You are about to sign in using
@@ -23,4 +33,5 @@
   {% csrf_token %}
   <button type="submit">{% trans "Continue" %}</button>
 </form>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}
