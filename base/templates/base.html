@@ -1,4 +1,6 @@
 {% load i18n static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 {% load compress %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -89,6 +91,9 @@
     src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
   <script
     src="https://media.twiliocdn.com/sdk/js/chat/v2.0/twilio-chat.min.js"></script>
+
+    <link href="{% static 'css/chat-style.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -276,6 +281,7 @@
 
   </script>
   {% endcomment %}
+
   {% endblock inline_javascript %}
 </body>
 
