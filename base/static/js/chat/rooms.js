@@ -74,23 +74,22 @@ $(function () {
     return false;
   }
 
-	// async function hasJoinedChannel(name) {
-	// 	const paginator = await chatClient.getUserChannelDescriptors();
-	// 	const channel = await paginator.items.find(async function (channel) {
-	// 		return (await channel.getChannel()).uniqueName === name;
-	// 	});
-	// 	return Boolean(channel);
-	// }
-
-	// Set up channel after it has been found / created
-	function setupChannel(name) {
-		roomChannel.join().then(function (channel) {
-			print(
-				`Joined channel ${name} as <span class="me"> ${username} </span>.`,
-				true
-			);
-			channel.getMessages(30).then(processPage);
-		});
+  // Set up channel after it has been found / created
+  function setupChannel(name) {
+    roomChannel
+      .join()
+      .then(function (channel) {
+        print(
+          `Joined channel ${name} as <span class="me"> ${username} </span>.`,
+          true,
+        );
+        channel.getMessages(30).then(processPage);
+      })
+      .catch(function (err) {
+        if (err.code == 50404) {
+          console.log(`Error while setting up the channel: ${err.message}`);
+        }
+      });
 
     // Listen for new messages sent to the channel
     roomChannel.on('messageAdded', function (message) {
