@@ -1,3 +1,4 @@
 # Action Items
 
--[ ] Change Footer CSS in homepage
+- [X] Change Footer CSS in homepage
+- [ ] Signout page
