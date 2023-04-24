@@ -29,9 +29,9 @@ from user.views import (  # test_template,
     Intake_form,
     Trainer_dashboard,
     Workouts_list_all,
+    enroll_workout,
     redirectLoggedInUser,
     trainerIntakeForm,
-    enroll_workout,
 )
 
 

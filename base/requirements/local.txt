@@ -75,5 +75,3 @@ django-extensions==3.2.1
 django-coverage-plugin==3.0.0
 # https://github.com/pytest-dev/pytest-django
 pytest-django==4.5.2
-
-
