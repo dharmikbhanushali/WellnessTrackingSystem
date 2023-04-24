@@ -15,16 +15,17 @@ from django.utils.translation import gettext_lazy as translate
 from django.views.generic import DetailView, RedirectView, UpdateView
 
 # Project Libraries
+from core import constants
 from core.models import (
     Appointment,
     ClientMetrics,
     IntakeForm as IntakeFormModel,
+    TrainerIntake as trainerFormModel,
     Workouts,
     WorkoutsAssigned,
-    TrainerIntake as trainerFormModel,
 )
 from user.forms import IntakeForm, TrainerForm, WorkoutsForm
-from core import constants
+
 
 User = get_user_model()
 logger = logging.getLogger("fitness-tracker")
@@ -84,7 +85,7 @@ def test_template_form(request):
 def Workouts_list_all(request):
     workouts = Workouts.objects.all()
     trainerDetails = trainerFormModel.objects.all()
-    context = {"workouts": workouts , "trainerDetails" : trainerDetails}
+    context = {"workouts": workouts, "trainerDetails": trainerDetails}
     return render(request, "pages/workout1.html", context)
 
 
@@ -206,10 +207,13 @@ def enroll_workout(request, workout_id, date_assigned=None):
         client_metrics, created = ClientMetrics.objects.get_or_create(
             user=request.user, date=date_assigned
         )
-        # Add the completed workout to the list of completed workouts for the current day
-        client_metrics.workouts.add(workout)
+        
     else:
         WorkoutsAssigned.objects.create(user=user, workout=workout)
+        client_metrics, created = ClientMetrics.objects.get_or_create(
+            user=request.user, date=timezoneDjango.now().date()
+        )
+    client_metrics.workouts.add(workout)
     return redirect("client_dashboard")
 
 

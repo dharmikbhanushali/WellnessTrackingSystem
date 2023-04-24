@@ -10,9 +10,9 @@ from core.models import (
     Appointment,
     ClientMetrics,
     IntakeForm,
+    TrainerIntake,
     Workouts,
     WorkoutsAssigned,
-    TrainerIntake,
 )
 from user.forms import UserAdminChangeForm, UserAdminCreationForm
 
