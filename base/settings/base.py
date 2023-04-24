@@ -123,6 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [{"NAME": _} for _ in PASSWORD_VALIDATOR_NAMES]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",

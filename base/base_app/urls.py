@@ -103,7 +103,7 @@ urlpatterns += [
     path("workouts/a/", view=Workouts_list_all, name="view_all_workouts"),
     path("testing/", view=Client_dashboard, name="Client_dashboard"),
     path("trainer-intake-form/", view=trainerIntakeForm, name="trainerIntakeForm"),
-     path(
+    path(
         "enroll-workout/<int:workout_id>/", view=enroll_workout, name="enroll_workout"
     ),
     path(

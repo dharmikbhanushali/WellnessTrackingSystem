@@ -57,7 +57,6 @@ SECURE_SSL_REDIRECT = env.bool("DJANGO_SECURE_SSL_REDIRECT", default=True)
 SESSION_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#csrf-cookie-secure
 CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ["https://*.azurecontainerapps.io"]
 # https://docs.djangoproject.com/en/dev/topics/security/#ssl-https
 # https://docs.djangoproject.com/en/dev/ref/settings/#secure-hsts-seconds
 SECURE_HSTS_SECONDS = 60
@@ -123,34 +122,34 @@ LOGGING = {
 # ------------------------------------------------------------------------------
 # STATIC
 # ------------------------------------------------------------------------------
-# INSTALLED_APPS += ["whitenoise.runserver_nostatic"]  # noqa F405
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
-# WHITENOISE_MANIFEST_STRICT = False
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+WHITENOISE_MANIFEST_STRICT = False
+INSTALLED_APPS += ["whitenoise.runserver_nostatic"]  # noqa F405
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
 # ------------------------------------------------------------------------------
 # STATIC: Azure storage
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/backends/azure.html#azure-storage
-INSTALLED_APPS += ["storages"]  # noqa F405
-# DEFAULT_FILE_STORAGE = "storages.backends.azure_storage.AzureStorage"
-# STATICFILES_STORAGE = "storages.backends.azure_storage.AzureStorage"
-DEFAULT_FILE_STORAGE = "core.azure_storage.AzureMediaStorage"
-STATICFILES_STORAGE = "core.azure_storage.AzureStaticStorage"
+# INSTALLED_APPS += ["storages"]  # noqa F405
+# # DEFAULT_FILE_STORAGE = "storages.backends.azure_storage.AzureStorage"
+# # STATICFILES_STORAGE = "storages.backends.azure_storage.AzureStorage"
+# DEFAULT_FILE_STORAGE = "core.azure_storage.AzureMediaStorage"
+# STATICFILES_STORAGE = "core.azure_storage.AzureStaticStorage"
 
-AZURE_STORAGE_KEY = env("AZURE_STORAGE_KEY")
-AZURE_ACCOUNT_NAME = env(
-    "AZURE_STORAGE_ACCOUNT_NAME", default="healthtrackstaticstorage"
-)
-AZURE_STATIC_CONTAINER = env("AZURE_STATIC_CONTAINER", default="static")
-AZURE_MEDIA_CONTAINER = env("AZURE_MEDIA_CONTAINER", default="media")
-AZURE_OVERWRITE_FILES = True
+# AZURE_STORAGE_KEY = env("AZURE_STORAGE_KEY")
+# AZURE_ACCOUNT_NAME = env(
+#     "AZURE_STORAGE_ACCOUNT_NAME", default="healthtrackstaticstorage"
+# )
+# AZURE_STATIC_CONTAINER = env("AZURE_STATIC_CONTAINER", default="static")
+# AZURE_MEDIA_CONTAINER = env("AZURE_MEDIA_CONTAINER", default="media")
+# AZURE_OVERWRITE_FILES = True
 
-AZURE_CUSTOM_DOMAIN = f"{AZURE_ACCOUNT_NAME}.azureedge.net"  # CDN URL
-# AZURE_CUSTOM_DOMAIN = f"{AZURE_ACCOUNT_NAME}.blob.core.windows.net"  # Files URL
+# AZURE_CUSTOM_DOMAIN = f"{AZURE_ACCOUNT_NAME}.azureedge.net"  # CDN URL
+# # AZURE_CUSTOM_DOMAIN = f"{AZURE_ACCOUNT_NAME}.blob.core.windows.net"  # Files URL
 
-STATIC_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_STATIC_CONTAINER}/"
-MEDIA_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_MEDIA_CONTAINER}/"
+# STATIC_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_STATIC_CONTAINER}/"
+# MEDIA_URL = f"https://{AZURE_CUSTOM_DOMAIN}/{AZURE_MEDIA_CONTAINER}/"
 
 # ------------------------------------------------------------------------------
 # EMAIL

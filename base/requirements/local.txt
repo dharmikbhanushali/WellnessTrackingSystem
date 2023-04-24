@@ -76,5 +76,4 @@ django-coverage-plugin==3.0.0
 # https://github.com/pytest-dev/pytest-django
 pytest-django==4.5.2
 
-#https://pypi.org/project/Pillow/
-Pillow==9.5.0
+

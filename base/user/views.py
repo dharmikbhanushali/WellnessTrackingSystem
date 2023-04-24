@@ -207,7 +207,7 @@ def enroll_workout(request, workout_id, date_assigned=None):
         client_metrics, created = ClientMetrics.objects.get_or_create(
             user=request.user, date=date_assigned
         )
-        
+
     else:
         WorkoutsAssigned.objects.create(user=user, workout=workout)
         client_metrics, created = ClientMetrics.objects.get_or_create(
