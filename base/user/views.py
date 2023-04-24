@@ -83,7 +83,7 @@ def test_template_form(request):
 def Workouts_list_all(request):
     workouts = Workouts.objects.all()
     context = {"workouts": workouts}
-    return render(request, "workouts_list.html", context)
+    return render(request, "pages/workout1.html", context)
 
 
 @login_required
@@ -95,7 +95,7 @@ def Intake_form(request):
             intake_form = form.save(commit=False)
             intake_form.user = request.user
             intake_form.save()
-            return redirect("/pages/client-dashboard/")
+            return redirect("/client-dashboard/")
 
     else:
         form = IntakeForm()
@@ -145,19 +145,14 @@ def View_appointments(request):
     return render(request, "view_appointments.html", context)
 
 
-# def view_workout_video(request, pk):
-#     video = get_object_or_404(WorkoutVideo, pk=pk)
-#     return render(request, "workout_video_placeholder.html", {"video": video})
-
-
 def view_workout(request, workout_id):
     workout = get_object_or_404(Workouts, id=workout_id)
     return render(request, "workout_detail_placeholder.html", {"workout": workout})
 
 
-def view_all_workouts(request):
-    workout = get_object_or_404(Workouts)
-    return render(request, "workout_list_view_placeholder.html", {"workouts": workout})
+# def view_all_workouts(request):
+#     workout = Workouts.objects.all
+#     return render(request, "pages/workout1.html", {"workouts": workout})
 
 
 # Workout recommendations
@@ -257,10 +252,10 @@ def mark_workout_complete(request, workout_id):
 #     # return render(request, "pages/userDashboard.html")
 
 
-# @login_required
+@login_required
 def Client_dashboard(request):
-    user = User.objects.get(email="test101@yopmail.com")
-    # user = request.user
+    # user = User.objects.get(email="test101@yopmail.com")
+    user = request.user
     intake_form = IntakeFormModel.objects.get(user=user)
     today = timezoneDjango.now().date()
     metrics_today = ClientMetrics.objects.filter(user=user, date=today).first()
@@ -313,3 +308,11 @@ def trainerIntakeForm(request):
     else:
         form = IntakeForm()
     return render(request, "pages/trainerform.html", {"form": form})
+
+
+def redirectLoggedInUser(request):
+    user = request.user
+    if IntakeFormModel.objects.filter(user=user).exists():
+        return redirect("/client-dashboard/")
+    else:
+        return redirect("/intake-form/")

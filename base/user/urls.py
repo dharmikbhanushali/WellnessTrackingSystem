@@ -6,7 +6,6 @@ from django.urls import path
 from user.views import (
     Client_dashboard,
     Create_workout,
-    Intake_form,
     Trainer_dashboard,
     UserDetailView,
     UserRedirectView,
@@ -16,7 +15,6 @@ from user.views import (
     get_workouts_assigned_all,
     get_workouts_assigned_by_date,
     mark_workout_complete,
-    view_all_workouts,
     view_workout,
 )
 
@@ -39,10 +37,8 @@ urlpatterns = [
     # Delete a workout
     # path("<int:pk>/delete/", view=Delete_workout, name="workout_delete"),
     path("trainer/workouts/", view=Workouts_list_trainer, name="workouts_list"),
-    path("intake-form/", view=Intake_form, name="intake_form"),
     # path("workout-video/<int:pk>/", view=view_workout_video, name="view_workout_video"),
     path("workouts/<int:workout_id>", view=view_workout, name="view_workouts"),
-    path("workouts/a/", view=view_all_workouts, name="view_all_workouts"),
     path(
         "enroll-workout/<int:workout_id>/", view=enroll_workout, name="enroll_workout"
     ),
@@ -72,7 +68,7 @@ urlpatterns = [
         name="Client_dashboard",
     ),
     path(
-        "client_dashboard/",
+        "trainer_dashboard/",
         view=Trainer_dashboard,
         name="Trainer_dashboard",
     ),

@@ -22,14 +22,14 @@
 <div class="text-justify">
 <div class="container-fluid padding">
   <div class="card-deck">
+    {%for workout in workouts%}
     <div class="card"  >
       <img alt="vegan-diet-plan-image" class="card-imd-top img-fluid " src="{% static 'images/card1.jpg'%}" style="object-fit: cover ;height : 30rem; "  />
       <div class="card-body">
-        <h4 class="card-title">Power Vinyasa Yoga</h4>
+        <h4 class="card-title">{{workout.title}}</h4>
         <p class="card-text ">
-          Using breath and movement synergistically, Power Vinyasa gradually builds heat in the body to improve stamina and strength.
-          This session is quicker-paced and offers a nice challenge, but it is suitable for beginners, athletes, and advanced enthusiasts alike.</p>
-        <p class="card-text">Instructor : <a href="#" data-toggle="modal" data-target="#myModal">Lauren M.</a></p>
+          {{workout.description}}</p>
+        <p class="card-text">Instructor : <a href="#" data-toggle="modal" data-target="#myModal">workout.trainer.email</a></p>
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
@@ -53,7 +53,8 @@
 
       </div>
     </div>
-    <div class="card">
+    {% endfor %}
+    <!-- <div class="card">
       <img alt="Mediterranean-diet-plan-image" class="card-imd-top img-fluid" src="{% static 'images/dietcard2.jpg'%}" style="object-fit: cover; height : 30rem;" />
       <div class="card-body">
         <h4 class="card-title">Mat Pilates</h4>
@@ -64,7 +65,7 @@
         </p>
         <p class="card-text">Instructor : <a href="#" data-toggle="modal" data-target="#myModal">Kaitlyn K.</a></p>
         <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -98,7 +99,7 @@
         </p>
         <p class="card-text">Instructor : <a href="#" data-toggle="modal" data-target="#myModal">Georgia G.</a></p>
         <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -119,8 +120,7 @@
         <a class="btn btn-outline-secondary" href="#">Add to cart</a>
 
       </div>
-    </div>
-
+    </div> -->
   </div>
 </div>
 </div>
