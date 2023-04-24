@@ -175,9 +175,15 @@ class Room(models.Model):
 
 
 class TrainerIntake(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
     age = models.IntegerField()
-    gender = models.CharField(max_length=255)
+    GENDER_CHOICES = (
+        ("M", "Male"),
+        ("F", "Female"),
+        ("O", "Other"),
+    )
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     phone_number = models.CharField(max_length=20)
     email_address = models.EmailField()
     current_address = models.CharField(max_length=255)
@@ -187,3 +193,5 @@ class TrainerIntake(models.Model):
     previous_work_experience = models.TextField(blank=True, null=True)
     fitness_specialization = models.CharField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
+
+

@@ -21,9 +21,10 @@ from core.models import (
     IntakeForm as IntakeFormModel,
     Workouts,
     WorkoutsAssigned,
+    TrainerIntake as trainerFormModel,
 )
 from user.forms import IntakeForm, TrainerForm, WorkoutsForm
-
+from core import constants
 
 User = get_user_model()
 logger = logging.getLogger("fitness-tracker")
@@ -82,7 +83,8 @@ def test_template_form(request):
 
 def Workouts_list_all(request):
     workouts = Workouts.objects.all()
-    context = {"workouts": workouts}
+    trainerDetails = trainerFormModel.objects.all()
+    context = {"workouts": workouts , "trainerDetails" : trainerDetails}
     return render(request, "pages/workout1.html", context)
 
 
@@ -304,15 +306,23 @@ def trainerIntakeForm(request):
             trainer_form = form.save(commit=False)
             trainer_form.user = request.user
             trainer_form.save()
-            return redirect("user/trainer_dashboard/")
+            return redirect("/trainer_dashboard/")
     else:
-        form = IntakeForm()
+        form = TrainerForm(request.POST)
     return render(request, "pages/trainerform.html", {"form": form})
 
 
 def redirectLoggedInUser(request):
     user = request.user
-    if IntakeFormModel.objects.filter(user=user).exists():
-        return redirect("/client-dashboard/")
-    else:
-        return redirect("/intake-form/")
+    user_type = user.user_type
+    print(user_type)
+    if user_type == constants.TRAINER:
+        if trainerFormModel.objects.filter(user=user).exists():
+            return redirect("/trainer_dashboard/")
+        else:
+            return redirect("/trainer-intake-form/")
+    elif user_type == constants.CLIENT:
+        if IntakeFormModel.objects.filter(user=user).exists():
+            return redirect("/client-dashboard/")
+        else:
+            return redirect("/intake-form/")
