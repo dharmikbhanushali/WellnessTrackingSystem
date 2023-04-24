@@ -7,15 +7,11 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 
 # 3rd Party Libraries
-from faker import Faker
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import ChatGrant
 
 # Project Libraries
 from core.models import Room
-
-
-fake = Faker()
 
 
 class AllRoomsView(LoginRequiredMixin, TemplateView):
@@ -37,6 +33,7 @@ class RoomDetailsView(LoginRequiredMixin, TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
+        # todo: on first post method, chat doesn't load why?
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
 
@@ -91,6 +88,10 @@ def room_detail(request, slug):
 
 
 def token(request):
+    # 3rd Party Libraries
+    from faker import Faker
+
+    fake = Faker()
     identity = request.GET.get("identity", fake.user_name())
     device_id = request.GET.get("device", "default")  # unique device ID
 

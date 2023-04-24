@@ -150,9 +150,9 @@
           <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
         </li>
         <li class="nav-item">
-          <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'chat:room_detail' 'twilio-chat' %}">
-            {{ form|crispy }}
-            <input id="search" class="form-control mr-sm-2" type="search" aria-label="Search">
+          <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'search:search_trainers' %}">
+            {% csrf_token %}
+            <input id="search" class="form-control mr-sm-2" type="text" placeholder="Search Trainer, Workouts.." name="textfield">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </li>

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load compress %}
+
+
+{% block title %}Search Results{% endblock %}
+
+{% block customcss %}
+{% compress css %}
+<link href="{% static 'css/error403.css' %}" rel="stylesheet">
+{% endcompress %}
+{% endblock customcss %}
+
+{% block content %}
+
+{% if queryset %}
+
+<div class="container">
+  <h1 class="text-center mb-5">Search Results</h1>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Workout Title</th>
+            <th scope="col">Workout Description</th>
+            <th scope="col">Trainer</th>
+            <th scope="col">Workout Video URL</th>
+            <th scope="col">Workout Plan URL</th>
+            <th scope="col">video</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for obj in queryset %}
+          <tr>
+            <td>{{ obj.title }}</td>
+            <td>{{ obj.description }}</td>
+            <td>{{ obj.trainer }}</td>
+            <td>{{ obj.videourl }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% else %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 text-center">
+      <br><br><br><br>
+      <p>No results found.</p>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
