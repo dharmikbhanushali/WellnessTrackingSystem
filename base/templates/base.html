@@ -1,4 +1,6 @@
 {% load i18n static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 {% load compress %}
 <html lang="{{ LANGUAGE_CODE }}">
@@ -90,6 +92,9 @@
   <script
     src="https://media.twiliocdn.com/sdk/js/chat/v2.0/twilio-chat.min.js"></script>
 
+    <link href="{% static 'css/chat-style.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
@@ -145,7 +150,8 @@
           <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
         </li>
         <li class="nav-item">
-          <form class="form-inline my-2 my-lg-0">
+          <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'chat:room_detail' 'twilio-chat' %}">
+            {{ form|crispy }}
             <input id="search" class="form-control mr-sm-2" type="search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
@@ -276,6 +282,7 @@
 
   </script>
   {% endcomment %}
+
   {% endblock inline_javascript %}
 </body>
 

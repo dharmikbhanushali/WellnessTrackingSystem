@@ -9,7 +9,7 @@ from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 
 # Project Libraries
 from core.constants import CLIENT, USER_TYPES
-from core.models import IntakeForm, Workouts, WorkoutsAssigned
+from core.models import IntakeForm, TrainerIntake, Workouts, WorkoutsAssigned
 
 
 User = get_user_model()
@@ -120,3 +120,9 @@ class MarkWorkoutCompleteForm(forms.ModelForm):
     class Meta:
         model = WorkoutsAssigned
         fields = ["completed", "date_completed"]
+
+
+class TrainerForm(forms.ModelForm):
+    class Meta:
+        model = TrainerIntake
+        exclude = ["date_created"]
