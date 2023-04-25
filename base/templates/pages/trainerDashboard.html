@@ -51,11 +51,11 @@
                                 <a href="#" target="_blank">
                                     <div class="content-overlay"></div>
 
-                                    <img src="{% static 'images/yoga.webp' %}" class="content-image" />
+                                    <img src="{{ item.thumbnail.url }}" class="content-image" alt="test">
                                     <div class="content-details fadeIn-top">
 
-                                        <h3>{{workout_plans.title}}</h3>
-                                        <p>{{workout_plans.description}}</p>
+                                        <h3>{{item.title}}</h3>
+                                        <p>{{item.description}}</p>
                                     </div>
                                 </a>
                             </div>
@@ -98,6 +98,7 @@
                         </div>
 
                     </div>
+
                     {% endfor %}
                 </div>
 

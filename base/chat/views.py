@@ -70,7 +70,7 @@ class TwilioTokenView(LoginRequiredMixin, TemplateView):
         response = {
             "identity": identity,
             "token": self.access_token.to_jwt(),
-            "channel_name": "Sarah Lee",
+            "channel_name": "fitness name here",
         }
 
         return JsonResponse(response)

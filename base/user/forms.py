@@ -101,12 +101,13 @@ class WorkoutsForm(forms.ModelForm):
             "video_file",
             "plan_url",
             "calories",
+            "thumbnail",
         ]
 
-        widgets = {
-            "category": forms.CheckboxSelectMultiple(),
-            "level": forms.CheckboxSelectMultiple(),
-        }
+        # widgets = {
+        #     "category": forms.CheckboxSelectMultiple(),
+        #     "level": forms.CheckboxSelectMultiple(),
+        # }
 
 
 class EnrollWorkoutForm(forms.ModelForm):

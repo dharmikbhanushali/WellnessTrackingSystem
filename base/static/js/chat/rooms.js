@@ -110,6 +110,9 @@ $(function () {
 
   function createOrJoinChannel(channelName) {
     print(`Attempting to join "${channelName}" chat channel...`);
+    print(`John: Hi Sarah. I needed some guidance my workouts.`);
+    print(`Sarah: Hi John. Sure. Which workout course do you need the help with ?`);
+    print(`John: I recently added a new calorie deficit workout.`);
     chatClient
       .getChannelByUniqueName(channelName)
       .then(function (channel) {

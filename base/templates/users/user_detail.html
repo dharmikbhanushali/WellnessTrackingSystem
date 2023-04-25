@@ -32,33 +32,18 @@
 {% if object == request.user %}
 <!-- Action buttons -->
 <br><br>
-<!-- <div class="profile-row">
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'user:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <a class="btn btn-primary" href="{% url 'redirectLoggedInUser' %}" role="button">Dashboard</a>
-    <Your Stuff: Custom user template urls -->
-    <a class="btn btn-primary" href="{% url 'user:update' %}" role="button">My Info</a><br><br>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a><br><br>
-    <a class="btn btn-primary" href="{% url 'redirectLoggedInUser' %}" role="button">Dashboard</a><br><br>
-    <a class="btn btn-primary" href="{% url 'home' %}" role="button">Start Your Journey</a><br><br>
-    <Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
 
 <section class="vh-70">
   <div class="container py-5 h-70">
     <div class="row d-flex align-items-center justify-content-center h-50">
       <div class="col-md-8 col-lg-7 col-xl-6">
-        <img src="{% static 'images/healthyuserform.gif' %}"
-        class="img-fluid" alt="image">
+        <img src="{% static 'images/myprofile.gif' %} "
+        class="img-fluid" alt="image" width="500px" height="200px">
       </div>
       <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
         <a class="btn btn-primary" href="{% url 'user:update' %}" role="button">My Info</a><br><br>
         <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a><br><br>
-        <a class="btn btn-primary" href="{% url 'home' %}" role="button">Dashboard</a><br><br>
+        <a class="btn btn-primary" href="{% url 'redirectLoggedInUser' %}" role="button">Dashboard</a><br><br>
         <a class="btn btn-primary" href="{% url 'home' %}" role="button">Start Your Journey</a><br><br>
           </div>
   </div>

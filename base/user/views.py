@@ -127,6 +127,7 @@ def Create_workout(request):
         if form.is_valid():
             workout = form.save(commit=False)
             workout.trainer = request.user
+            # workout.image = form.cleaned_data['image']
             workout.save()
             return redirect("/trainer_dashboard/")
     else:
@@ -198,23 +199,47 @@ def workout_recommendations(request):
 # Enrolling in a workout
 @login_required
 def enroll_workout(request, workout_id, date_assigned=None):
-    user = request.user
-    workout = Workouts.objects.get(id=workout_id)
-    if date_assigned:
-        WorkoutsAssigned.objects.create(
-            user=user, workout=workout, date_assigned=date_assigned
-        )
-        client_metrics, created = ClientMetrics.objects.get_or_create(
-            user=request.user, date=date_assigned
-        )
+    workout = get_object_or_404(Workouts, id=workout_id)
+    assigned_workout = WorkoutsAssigned(
+        user=request.user,
+        workout=workout,
+        date_assigned=timezoneDjango.now().date(),
+        date_completed=None,
+        completed=False,
+    )
 
-    else:
-        WorkoutsAssigned.objects.create(user=user, workout=workout)
-        client_metrics, created = ClientMetrics.objects.get_or_create(
-            user=request.user, date=timezoneDjango.now().date()
-        )
-    client_metrics.workouts.add(workout)
-    return redirect("client_dashboard")
+    assigned_workout.save()
+
+    metrics = ClientMetrics(
+        user=request.user,
+        date=timezoneDjango.now().date(),
+        meals="Some meals here",
+        sleep_cycle="Some sleep cycle here",
+        progress_metrics="Some progress metrics here",
+        calories_burnt=500,
+        goal_progress=80.0,
+    )
+    metrics.save()
+    # Add workout to metrics
+    metrics.workouts.add(workout)
+
+    # Save metrics
+
+    # if date_assigned:
+    #     WorkoutsAssigned.objects.create(
+    #         user=user, workout=workout, date_assigned=date_assigned
+    #     )
+    #     client_metrics, created = ClientMetrics.objects.get_or_create(
+    #         user=request.user, date=date_assigned
+    #     )
+
+    # else:
+    # WorkoutsAssigned.objects.create(user=user, workout=workout)
+    # client_metrics, created = ClientMetrics.objects.get_or_create(
+    #     user=request.user, date=timezoneDjango.now().date()
+    # )
+    # client_metrics.workouts.add(workout)
+    return redirect("/client-dashboard/")
 
 
 # Marking workout as complete
