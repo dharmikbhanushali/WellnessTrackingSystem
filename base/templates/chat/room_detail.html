@@ -9,18 +9,23 @@
 {% block customcss %}
 {% compress css %}
 <link href="{% static 'css/signin_style.css' %}" rel="stylesheet">
-
+<link href="{% static 'css/chatbox.css' %}" rel="stylesheet">
 {% endcompress %}
-
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" />
-
 {% endblock customcss %}
-
 
 {% block content %}
 <div class="container">
-  <div class="columns">
+  <div class="columns is-flex">
+    <div class="column sidebar is-align-items-center">
+      <div>
+        <br><br><br><br>
+        <h2 class="title">{{room.name}}</h2>
+        <p class="subtitle">
+          {{room.description}}
+        </p>
+      </div>
+    </div>
+
     <div class="column is-three-quarters">
       <section>
         <div id="messages"></div>
@@ -38,18 +43,8 @@
       </section>
     </div>
 
-    <div class="column sidebar">
-      <div class="float-right">
-        <h2 class="title">{{room.name}}</h2>
-        <p class="subtitle">
-          {{room.description}}
-        </p>
-      </div>
-    </div>
-
   </div>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 {% endblock %}
 
 {% block page_specific_js %}

@@ -259,20 +259,20 @@
   const chatbotContainer = document.getElementById('chatbot-container');
   const chatOverlay = document.getElementById('chat-overlay');
   const closeBtn = chatbotContainer.querySelector('.close-btn');
-  
-  
+
+
   // Show the chatbot container and overlay when the chat icon is clicked
   chatIcon.addEventListener('click', function() {
     chatbotContainer.style.display = 'block';
     chatOverlay.style.display = 'block';
   });
-  
+
   // Hide the chatbot container and overlay when the close button is clicked
   closeBtn.addEventListener('click', function() {
     chatbotContainer.style.display = 'none';
     chatOverlay.style.display = 'none';
   });
-  
+
   // Hide the chatbot container and overlay when the overlay is clicked outside the container
   chatOverlay.addEventListener('click', function(event) {
     if (event.target === chatOverlay) {
@@ -280,7 +280,7 @@
       chatOverlay.style.display = 'none';
     }
   });
-  
+
   </script>
 
 {% endblock inline_javascript %}
