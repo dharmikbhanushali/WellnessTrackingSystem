@@ -10,6 +10,7 @@ from core.models import (
     Appointment,
     ClientMetrics,
     IntakeForm,
+    Room,
     TrainerIntake,
     Workouts,
     WorkoutsAssigned,
@@ -74,3 +75,4 @@ admin.site.register(WorkoutsAssigned)
 admin.site.register(ClientMetrics)
 admin.site.register(Appointment)
 admin.site.register(TrainerIntake)
+admin.site.register(Room)

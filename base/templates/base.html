@@ -153,11 +153,6 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </li>
-
-        <li> {{ object.username }}
-          {% if object.name %}
-            <p>{{ object.name }}</p>
-          {% endif %}</li>
         {% else %}
         {% if ACCOUNT_ALLOW_REGISTRATION %}
         <li class="nav-item">
