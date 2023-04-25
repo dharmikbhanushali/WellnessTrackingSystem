@@ -38,10 +38,10 @@
                         <div class="container">
                             <div class="content">
                                 <a href="/workout/create/" target="_blank">
-                                    <div class="content-overlay"></div>
+                                    <div class="sub-content"></div>
 
                                     <img src="{% static 'images/add_video.png' %}" class="add-video-image" />
-                                    <div class="content-details fadeIn-top">
+                                    <div class="content-desc faded">
                                         <h3>Add new video</h3>
                                         <!-- <p>Lorem Ipsum is simply dummy text of the printing and
                                             typesetting industry.</p> -->
@@ -60,10 +60,10 @@
                         <div class="container">
                             <div class="content">
                                 <a href="#" target="_blank">
-                                    <div class="content-overlay"></div>
+                                    <div class="sub-content"></div>
 
                                     <img src="{{item.thumbnail.url}}" class="content-image" />
-                                    <div class="content-details fadeIn-top">
+                                    <div class="content-desc faded">
 
                                         <h3>{{item.title}}</h3>
                                         <p>{{item.description}}</p>
@@ -87,7 +87,7 @@
             </div>
             <div class="events-div">
                 <div id="upcoming-events">Upcoming appointments</div>
-                <div class="wrapper">
+                <div class="date-picker-div">
                     <label for="datepicker">Pick a Date
                         <input type="text" id="datepicker" autocomplete="off">
                     </label>
@@ -115,45 +115,49 @@
             </div>
         </div>
     </div>
-</div>
-<div class="chat-icon" id="chat-icon">
-  <i class="fas fa-comments"></i>
-</div>
-
-<div class="chatbot-container" id="chatbot-container">
-<div class="chatbot-header">
-  <h3>Healthtrack365 Chat Support</h3>
-  <button class="close-btn">&times;</button>
-</div>
-<div class="chatbot-body">
-  <p>Welcome to the chat service! Select an option:</p>
-    <div class="form-group">
-      <!-- <input type="text" class="form-control" id="message-input" placeholder="Enter your message..."> -->
     </div>
-    <form method="post" action="{% url 'chat:room_detail' 'general' %}">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <button type="submit" class="btn btn-primary">Chat with Your Trainer</button><br><br>
-    </form>
-    <form method="post" action="{% url 'chat:room_detail' 'support' %}">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <button type="submit" class="btn btn-warning">Chat with Support</button>
-      <br><br>
-    </form>
-    <form method="post" action="{% url 'chat:room_detail' 'faq' %}">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <button type="submit" class="btn btn-info">FAQs</button><br><br>
-    </form>
-</div>
-</div>
-<div class="chat-overlay" id="chat-overlay"></div>
+    <div class="chat-icon" id="chat-icon">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <h3>Healthtrack365 Chat Support</h3>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="chatbot-body">
+            <p>Welcome to the chat service! Select an option:</p>
+            <div class="form-group">
+                <!-- <input type="text" class="form-control" id="message-input" placeholder="Enter your message..."> -->
+            </div>
+            <form method="post" action="{% url 'chat:room_detail' 'general' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Chat with Your Trainer</button><br><br>
+            </form>
+            <form method="post" action="{% url 'chat:room_detail' 'support' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-warning">Chat with Support</button>
+                <br><br>
+            </form>
+            <form method="post" action="{% url 'chat:room_detail' 'faq' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-info">FAQs</button><br><br>
+            </form>
+        </div>
+    </div>
+    <div class="chat-overlay" id="chat-overlay"></div>
 </section>
 
 {% endblock content %}
 
 {% block inline_javascript %}
+<!-- 
+    REFERENCES:
+    1. https://codepen.io/smfoisal/pen/bjJqxL
+ -->
 <script>
     $(function () {
         $("#datepicker").datepicker({
@@ -163,31 +167,31 @@
     });</script>
 
 <script>
-  const chatIcon = document.getElementById('chat-icon');
-  const chatbotContainer = document.getElementById('chatbot-container');
-  const chatOverlay = document.getElementById('chat-overlay');
-  const closeBtn = chatbotContainer.querySelector('.close-btn');
+    const chatIcon = document.getElementById('chat-icon');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatOverlay = document.getElementById('chat-overlay');
+    const closeBtn = chatbotContainer.querySelector('.close-btn');
 
 
-  // Show the chatbot container and overlay when the chat icon is clicked
-  chatIcon.addEventListener('click', function() {
-    chatbotContainer.style.display = 'block';
-    chatOverlay.style.display = 'block';
-  });
+    // Show the chatbot container and overlay when the chat icon is clicked
+    chatIcon.addEventListener('click', function () {
+        chatbotContainer.style.display = 'block';
+        chatOverlay.style.display = 'block';
+    });
 
-  // Hide the chatbot container and overlay when the close button is clicked
-  closeBtn.addEventListener('click', function() {
-    chatbotContainer.style.display = 'none';
-    chatOverlay.style.display = 'none';
-  });
+    // Hide the chatbot container and overlay when the close button is clicked
+    closeBtn.addEventListener('click', function () {
+        chatbotContainer.style.display = 'none';
+        chatOverlay.style.display = 'none';
+    });
 
-  // Hide the chatbot container and overlay when the overlay is clicked outside the container
-  chatOverlay.addEventListener('click', function(event) {
-    if (event.target === chatOverlay) {
-      chatbotContainer.style.display = 'none';
-      chatOverlay.style.display = 'none';
-    }
-  });
+    // Hide the chatbot container and overlay when the overlay is clicked outside the container
+    chatOverlay.addEventListener('click', function (event) {
+        if (event.target === chatOverlay) {
+            chatbotContainer.style.display = 'none';
+            chatOverlay.style.display = 'none';
+        }
+    });
 
-  </script>
+</script>
 {% endblock inline_javascript %}

@@ -1,3 +1,10 @@
+/* 
+
+  REFERENCES: 
+  1. https://canvasjs.com/html5-javascript-bar-chart/
+  2. https://codepen.io/JMChristensen/pen/AGbeEy
+
+ */
 html,
 body {
   height: 100%;
@@ -45,7 +52,7 @@ body {
 
 .events-div {
   height: 60%;
-  background-color: #000;
+  background-color: #6a717f;
   display: flex;
   flex-flow: column;
 }
@@ -131,63 +138,11 @@ background-color: rgba(235, 237, 240, 0.5); */
   box-shadow: 3px 3px 5px 5px #bab7b7;
 }
 
-#svg circle {
-  transition: stroke-dashoffset 1s linear;
-  stroke: #d8dfe5;
-  stroke-width: 1em;
-}
-
-#svg #bar {
-  stroke-dashoffset: 400;
-  stroke: #007bff;
-}
-
-#svg image {
-  width: inherit;
-  height: inherit;
-}
-
-.active-class-content-div {
-  /* background-color: #c9f0f8; */
-  width: 70%;
-  border-style: solid;
-  border-width: 0 0 0 3px;
-  border-color: #007bff;
-  border-radius: 0 1rem 1rem 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
 
 .class-progress-circle {
   max-width: 50%;
 }
 
-.active-class-content-title-div {
-  font-size: 1.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-bottom: 0rem;
-}
-
-.active-class-content-desc-div {
-  font-size: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0rem;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  line-height: 1.32rem;
-  height: 5.5rem;
-  overflow-wrap: normal;
-}
-
-#classes-container-div {
-  display: flex;
-}
-
-.all-classes-div {
-  height: auto;
-}
 
 #bar-chart-container-div {
   width: 100%;

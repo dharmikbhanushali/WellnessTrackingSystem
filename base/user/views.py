@@ -13,6 +13,7 @@ from django.urls import reverse
 from django.utils import timezone as timezoneDjango
 from django.utils.translation import gettext_lazy as translate
 from django.views.generic import DetailView, RedirectView, UpdateView
+from django.db.models import Sum
 
 # Project Libraries
 from core import constants
@@ -285,7 +286,6 @@ def mark_workout_complete(request, workout_id):
 
 @login_required
 def Client_dashboard(request):
-    # user = User.objects.get(email="test101@yopmail.com")
     user = request.user
     intake_form = IntakeFormModel.objects.get(user=user)
     today = timezoneDjango.now().date()
@@ -298,6 +298,22 @@ def Client_dashboard(request):
     date_calories_pairs_last_week = ClientMetrics.objects.filter(
         user=user, date=today + timedelta(days=1) - timedelta(days=7)
     )
+    date_calories_pairs_last_week_dict_arr = []
+    calories_burnt_last_week = 0
+    for i in range(7):
+        date_to_check = today - timedelta(days=i)
+
+        workouts_assigned = WorkoutsAssigned.objects.filter(user=user, date_completed=date_to_check)
+        calories_burnt_on_date = 0
+        for w in workouts_assigned:
+            calories_burnt_on_date += w.workout.calories
+        # print(">>>>>>>>date_to_check", date_to_check)
+        # print(">>>>>>>>calories_burnt_on_date", calories_burnt_on_date)
+
+        calories_burnt_last_week += calories_burnt_on_date
+
+        date_calories_pairs_last_week_dict_arr.insert(0, calories_burnt_on_date)
+
     context = {
         "user": user,
         "name": intake_form.name,
@@ -306,9 +322,11 @@ def Client_dashboard(request):
         "workouts_assigned_today": workouts_assigned_today,
         "calories_burnt_today": calories_burnt_today,
         "calories_burnt_last_week": date_calories_pairs_last_week,
-        "calories_burnt_last_week_dict": date_calories_pairs_last_week,
+        "calories_burnt_last_week_int": calories_burnt_last_week,
+        "calories_burnt_last_week_dict": date_calories_pairs_last_week_dict_arr,
     }
     return render(request, "pages/userDashboard.html", context)
+
 
 
 # Retrieve workouts assigned based on the date assigned

@@ -43,7 +43,7 @@
           <div class="metric-div">
             <div class="metric-title-div">Calories burned in last 7 days</div>
             <div class="metric-content-div">
-              {{calories_burnt_last_week}} KCal
+              {{calories_burnt_last_week_int}} KCal
             </div>
           </div>
         </div>
@@ -114,12 +114,12 @@
 </div>
 
 <div class="chatbot-container" id="chatbot-container">
-<div class="chatbot-header">
-  <h3>Healthtrack365 Chat Support</h3>
-  <button class="close-btn">&times;</button>
-</div>
-<div class="chatbot-body">
-  <p>Welcome to the chat service! Select an option:</p>
+  <div class="chatbot-header">
+    <h3>Healthtrack365 Chat Support</h3>
+    <button class="close-btn">&times;</button>
+  </div>
+  <div class="chatbot-body">
+    <p>Welcome to the chat service! Select an option:</p>
     <div class="form-group">
       <!-- <input type="text" class="form-control" id="message-input" placeholder="Enter your message..."> -->
     </div>
@@ -139,7 +139,7 @@
       {{ form|crispy }}
       <button type="submit" class="btn btn-info">FAQs</button><br><br>
     </form>
-</div>
+  </div>
 </div>
 <div class="chat-overlay" id="chat-overlay"></div>
 
@@ -150,14 +150,16 @@
 {% endblock content %}
 
 {% block inline_javascript %}
+<!-- 
+  REFERENCES: 
+  1. https://canvasjs.com/html5-javascript-bar-chart/
+  2. https://codepen.io/JMChristensen/pen/AGbeEy
+-->
 <script>
   window.onload = function () {
-    console.log(">>>>>>>>>>")
     var cal_burnt = "{{calories_burnt_last_week_dict}}"
     cal_burnt = cal_burnt.slice(1, cal_burnt.length - 1)
     cal_burnt_arr = cal_burnt.split(" ").map(parseFloat);
-    console.log("cal_burnt", cal_burnt)
-    console.log("cal_burnt_arr", cal_burnt_arr)
     const today = new Date();
     // Map the weekday number to its corresponding name
     const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -262,25 +264,25 @@
 
 
   // Show the chatbot container and overlay when the chat icon is clicked
-  chatIcon.addEventListener('click', function() {
+  chatIcon.addEventListener('click', function () {
     chatbotContainer.style.display = 'block';
     chatOverlay.style.display = 'block';
   });
 
   // Hide the chatbot container and overlay when the close button is clicked
-  closeBtn.addEventListener('click', function() {
+  closeBtn.addEventListener('click', function () {
     chatbotContainer.style.display = 'none';
     chatOverlay.style.display = 'none';
   });
 
   // Hide the chatbot container and overlay when the overlay is clicked outside the container
-  chatOverlay.addEventListener('click', function(event) {
+  chatOverlay.addEventListener('click', function (event) {
     if (event.target === chatOverlay) {
       chatbotContainer.style.display = 'none';
       chatOverlay.style.display = 'none';
     }
   });
 
-  </script>
+</script>
 
 {% endblock inline_javascript %}
