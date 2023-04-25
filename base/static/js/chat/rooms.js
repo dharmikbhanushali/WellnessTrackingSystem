@@ -88,6 +88,7 @@ $(function () {
       .catch(function (err) {
         if (err.code == 50404) {
           console.log(`Error while setting up the channel: ${err.message}`);
+          roomChannel.getMessages(30).then(processPage);
         }
       });
 
@@ -109,28 +110,11 @@ $(function () {
   }
 
   function createOrJoinChannel(channelName) {
-    print(`Attempting to join "${channelName}" chat channel...`);
-    print(`John: Hi Sarah. I needed some guidance my workouts.`);
-    print(`Sarah: Hi John. Sure. Which workout course do you need the help with ?`);
-    print(`John: I recently added a new calorie deficit workout.`);
     chatClient
       .getChannelByUniqueName(channelName)
       .then(function (channel) {
         roomChannel = channel;
-        try{
-
-           // IF member has already joined then we will be able to read the messages on that channel.
-        roomChannel.getMessages(30).then(processPage);
-        // Listen for new messages sent to the channel
-        roomChannel.on('messageAdded', function (message) {
-          printMessage(message.author, message.body);
-        });
-
-        } catch (err)
-        {
-          console.error(`Member has not joined... ${err}`);
-          setupChannel(channelName);
-        }
+        setupChannel(channelName);
 
 
 
