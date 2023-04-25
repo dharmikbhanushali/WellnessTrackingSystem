@@ -26,6 +26,7 @@ from django.views.generic import TemplateView
 # Project Libraries
 from user.views import (  # test_template,
     Client_dashboard,
+    Create_workout,
     Intake_form,
     Trainer_dashboard,
     Workouts_list_all,
@@ -102,5 +103,5 @@ urlpatterns += [
     path("workouts/a/", view=Workouts_list_all, name="view_all_workouts"),
     path("testing/", view=Client_dashboard, name="Client_dashboard"),
     path("trainer-intake-form/", view=trainerIntakeForm, name="trainerIntakeForm"),
-
+    path("workout/create/", view=Create_workout, name="Create_workout"),
 ]
