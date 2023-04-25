@@ -40,3 +40,6 @@ tqdm==4.64.1
 twilio==8.0.0
 # https://faker.readthedocs.io/en/master/
 Faker===18.3.4
+
+#https://pypi.org/project/Pillow/
+Pillow==9.5.0

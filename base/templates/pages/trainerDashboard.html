@@ -7,14 +7,6 @@
 <link href="{% static 'css/userDashboard.css' %}" rel="stylesheet">
 <link href="{% static 'css/homepageStyle.css' %}" rel="stylesheet">
 <link href="{% static 'css/trainerDashboard.css' %}" rel="stylesheet">
-<!-- <link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css"
-      rel="stylesheet" /> -->
-<!-- <link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css" rel="stylesheet" /> -->
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" type="text/javascript"></script>
-<!-- <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js" type="text/javascript"></script> -->
-<!-- <script src="{% static 'js/circle-progress.min.js' %}" type="text/javascript"></script> -->
 
 {% endcompress %}
 {% endblock customcss %}
@@ -116,6 +108,14 @@
 </section>
 
 {% endblock content %}
+
+{% block page_specific_js %}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" type="text/javascript"></script>
+
+
+{% endblock page_specific_js %}
 
 {% block inline_javascript %}
 <script>

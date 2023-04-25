@@ -207,10 +207,13 @@ def enroll_workout(request, workout_id, date_assigned=None):
         client_metrics, created = ClientMetrics.objects.get_or_create(
             user=request.user, date=date_assigned
         )
-        # Add the completed workout to the list of completed workouts for the current day
-        client_metrics.workouts.add(workout)
+
     else:
         WorkoutsAssigned.objects.create(user=user, workout=workout)
+        client_metrics, created = ClientMetrics.objects.get_or_create(
+            user=request.user, date=timezoneDjango.now().date()
+        )
+    client_metrics.workouts.add(workout)
     return redirect("client_dashboard")
 
 

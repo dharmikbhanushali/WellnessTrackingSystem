@@ -12,7 +12,6 @@
 {% compress css %}
 <link href="{% static 'css/error403.css' %}" rel="stylesheet">
 <link href="{% static 'css/chat-style.css' %}" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 {% endcompress %}
 {% endblock customcss %}
 
@@ -39,7 +38,7 @@
     <a class="btn btn-primary" href="{% url 'user:update' %}" role="button">My Info</a>
     <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
     <a class="btn btn-primary" href="{% url 'redirectLoggedInUser' %}" role="button">Dashboard</a>
-    <!-- Your Stuff: Custom user template urls -->
+    <Your Stuff: Custom user template urls -->
     <a class="btn btn-primary" href="{% url 'user:update' %}" role="button">My Info</a><br><br>
     <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a><br><br>
     <a class="btn btn-primary" href="{% url 'redirectLoggedInUser' %}" role="button">Dashboard</a><br><br>
@@ -92,13 +91,13 @@
         {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Chat with Your Trainer</button><br><br>
       </form>
-      <form method="post" action="{% url 'chat:room_detail' 'twilio-chat' %}">
+      <form method="post" action="{% url 'chat:room_detail' 'support' %}">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-warning">Chat with Support</button>
         <br><br>
       </form>
-      <form method="post" action="{% url 'chat:room_detail' 'random' %}">
+      <form method="post" action="{% url 'chat:room_detail' 'faq' %}">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-info">FAQs</button><br><br>

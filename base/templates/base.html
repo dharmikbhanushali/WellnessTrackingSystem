@@ -48,6 +48,10 @@
 
   <link href="{% static 'bootstrap-4.0/css/bootstrap.min.css' %}" rel="stylesheet">
 
+  <link href="{% static 'css/chat-style.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
   <!-- javascript
     ================================================== -->
   {# Placed at the top of the document so pages load faster with defer #}
@@ -92,8 +96,6 @@
   <script
     src="https://media.twiliocdn.com/sdk/js/chat/v2.0/twilio-chat.min.js"></script>
 
-    <link href="{% static 'css/chat-style.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
@@ -104,10 +106,8 @@
   {% endcompress %}
   {% endblock javascript %}
 
-  {% compress css %}
   {% block customcss %}
   {% endblock customcss %}
-  {% endcompress %}
 
 </head>
 
@@ -153,11 +153,6 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </li>
-
-        <li> {{ object.username }}
-          {% if object.name %}
-            <p>{{ object.name }}</p>
-          {% endif %}</li>
         {% else %}
         {% if ACCOUNT_ALLOW_REGISTRATION %}
         <li class="nav-item">

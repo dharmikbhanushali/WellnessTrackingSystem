@@ -124,4 +124,4 @@ class MarkWorkoutCompleteForm(forms.ModelForm):
 class TrainerForm(forms.ModelForm):
     class Meta:
         model = TrainerIntake
-        exclude = ["date_created","user"]
+        exclude = ["date_created", "user"]

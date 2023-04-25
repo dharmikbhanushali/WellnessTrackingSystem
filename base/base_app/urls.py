@@ -30,6 +30,7 @@ from user.views import (  # test_template,
     Intake_form,
     Trainer_dashboard,
     Workouts_list_all,
+    enroll_workout,
     redirectLoggedInUser,
     trainerIntakeForm,
 )
@@ -104,4 +105,12 @@ urlpatterns += [
     path("testing/", view=Client_dashboard, name="Client_dashboard"),
     path("trainer-intake-form/", view=trainerIntakeForm, name="trainerIntakeForm"),
     path("workout/create/", view=Create_workout, name="Create_workout"),
+    path(
+        "enroll-workout/<int:workout_id>/", view=enroll_workout, name="enroll_workout"
+    ),
+    path(
+        "enroll-workout/<int:workout_id>/<str:date_assigned>/",
+        view=enroll_workout,
+        name="enroll_workout",
+    ),
 ]

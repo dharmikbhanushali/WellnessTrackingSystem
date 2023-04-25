@@ -114,14 +114,23 @@ $(function () {
       .getChannelByUniqueName(channelName)
       .then(function (channel) {
         roomChannel = channel;
-        // IF member has already joined then we will be able to read the messages on that channel.
+        try{
+
+           // IF member has already joined then we will be able to read the messages on that channel.
         roomChannel.getMessages(30).then(processPage);
         // Listen for new messages sent to the channel
         roomChannel.on('messageAdded', function (message) {
           printMessage(message.author, message.body);
         });
 
-        // setupChannel(channelName); // TODO: maybe we don't need to setup the channel
+        } catch (err)
+        {
+          console.error(`Member has not joined... ${err}`);
+          setupChannel(channelName);
+        }
+       
+
+        
       })
       .catch(function (err) {
         // If it doesn't exist, let's create it
