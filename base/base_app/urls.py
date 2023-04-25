@@ -33,6 +33,7 @@ from user.views import (  # test_template,
     enroll_workout,
     redirectLoggedInUser,
     trainerIntakeForm,
+    view_workout,
 )
 
 
@@ -112,5 +113,10 @@ urlpatterns += [
         "enroll-workout/<int:workout_id>/<str:date_assigned>/",
         view=enroll_workout,
         name="enroll_workout",
+    ),
+    path(
+        "view-workouts/<int:assigned_workouts_id>",
+        view=view_workout,
+        name="view_workouts",
     ),
 ]

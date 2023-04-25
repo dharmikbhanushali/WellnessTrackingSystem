@@ -13,7 +13,6 @@ from django.urls import reverse
 from django.utils import timezone as timezoneDjango
 from django.utils.translation import gettext_lazy as translate
 from django.views.generic import DetailView, RedirectView, UpdateView
-from django.db.models import Sum
 
 # Project Libraries
 from core import constants
@@ -150,9 +149,12 @@ def View_appointments(request):
     return render(request, "view_appointments.html", context)
 
 
-def view_workout(request, workout_id):
-    workout = get_object_or_404(Workouts, id=workout_id)
-    return render(request, "workout_detail_placeholder.html", {"workout": workout})
+@login_required
+def view_workout(request, assigned_workouts_id):
+    assigned_workout = get_object_or_404(WorkoutsAssigned, id=assigned_workouts_id)
+    print(assigned_workout)
+    context = {"assigned_workout": assigned_workout}
+    return render(request, "pages/testing.html", context)
 
 
 # def view_all_workouts(request):
@@ -222,24 +224,7 @@ def enroll_workout(request, workout_id, date_assigned=None):
     )
     metrics.save()
     # Add workout to metrics
-    metrics.workouts.add(workout)
-
-    # Save metrics
-
-    # if date_assigned:
-    #     WorkoutsAssigned.objects.create(
-    #         user=user, workout=workout, date_assigned=date_assigned
-    #     )
-    #     client_metrics, created = ClientMetrics.objects.get_or_create(
-    #         user=request.user, date=date_assigned
-    #     )
-
-    # else:
-    # WorkoutsAssigned.objects.create(user=user, workout=workout)
-    # client_metrics, created = ClientMetrics.objects.get_or_create(
-    #     user=request.user, date=timezoneDjango.now().date()
-    # )
-    # client_metrics.workouts.add(workout)
+    metrics.workouts.add(assigned_workout)
     return redirect("/client-dashboard/")
 
 
@@ -303,7 +288,9 @@ def Client_dashboard(request):
     for i in range(7):
         date_to_check = today - timedelta(days=i)
 
-        workouts_assigned = WorkoutsAssigned.objects.filter(user=user, date_completed=date_to_check)
+        workouts_assigned = WorkoutsAssigned.objects.filter(
+            user=user, date_completed=date_to_check
+        )
         calories_burnt_on_date = 0
         for w in workouts_assigned:
             calories_burnt_on_date += w.workout.calories
@@ -326,7 +313,6 @@ def Client_dashboard(request):
         "calories_burnt_last_week_dict": date_calories_pairs_last_week_dict_arr,
     }
     return render(request, "pages/userDashboard.html", context)
-
 
 
 # Retrieve workouts assigned based on the date assigned

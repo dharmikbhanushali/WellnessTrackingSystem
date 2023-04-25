@@ -85,18 +85,22 @@
         </div>
       </div>
       <div class="events-div">
+
         <div id="upcoming-events">Upcoming workouts</div>
         <div class="events-container">
           {% for item in workouts_assigned_today %}
+          <!-- <h3 style = "color:black;">  item id :: {{item.id}} </h3>  -->
+
           <div class="single-event">
             <div class="single-event-left">
               <!-- Time is static -->
+
               <span class="event-time">7:00 AM</span>
               <span class="event-date">{{ item.date_assigned }}</span>
             </div>
-
             <div class="single-event-partition"></div>
             <div class="single-event-right">
+              <a href = "{% url 'view_workouts' item.id %}">
 
               <span class="single-event-title"><b>{{ item.workout.title }}</b></span>
               <span class="single-event-desc">{{ item.workout.description }}</span>
@@ -150,8 +154,8 @@
 {% endblock content %}
 
 {% block inline_javascript %}
-<!-- 
-  REFERENCES: 
+<!--
+  REFERENCES:
   1. https://canvasjs.com/html5-javascript-bar-chart/
   2. https://codepen.io/JMChristensen/pen/AGbeEy
 -->
