@@ -128,9 +128,9 @@ $(function () {
           console.error(`Member has not joined... ${err}`);
           setupChannel(channelName);
         }
-       
 
-        
+
+
       })
       .catch(function (err) {
         // If it doesn't exist, let's create it
