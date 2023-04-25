@@ -31,10 +31,10 @@ from user.views import (  # test_template,
     Trainer_dashboard,
     Workouts_list_all,
     enroll_workout,
+    recommend_workouts,
     redirectLoggedInUser,
     trainerIntakeForm,
     view_workout,
-    recommend_workouts
 )
 
 
@@ -104,7 +104,9 @@ urlpatterns += [
     path("intake-form/", view=Intake_form, name="intake_form"),
     path("redirect-user/", view=redirectLoggedInUser, name="redirectLoggedInUser"),
     path("workouts/", view=Workouts_list_all, name="view_all_workouts"),
-    path("recommened_workouts/", view=recommend_workouts, name="view_recommend_workouts"),
+    path(
+        "recommened_workouts/", view=recommend_workouts, name="view_recommend_workouts"
+    ),
     path("testing/", view=Client_dashboard, name="Client_dashboard"),
     path("trainer-intake-form/", view=trainerIntakeForm, name="trainerIntakeForm"),
     path("workout/create/", view=Create_workout, name="Create_workout"),

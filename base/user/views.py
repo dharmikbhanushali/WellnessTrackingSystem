@@ -90,12 +90,11 @@ def Workouts_list_all(request):
 
 
 def recommend_workouts(request):
-    workouts = Workouts.objects.filter(
-        trainer__username="trainer123@gmail.com"
-    )
+    workouts = Workouts.objects.filter(trainer__email="trainer123@gmail.com")
     trainerDetails = trainerFormModel.objects.all()
     context = {"workouts": workouts, "trainerDetails": trainerDetails}
     return render(request, "pages/recommendedworkouts.html", context)
+
 
 @login_required
 def Intake_form(request):

@@ -5,7 +5,7 @@
     border-bottom-left-radius: 10px;
     padding: 1rem;
   }
-  
+
   /* Message container styling */
   #messages {
     background-color: #fff;
@@ -15,7 +15,7 @@
     height: 400px;
     overflow-y: scroll;
   }
-  
+
   /* Message input and send button styling */
   .textarea {
     border-radius: 20px;
@@ -24,7 +24,7 @@
     resize: none;
     width: 100%;
   }
-  
+
   .button {
     background-color: #007bff;
     border-radius: 20px;
@@ -33,13 +33,12 @@
     padding: 0.5rem 1rem;
     margin-top: 1rem;
   }
-  
+
   .button:hover {
     background-color: #0069d9;
   }
-  
+
   /* Remove default margin from body element */
   body {
     margin: 0;
   }
-  

@@ -109,6 +109,10 @@ def token(request):
         chat_grant = ChatGrant(endpoint_id=endpoint, service_sid=chat_service_sid)
         token.add_grant(chat_grant)
 
-    response = {"identity": identity, "token": token.to_jwt(), "channel_name": "Sarah Lee"}
+    response = {
+        "identity": identity,
+        "token": token.to_jwt(),
+        "channel_name": "Sarah Lee",
+    }
 
     return JsonResponse(response)
