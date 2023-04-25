@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% load compress %}
 
@@ -7,6 +9,15 @@
 <link href="{% static 'css/userDashboard.css' %}" rel="stylesheet">
 <link href="{% static 'css/homepageStyle.css' %}" rel="stylesheet">
 <link href="{% static 'css/trainerDashboard.css' %}" rel="stylesheet">
+<link href="{% static 'css/chat-style.css' %}" rel="stylesheet">
+<!-- <link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css"
+      rel="stylesheet" /> -->
+<!-- <link href="https://canvasjs.com/assets/css/jquery-ui.1.11.2.min.css" rel="stylesheet" /> -->
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" type="text/javascript"></script>
+<!-- <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js" type="text/javascript"></script> -->
+<!-- <script src="{% static 'js/circle-progress.min.js' %}" type="text/javascript"></script> -->
 
 {% endcompress %}
 {% endblock customcss %}
@@ -51,7 +62,7 @@
                                 <a href="#" target="_blank">
                                     <div class="content-overlay"></div>
 
-                                    <img src="{{ item.thumbnail.url }}" class="content-image" alt="test">
+                                    <img src="{{item.thumbnail.url}}" class="content-image" />
                                     <div class="content-details fadeIn-top">
 
                                         <h3>{{item.title}}</h3>
@@ -98,25 +109,49 @@
                         </div>
 
                     </div>
-
                     {% endfor %}
                 </div>
 
             </div>
         </div>
     </div>
+</div>
+<div class="chat-icon" id="chat-icon">
+  <i class="fas fa-comments"></i>
+</div>
 
+<div class="chatbot-container" id="chatbot-container">
+<div class="chatbot-header">
+  <h3>Healthtrack365 Chat Support</h3>
+  <button class="close-btn">&times;</button>
+</div>
+<div class="chatbot-body">
+  <p>Welcome to the chat service! Select an option:</p>
+    <div class="form-group">
+      <!-- <input type="text" class="form-control" id="message-input" placeholder="Enter your message..."> -->
+    </div>
+    <form method="post" action="{% url 'chat:room_detail' 'general' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-primary">Chat with Your Trainer</button><br><br>
+    </form>
+    <form method="post" action="{% url 'chat:room_detail' 'support' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-warning">Chat with Support</button>
+      <br><br>
+    </form>
+    <form method="post" action="{% url 'chat:room_detail' 'faq' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-info">FAQs</button><br><br>
+    </form>
+</div>
+</div>
+<div class="chat-overlay" id="chat-overlay"></div>
 </section>
 
 {% endblock content %}
-
-{% block page_specific_js %}
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js" type="text/javascript"></script>
-
-
-{% endblock page_specific_js %}
 
 {% block inline_javascript %}
 <script>
@@ -127,5 +162,32 @@
         });
     });</script>
 
-
+<script>
+  const chatIcon = document.getElementById('chat-icon');
+  const chatbotContainer = document.getElementById('chatbot-container');
+  const chatOverlay = document.getElementById('chat-overlay');
+  const closeBtn = chatbotContainer.querySelector('.close-btn');
+  
+  
+  // Show the chatbot container and overlay when the chat icon is clicked
+  chatIcon.addEventListener('click', function() {
+    chatbotContainer.style.display = 'block';
+    chatOverlay.style.display = 'block';
+  });
+  
+  // Hide the chatbot container and overlay when the close button is clicked
+  closeBtn.addEventListener('click', function() {
+    chatbotContainer.style.display = 'none';
+    chatOverlay.style.display = 'none';
+  });
+  
+  // Hide the chatbot container and overlay when the overlay is clicked outside the container
+  chatOverlay.addEventListener('click', function(event) {
+    if (event.target === chatOverlay) {
+      chatbotContainer.style.display = 'none';
+      chatOverlay.style.display = 'none';
+    }
+  });
+  
+  </script>
 {% endblock inline_javascript %}
