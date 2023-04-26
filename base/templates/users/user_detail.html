@@ -9,10 +9,8 @@
 
 
 {% block customcss %}
-{% compress css %}
 <link href="{% static 'css/error403.css' %}" rel="stylesheet">
 <link href="{% static 'css/chat-style.css' %}" rel="stylesheet">
-{% endcompress %}
 {% endblock customcss %}
 
 {% block content %}
@@ -30,7 +28,6 @@
   </div>
 
 {% if object == request.user %}
-<!-- Action buttons -->
 <br><br>
 
 <section class="vh-70">
@@ -70,7 +67,6 @@
   <div class="chatbot-body">
     <p>Welcome to the chat service! Select an option:</p>
       <div class="form-group">
-        <!-- <input type="text" class="form-control" id="message-input" placeholder="Enter your message..."> -->
       </div>
       <form method="post" action="{% url 'chat:room_detail' 'general' %}">
         {% csrf_token %}

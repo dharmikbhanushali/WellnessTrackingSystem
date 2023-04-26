@@ -10,9 +10,7 @@
 {% block title %}Video Player{% endblock %}
 
 {% block customcss %}
-{% compress css %}
 <link href="{% static 'css/error403.css' %}" rel="stylesheet">
-{% endcompress %}
 {% endblock customcss %}
 
 {% block content %}
@@ -21,7 +19,6 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <div class="video-wrapper">
-        <!-- Placeholder for video -->
         <video class="video-player" controls>
           <source src="{% static 'videos/sample.mp4' %}" type="video/mp4">
           Your browser does not support the video tag.
